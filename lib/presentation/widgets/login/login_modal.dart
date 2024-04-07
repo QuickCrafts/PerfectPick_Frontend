@@ -1,11 +1,12 @@
 import "package:flutter/material.dart";
+import "package:perfectpick_wa/presentation/colors.dart";
 
 class LoginDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       alignment: Alignment.center,
-      backgroundColor: Color.fromRGBO(255, 255, 255, 0.15),
+      backgroundColor: modalBackgroundColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
@@ -22,58 +23,53 @@ class LoginDialog extends StatelessWidget {
             child: Text('Hi!',
                 textAlign: TextAlign.left,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: modalTitleColor,
                   fontWeight: FontWeight.bold,
                   fontSize: 25,
                 )),
           ),
           TextField(
-            cursorColor: Color(0xFFE625A7),
-            style: TextStyle(
-              color: Colors.white,
-            ),
+            cursorColor: activeColor,
+            style: TextStyle(color: textInsideFieldColor),
             decoration: InputDecoration(
               labelText: 'Email',
-              labelStyle: TextStyle(color: Colors.grey),
+              labelStyle: TextStyle(color: labelColor),
               focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Color(0xFFE625A7)),
+                borderSide: BorderSide(color: activeColor),
               ),
               enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Color.fromARGB(255, 105, 21, 77)),
+                borderSide: BorderSide(color: inactiveColor),
               ),
             ),
           ),
           TextField(
-            cursorColor: Color(0xFFE625A7),
-            style: TextStyle(color: Colors.white),
+            cursorColor: activeColor,
+            style: TextStyle(color: textInsideFieldColor),
             obscureText: true,
             decoration: InputDecoration(
               labelText: 'Password',
-              labelStyle: TextStyle(color: Colors.grey),
+              labelStyle: TextStyle(color: labelColor),
               focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Color(0xFFE625A7)),
+                borderSide: BorderSide(color: activeColor),
               ),
               enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Color.fromARGB(255, 105, 21, 77)),
+                borderSide: BorderSide(color: inactiveColor),
               ),
             ),
           ),
           Align(
             alignment: Alignment.centerLeft,
             child: TextButton(
-              style: ButtonStyle(
-                overlayColor: MaterialStateProperty.all(Colors.white),
-              ),
               onPressed: () {
                 // Handle forgot password action
               },
               child: Text(
-                'Forgot your passwords?',
+                'Forgot your password?',
                 textAlign: TextAlign.left,
                 style: TextStyle(
-                    color: Color(0xFFE625A7),
+                    color: activeColor,
                     decoration: TextDecoration.underline,
-                    decorationColor: Color(0xFFE625A7)),
+                    decorationColor: activeColor),
               ),
             ),
           ),
@@ -90,13 +86,14 @@ class LoginDialog extends StatelessWidget {
                 // Handle login action
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFFE625A7),
+                backgroundColor: activeColor,
                 padding: EdgeInsets.symmetric(vertical: 16),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              child: Text('Log In', style: TextStyle(color: Colors.white)),
+              child: Text('Log In',
+                  style: TextStyle(color: textInsideButtonColor)),
             ),
           ),
         ),
@@ -110,7 +107,7 @@ class LoginDialog extends StatelessWidget {
               Column(
                 children: [
                   Text('or continue with ',
-                      style: TextStyle(color: Colors.grey)),
+                      style: TextStyle(color: alternativeTextColor)),
                   Image.asset(
                     "lib/presentation/images/google_icon.png",
                     width: 20,
@@ -126,12 +123,12 @@ class LoginDialog extends StatelessWidget {
             child: Row(
               children: [
                 Text('Don\'t have an account? ',
-                    style: TextStyle(color: Colors.grey)),
+                    style: TextStyle(color: alternativeTextColor)),
                 Text('Sign Up',
                     style: TextStyle(
-                        color: Color(0xFFE625A7),
+                        color: activeColor,
                         decoration: TextDecoration.underline,
-                        decorationColor: Color(0xFFE625A7))),
+                        decorationColor: activeColor)),
               ],
             ))
       ],
