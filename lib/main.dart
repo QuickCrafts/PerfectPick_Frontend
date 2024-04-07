@@ -1,7 +1,7 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'presentation/widgets/login/login_modal.dart';
+import 'presentation/widgets/navigation/navbar.dart';
 
 void main() {
   runApp(MyApp());
@@ -33,28 +33,12 @@ class MyAppState extends ChangeNotifier {
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
 
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Column(
         children: [
-          Text('Hello World!:'),
-          Text(appState.current.asLowerCase),
-          ElevatedButton(
-            onPressed: (){
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return LoginDialog();
-                },
-              );
-            }, child: Text("Open Login Modal")),
-          ElevatedButton(
-            onPressed: () {
-              appState.current = WordPair.random();
-            },
-            child: Text('Botón de prueba'),
-          ),
+          NavBar(),
         ],
       ),
     );
