@@ -1,6 +1,7 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'presentation/widgets/login/login_modal.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => MyAppState(),
       child: MaterialApp(
-        title: 'Namer App',
+        title: 'PerfectPick',
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
@@ -39,7 +40,15 @@ class MyHomePage extends StatelessWidget {
         children: [
           Text('Hello World!:'),
           Text(appState.current.asLowerCase),
-
+          ElevatedButton(
+            onPressed: (){
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return LoginDialog();
+                },
+              );
+            }, child: Text("Open Login Modal")),
           ElevatedButton(
             onPressed: () {
               appState.current = WordPair.random();
