@@ -1,9 +1,13 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'presentation/widgets/navigation/navbar.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'data/data_providers/client_declarator.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
-void main() {
+Future main() async {
+  await dotenv.load(fileName: ".env");
+
   runApp(MyApp());
 }
 
@@ -12,8 +16,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => MyAppState(),
+    return GraphQLProvider(
+      client: client,
       child: MaterialApp(
         title: 'PerfectPick',
         theme: ThemeData(

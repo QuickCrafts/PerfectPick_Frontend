@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:perfectpick_wa/presentation/colors.dart";
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class LoginDialog extends StatefulWidget {
   @override
@@ -9,6 +10,15 @@ class LoginDialog extends StatefulWidget {
 class LoginDialogState extends State<LoginDialog> {
   bool _isPasswordHiden = true;
   double _passwordSpacing = 10;
+  final loginEmailDataController = TextEditingController();
+  final loginPasswordDataController = TextEditingController();
+
+  @override
+  void dispose() {
+    loginEmailDataController.dispose();
+    loginPasswordDataController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +62,7 @@ class LoginDialogState extends State<LoginDialog> {
                           )),
                       SizedBox(height: 8),
                       TextField(
+                        controller: loginEmailDataController,
                         cursorColor: activeColor,
                         cursorHeight: 20,
                         style: TextStyle(color: textInsideFieldColor),
@@ -69,6 +80,7 @@ class LoginDialogState extends State<LoginDialog> {
                       ),
                       SizedBox(height: 5),
                       TextField(
+                        controller: loginPasswordDataController,
                         cursorColor: activeColor,
                         cursorHeight: 20,
                         style: TextStyle(
@@ -125,7 +137,14 @@ class LoginDialogState extends State<LoginDialog> {
                           child: ElevatedButton(
                             onPressed: () {
                               // Handle login action
-                              
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    content: Text("${loginEmailDataController.text} ${loginPasswordDataController.text}"),
+                                  );
+                                },
+                              );
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: activeColor,
