@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'presentation/widgets/navigation/navbar.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'data/data_providers/client_declarator.dart';
+import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 Future main() async {
@@ -17,14 +18,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GraphQLProvider(
-      client: client,
+      client: graphqlClient,
       child: MaterialApp(
         title: 'PerfectPick',
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
         ),
-        home: MyHomePage(),
+        home: MyHomePage(authRepository: AuthRepository(client: graphqlClient.value),),
       ),
     );
   }
@@ -35,6 +36,10 @@ class MyAppState extends ChangeNotifier {
 }
 
 class MyHomePage extends StatelessWidget {
+  final AuthRepository authRepository;
+
+  const MyHomePage({super.key, required this.authRepository});
+
   @override
   Widget build(BuildContext context) {
 
@@ -42,7 +47,7 @@ class MyHomePage extends StatelessWidget {
       backgroundColor: Colors.black,
       body: Column(
         children: [
-          NavBar(),
+          NavBar(authRepository: authRepository,),
         ],
       ),
     );

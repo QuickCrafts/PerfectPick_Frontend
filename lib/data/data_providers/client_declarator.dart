@@ -6,7 +6,7 @@ String apigatewayUrl = dotenv.env["PERFECTPICK_APIGATEWAY_URL"]!;
 
 final HttpLink httpLink = HttpLink(apigatewayUrl);
 
-final ValueNotifier<GraphQLClient> client = ValueNotifier<GraphQLClient>(
+final ValueNotifier<GraphQLClient> graphqlClient = ValueNotifier<GraphQLClient>(
   GraphQLClient(
     link: httpLink,
     cache: GraphQLCache(),

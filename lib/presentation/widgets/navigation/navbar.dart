@@ -1,34 +1,21 @@
 import 'package:flutter/material.dart';
 import "package:perfectpick_wa/presentation/colors.dart";
 import 'package:perfectpick_wa/presentation/widgets/login/login_modal.dart';
-
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          NavBar(),
-          Expanded(
-            child: Center(
-              child: Text('Page Content'),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
+import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
 
 class NavBar extends StatelessWidget {
+  final AuthRepository authRepository;
+
+  const NavBar({Key? key, required this.authRepository}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth > 830) {
-          return DesktopNavBar();
+          return DesktopNavBar(authRepository: authRepository);
         } else {
-          return MobileNavBar();
+          return MobileNavBar(authRepository: authRepository);
         }
       },
     );
@@ -36,6 +23,11 @@ class NavBar extends StatelessWidget {
 }
 
 class DesktopNavBar extends StatelessWidget {
+  final AuthRepository authRepository;
+
+  const DesktopNavBar({Key? key, required this.authRepository})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -91,7 +83,9 @@ class DesktopNavBar extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (context) {
-                  return LoginDialog();
+                  return LoginDialog(
+                    authRepository: authRepository,
+                  );
                 },
               );
             },
@@ -118,6 +112,10 @@ class DesktopNavBar extends StatelessWidget {
 }
 
 class MobileNavBar extends StatelessWidget {
+  final AuthRepository authRepository;
+
+  const MobileNavBar({Key? key, required this.authRepository})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -156,7 +154,7 @@ class MobileNavBar extends StatelessWidget {
                   showDialog(
                     context: context,
                     builder: (context) {
-                      return LoginDialog();
+                      return LoginDialog(authRepository:authRepository);
                     },
                   );
                 },

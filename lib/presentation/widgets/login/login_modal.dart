@@ -1,8 +1,14 @@
 import "package:flutter/material.dart";
 import "package:perfectpick_wa/presentation/colors.dart";
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
+import "package:perfectpick_wa/auxiliar_functions.dart";
 
 class LoginDialog extends StatefulWidget {
+  
+  final AuthRepository authRepository;
+
+  const LoginDialog({Key? key, required this.authRepository}) : super(key: key);
+
   @override
   LoginDialogState createState() => LoginDialogState();
 }
@@ -12,6 +18,7 @@ class LoginDialogState extends State<LoginDialog> {
   double _passwordSpacing = 10;
   final loginEmailDataController = TextEditingController();
   final loginPasswordDataController = TextEditingController();
+
 
   @override
   void dispose() {
@@ -135,16 +142,40 @@ class LoginDialogState extends State<LoginDialog> {
                           width: 82,
                           height: 36,
                           child: ElevatedButton(
-                            onPressed: () {
+                            onPressed: () async {
                               // Handle login action
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    content: Text("${loginEmailDataController.text} ${loginPasswordDataController.text}"),
-                                  );
-                                },
-                              );
+                              String email = loginEmailDataController.text;
+                              String password = loginPasswordDataController.text;
+                              try {
+                                String token = await widget.authRepository.emailLogin(email, password);
+                                showDialog(context: context, builder: (context) => AlertDialog(
+                                  title: Text('Success'),
+                                  content: Text('Token: $token'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text('Close'),
+                                    ),
+                                  ],
+                                )
+                                );
+                              } catch (e) {
+                                showDialog(context: context, builder: (context) => AlertDialog(
+                                  title: Text('Error'),
+                                  content: Text('Error: $e'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text('Close'),
+                                    ),
+                                  ],
+                                )
+                                );
+                              }
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: activeColor,
@@ -167,8 +198,31 @@ class LoginDialogState extends State<LoginDialog> {
                           width: 150,
                           height: 60,
                           child: TextButton(
-                            onPressed: () {
-                              // Handle continue with Google action
+                            onPressed: () async {
+                              try {
+                                String link = await widget.authRepository.googleLogin();
+                                try {
+                                  launchAuxiliarURL(link);
+                                } catch (e) {
+                                  print(e);
+                                }
+                              } catch (e) {
+                                showDialog(context: context, builder: (context) => AlertDialog(
+                                  title: Text('Error'),
+                                  content: Text('Error: $e'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text('Close'),
+                                    ),
+                                  ],
+                                )
+                                );
+                                print(e);
+                              }
+                              
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
