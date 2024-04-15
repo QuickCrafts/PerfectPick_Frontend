@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import "package:perfectpick_wa/presentation/colors.dart";
 import 'package:perfectpick_wa/presentation/widgets/login/login_modal.dart';
+import 'package:perfectpick_wa/presentation/widgets/signUp/signup_modal.dart';
 import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
 
 class NavBar extends StatelessWidget {
@@ -98,7 +99,16 @@ class DesktopNavBar extends StatelessWidget {
           Text("|", style: TextStyle(color: Colors.white, fontSize: 20)),
           SizedBox(width: 5),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return SignUpDialog(
+                    authRepository: authRepository,
+                  );
+                },
+              );
+            },
             child: Text(
               'Sign up',
               style: TextStyle(color: Colors.yellow, fontSize: 18),
@@ -167,7 +177,14 @@ class MobileNavBar extends StatelessWidget {
               Text("|", style: TextStyle(color: Colors.white, fontSize: 20)),
               SizedBox(width: 5),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return SignUpDialog(authRepository:authRepository);
+                    },
+                  );
+                },
                 child: Text(
                   'Sign up',
                   style: TextStyle(color: Colors.yellow, fontSize: 18),
