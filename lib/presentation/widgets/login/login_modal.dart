@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:perfectpick_wa/presentation/colors.dart";
 import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
 import "package:perfectpick_wa/auxiliar_functions.dart";
+import "package:perfectpick_wa/presentation/widgets/login/forgot_password_modal.dart";
 
 class LoginDialog extends StatefulWidget {
   final AuthRepository authRepository;
@@ -123,7 +124,11 @@ class LoginDialogState extends State<LoginDialog> {
                       InkWell(
                         onTap: () {
                           // Handle forgot password action
-                        },
+                          showDialog(context: context, builder: (context){
+                            return ForgotPasswordDialog();
+                          });
+                          }
+                        ,
                         child: Padding(
                           padding: EdgeInsets.only(top: 8),
                           child: Text(
