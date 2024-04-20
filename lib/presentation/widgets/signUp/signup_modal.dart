@@ -2,9 +2,7 @@ import "dart:ui";
 
 import "package:flutter/material.dart";
 import "package:perfectpick_wa/presentation/colors.dart";
-import 'package:perfectpick_wa/presentation/widgets/login/login_modal.dart';
 import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
-import "package:perfectpick_wa/auxiliar_functions.dart";
 
 class SignUpDialog extends StatefulWidget {
 
