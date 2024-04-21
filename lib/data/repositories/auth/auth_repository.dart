@@ -87,7 +87,7 @@ class AuthRepository {
   }
 
   Future<String> forgotPassword(String email) async {
-    final String? potentialToken;
+    final String? potentialMessage;
 
     ForgotPasswordModel incomingModel = ForgotPasswordModel(email: email);
     if (!incomingModel.validate()) {
@@ -104,8 +104,7 @@ class AuthRepository {
       // Handle the case when result.data is null
       print('No data received from the GraphQL query.');
     } else {
-      //sadddddddddddddddddddddddddddddddddddddddddddddddd
-      final data = result.data!['loginWithEmail'];
+      final data = result.data!['forgotPassword'];
       if (data != null && data is Map<String, dynamic>) {
       } else {
         print('Invalid data format received from the GraphQL query.');
@@ -113,10 +112,10 @@ class AuthRepository {
     }
 
     // Check result data
-    final data = result.data!['loginWithEmail'];
-    final response = jsonDecode(data['token']);
-    potentialToken = response['token'];
-    if (potentialToken == null) {
+    final data = result.data!['forgotPassword'];
+    final response = jsonDecode(data['message']);
+    potentialMessage = response['message'];
+    if (potentialMessage == null) {
       final potentialMessage = response['message'];
       if (potentialMessage != null) {
         throw Exception(potentialMessage);
@@ -125,13 +124,13 @@ class AuthRepository {
       }
     }
 
-    LoginResponseModel outcomingModel =
-        LoginResponseModel(token: potentialToken);
+    ForgotPasswordResponseModel outcomingModel =
+        ForgotPasswordResponseModel(message: potentialMessage);
     if (!outcomingModel.validate()) {
       throw Exception('Invalid output');
     }
 
-    return outcomingModel.token;
+    return outcomingModel.message;
   }
 }
 

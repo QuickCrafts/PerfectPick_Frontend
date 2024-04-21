@@ -141,7 +141,7 @@ class LoginDialogState extends State<LoginDialog> {
                                 showDialog(
                                   context: context,
                                   builder: (context) {
-                                    return ForgotPasswordDialog(authRepository: widget.authRepository);
+                                    return ForgotPasswordDialog( authRepository: widget.authRepository,);
                                   },
                                 );
                               },
