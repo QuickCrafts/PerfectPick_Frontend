@@ -4,15 +4,16 @@ import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
 import "package:perfectpick_wa/auxiliar_functions.dart";
 
 class ForgotPasswordDialog extends StatefulWidget {
+  final AuthRepository authRepository;
 
- const ForgotPasswordDialog()  : super();
+  const ForgotPasswordDialog({Key? key, required this.authRepository})
+      : super(key: key);
 
   @override
   ForgotPasswordState createState() => ForgotPasswordState();
 }
 
 class ForgotPasswordState extends State<ForgotPasswordDialog> {
-
   final loginEmailDataController = TextEditingController();
   final loginPasswordDataController = TextEditingController();
 
@@ -95,9 +96,39 @@ class ForgotPasswordState extends State<ForgotPasswordDialog> {
                             onPressed: () async {
                               // Handle login action
                               String email = loginEmailDataController.text;
-                              String password =
-                                  loginPasswordDataController.text;
-                              
+                              try {
+                                String message = await widget.authRepository
+                                    .forgotPassword(email);
+                                showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                          title: Text('Success'),
+                                          content: Text('Token: $message'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: Text('Close'),
+                                            ),
+                                          ],
+                                        ));
+                              } catch (e) {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                          title: Text('Error'),
+                                          content: Text('Error: $e'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: Text('Close'),
+                                            ),
+                                          ],
+                                        ));
+                              }
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: activeColor,

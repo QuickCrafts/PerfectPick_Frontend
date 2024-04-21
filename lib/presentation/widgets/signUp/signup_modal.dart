@@ -293,14 +293,14 @@ class SignUpDialogState extends State<SignUpDialog> {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    //Navigator.of(context).pop();
-                                    //Handles go to Log In action
-                                    //showDialog(
+                                    Navigator.of(context).pop();
+                                    // Handles go to Log In action
+                                    // showDialog(
                                     //  context: context,
                                     //  builder: (context) {
                                     //    return LoginDialog(authRepository: authRepository,);
                                     //  },
-                                    //);
+                                    // );
                                   },
                                   child: Text('Log In',
                                       style: TextStyle(

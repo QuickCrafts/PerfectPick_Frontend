@@ -34,3 +34,23 @@ QueryOptions googleLoginQueryOptions() {
     pollInterval: Duration(seconds: 10),
   );
 }
+
+String forgotPasswordQuery = '''
+  query forgotPassword(\$email: String!) {
+    forgotPassword(email: \$email) {
+      message
+    }
+  }
+''';
+
+QueryOptions forgotPasswordQueryOptions(String email) {
+  return QueryOptions(
+    document: gql(forgotPasswordQuery),
+    variables: {
+      'email': email,
+    },
+    pollInterval: Duration(seconds: 10),
+  );
+}
+
+// recoverPassword
