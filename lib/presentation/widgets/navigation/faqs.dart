@@ -104,7 +104,7 @@ class DesktopFaqs extends StatelessWidget {
                     if (state.isExpanded[0])
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 38),
-                        child: Container(
+                        child: SizedBox(
                           width: MediaQuery.of(context).size.width,
                           child: Text(
                             faqsList[1],
@@ -153,7 +153,7 @@ class DesktopFaqs extends StatelessWidget {
                       if (state.isExpanded[1])
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 38),
-                          child: Container(
+                          child: SizedBox(
                             width: MediaQuery.of(context).size.width,
                             child: Text(
                               faqsList[3],
@@ -202,7 +202,7 @@ class DesktopFaqs extends StatelessWidget {
                       if (state.isExpanded[2])
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 38),
-                          child: Container(
+                          child: SizedBox(
                             width: MediaQuery.of(context).size.width,
                             child: Text(
                               faqsList[5],
@@ -251,7 +251,7 @@ class DesktopFaqs extends StatelessWidget {
                       if (state.isExpanded[3])
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 38),
-                          child: Container(
+                          child: SizedBox(
                             width: MediaQuery.of(context).size.width,
                             child: Text(
                               faqsList[7],
@@ -300,7 +300,7 @@ class DesktopFaqs extends StatelessWidget {
                       if (state.isExpanded[4])
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 38),
-                          child: Container(
+                          child: SizedBox(
                             width: MediaQuery.of(context).size.width,
                             child: Text(
                               faqsList[9],
@@ -349,7 +349,7 @@ class DesktopFaqs extends StatelessWidget {
                       if (state.isExpanded[5])
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 38),
-                          child: Container(
+                          child: SizedBox(
                             width: MediaQuery.of(context).size.width,
                             child: Text(
                               faqsList[11],
@@ -398,7 +398,7 @@ class DesktopFaqs extends StatelessWidget {
                       if (state.isExpanded[6])
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 38),
-                          child: Container(
+                          child: SizedBox(
                             width: MediaQuery.of(context).size.width,
                             child: Text(
                               faqsList[13],
@@ -447,7 +447,7 @@ class DesktopFaqs extends StatelessWidget {
                       if (state.isExpanded[7])
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 38),
-                          child: Container(
+                          child: SizedBox(
                             width: MediaQuery.of(context).size.width,
                             child: Text(
                               faqsList[15],
@@ -496,7 +496,7 @@ class DesktopFaqs extends StatelessWidget {
                       if (state.isExpanded[8])
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 38),
-                          child: Container(
+                          child: SizedBox(
                             width: MediaQuery.of(context).size.width,
                             child: Text(
                               faqsList[17],
@@ -545,7 +545,7 @@ class DesktopFaqs extends StatelessWidget {
                       if (state.isExpanded[9])
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 38),
-                          child: Container(
+                          child: SizedBox(
                             width: MediaQuery.of(context).size.width,
                             child: Text(
                               faqsList[19],
@@ -626,7 +626,7 @@ class MobileFaqs extends StatelessWidget {
                       if (state.isExpanded[0])
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 38),
-                          child: Container(
+                          child: SizedBox(
                             width: MediaQuery.of(context).size.width,
                             child: Text(
                               faqsList[1],
@@ -675,7 +675,7 @@ class MobileFaqs extends StatelessWidget {
                       if (state.isExpanded[1])
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 38),
-                          child: Container(
+                          child: SizedBox(
                             width: MediaQuery.of(context).size.width,
                             child: Text(
                               faqsList[3],
@@ -724,7 +724,7 @@ class MobileFaqs extends StatelessWidget {
                       if (state.isExpanded[2])
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 38),
-                          child: Container(
+                          child: SizedBox(
                             width: MediaQuery.of(context).size.width,
                             child: Text(
                               faqsList[5],
@@ -773,7 +773,7 @@ class MobileFaqs extends StatelessWidget {
                       if (state.isExpanded[3])
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 38),
-                          child: Container(
+                          child: SizedBox(
                             width: MediaQuery.of(context).size.width,
                             child: Text(
                               faqsList[7],
@@ -822,7 +822,7 @@ class MobileFaqs extends StatelessWidget {
                       if (state.isExpanded[4])
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 38),
-                          child: Container(
+                          child: SizedBox(
                             width: MediaQuery.of(context).size.width,
                             child: Text(
                               faqsList[9],
@@ -871,7 +871,7 @@ class MobileFaqs extends StatelessWidget {
                       if (state.isExpanded[5])
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 38),
-                          child: Container(
+                          child: SizedBox(
                             width: MediaQuery.of(context).size.width,
                             child: Text(
                               faqsList[11],
@@ -920,7 +920,7 @@ class MobileFaqs extends StatelessWidget {
                       if (state.isExpanded[6])
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 38),
-                          child: Container(
+                          child: SizedBox(
                             width: MediaQuery.of(context).size.width,
                             child: Text(
                               faqsList[13],
@@ -969,7 +969,7 @@ class MobileFaqs extends StatelessWidget {
                       if (state.isExpanded[7])
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 38),
-                          child: Container(
+                          child: SizedBox(
                             width: MediaQuery.of(context).size.width,
                             child: Text(
                               faqsList[15],
@@ -1018,7 +1018,7 @@ class MobileFaqs extends StatelessWidget {
                       if (state.isExpanded[8])
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 38),
-                          child: Container(
+                          child: SizedBox(
                             width: MediaQuery.of(context).size.width,
                             child: Text(
                               faqsList[17],
@@ -1067,7 +1067,7 @@ class MobileFaqs extends StatelessWidget {
                       if (state.isExpanded[9])
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 38),
-                          child: Container(
+                          child: SizedBox(
                             width: MediaQuery.of(context).size.width,
                             child: Text(
                               faqsList[19],

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import "package:perfectpick_wa/presentation/colors.dart";
 import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
+import 'package:perfectpick_wa/presentation/widgets/Legal/Privacy_policy_page.dart';
+import 'package:perfectpick_wa/presentation/widgets/Legal/terms_of_service_page.dart';
 import 'package:perfectpick_wa/presentation/widgets/navigation/support.dart';
 
 class Footer extends StatelessWidget {
@@ -170,7 +172,10 @@ class DesktopFooter extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    //
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => TermsOfServicePage()),
+                    );
                   },
                   child: Text(
                     'Terms of Use',
@@ -179,7 +184,10 @@ class DesktopFooter extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    //
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PrivacyPolicyPage()),
+                    );
                   },
                   child: Text(
                     'Privacy Policy',
