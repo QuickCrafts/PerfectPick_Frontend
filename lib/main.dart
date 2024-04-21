@@ -1,6 +1,7 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'presentation/widgets/navigation/navbar.dart';
+import 'presentation/widgets/navigation/how_it_works.dart';
 import 'presentation/widgets/navigation/support.dart';
 import 'presentation/widgets/navigation/faqs.dart';
 import 'presentation/widgets/navigation/footer.dart';
@@ -67,6 +68,7 @@ class MyHomePage extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  HowItWorks(authRepository: authRepository),
                   Support(authRepository: authRepository),
                   Faqs(authRepository: authRepository),
                   Footer(authRepository: authRepository),
