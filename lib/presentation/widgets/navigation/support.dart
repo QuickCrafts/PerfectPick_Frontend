@@ -154,7 +154,8 @@ class DesktopSupport extends StatelessWidget {
                                         context: context,
                                         builder: (context) => AlertDialog(
                                               title: Text('Success'),
-                                              content: Text('Message: $message'),
+                                              content:
+                                                  Text('Message: $message'),
                                               actions: [
                                                 TextButton(
                                                   onPressed: () {
@@ -334,6 +335,119 @@ class MobileSupport extends StatelessWidget {
             decoration: BoxDecoration(
               color: modalBackgroundColor,
               borderRadius: BorderRadius.circular(12),
+            ),
+            padding: EdgeInsets.all(20),
+            child: Column(
+              children: [
+                SizedBox(height: 20),
+                TextField(
+                  cursorColor: activeColor,
+                  cursorHeight: 20,
+                  style: TextStyle(color: textInsideFieldColor),
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.only(bottom: 4),
+                    labelText: 'Name',
+                    labelStyle: TextStyle(color: modalTitleColor),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: activeColor),
+                    ),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: inactiveColor),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                TextField(
+                  cursorColor: activeColor,
+                  cursorHeight: 20,
+                  style: TextStyle(color: textInsideFieldColor),
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.only(bottom: 4),
+                    labelText: 'Email',
+                    labelStyle: TextStyle(color: modalTitleColor),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: activeColor),
+                    ),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: inactiveColor),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                TextField(
+                  cursorColor: activeColor,
+                  cursorHeight: 20,
+                  style: TextStyle(color: textInsideFieldColor),
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.only(bottom: 4),
+                    labelText: 'Message',
+                    labelStyle: TextStyle(color: modalTitleColor),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: activeColor),
+                    ),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: inactiveColor),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: Checkbox.width * 1.5,
+                ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: SizedBox(
+                    width: 82,
+                    height: 36,
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        // Handle login action
+
+                        try {
+                          String message = "Contact us";
+                          showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                    title: Text('Success'),
+                                    content: Text('Message: $message'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text('Close'),
+                                      ),
+                                    ],
+                                  ));
+                        } catch (e) {
+                          showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                    title: Text('Error'),
+                                    content: Text('Error: $e'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text('Close'),
+                                      ),
+                                    ],
+                                  ));
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: activeColor,
+                        padding: EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: Text('Send',
+                          style: TextStyle(color: textInsideButtonColor)),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           SizedBox(height: 20),
