@@ -118,7 +118,7 @@ class ForgotPasswordState extends State<ForgotPasswordDialog> {
                                           builder: (context) => AlertDialog(
                                                 title: Text('Success'),
                                                 content:
-                                                    Text('Token: $message'),
+                                                    Text('Message: $message'),
                                                 actions: [
                                                   TextButton(
                                                     onPressed: () {
