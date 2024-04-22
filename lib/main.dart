@@ -16,10 +16,10 @@ Future main() async {
   await dotenv.load(fileName: ".env");
 
   runApp(
-      ChangeNotifierProvider(
-        create: (context) => MyState(),
-        child: MyApp(),
-      ),
+    ChangeNotifierProvider(
+      create: (context) => MyState(),
+      child: MyApp(),
+    ),
   );
 }
 
@@ -36,7 +36,9 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
         ),
-        home: MyHomePage(authRepository: AuthRepository(client: graphqlClient.value),),
+        home: MyHomePage(
+          authRepository: AuthRepository(client: graphqlClient.value),
+        ),
       ),
     );
   }
@@ -53,7 +55,6 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.black,

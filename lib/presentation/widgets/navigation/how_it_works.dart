@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import "package:perfectpick_wa/presentation/colors.dart";
 import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
-import 'package:url_launcher/url_launcher_string.dart';
 
 class HowItWorks extends StatelessWidget {
   final AuthRepository authRepository;
@@ -62,7 +60,7 @@ class DesktopHowItWorks extends StatelessWidget {
                         color: textInsideFieldColor, fontSize: 26, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 5),
-                  Container(
+                  SizedBox(
                     width: 250,
                     child: Text(
                       "Tell us what you like and dislike to customize your recommendations",
@@ -105,7 +103,7 @@ class DesktopHowItWorks extends StatelessWidget {
                             color: textInsideFieldColor, fontSize: 26, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(height: 5),
-                      Container(
+                      SizedBox(
                         width: 250,
                         child: Text(
                           "Or in our star to generate a  book, movie and song recommendation",
@@ -148,7 +146,7 @@ class DesktopHowItWorks extends StatelessWidget {
                           color: textInsideFieldColor, fontSize: 26, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 5),
-                    Container(
+                    SizedBox(
                       width: 250,
                       child: Text(
                         "Go through everything you might like to read, watch or listen",
@@ -246,7 +244,7 @@ class MobileHowItWorks extends StatelessWidget {
                 color: textInsideFieldColor, fontSize: 26, fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 5),
-          Container(
+          SizedBox(
             width: 250,
             child: Text(
               "Tell us what you like and dislike to customize your recommendations",
@@ -282,7 +280,7 @@ class MobileHowItWorks extends StatelessWidget {
                 color: textInsideFieldColor, fontSize: 26, fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 5),
-          Container(
+          SizedBox(
             width: 250,
             child: Text(
               "Or in our star to generate a  book, movie and song recommendation",
@@ -318,7 +316,7 @@ class MobileHowItWorks extends StatelessWidget {
                 color: textInsideFieldColor, fontSize: 26, fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 5),
-          Container(
+          SizedBox(
             width: 250,
             child: Text(
               "Go through everything you might like to read, watch or listen",
