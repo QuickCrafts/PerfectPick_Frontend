@@ -41,3 +41,43 @@ class LoginResponseModel {
     return token.isNotEmpty;
   }
 }
+class ForgotPasswordModel{
+  String email;
+
+  ForgotPasswordModel({
+    required this.email
+  });
+
+  ForgotPasswordModel.fromJson(Map<String, dynamic> json):
+    email = json['email'];
+  
+
+  Map<String, dynamic> toJson(){
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['email'] = email;
+    return data;
+  }
+
+  bool validate(){
+    return email.isNotEmpty;
+  }
+}
+
+class ForgotPasswordResponseModel {
+  String message;
+
+  ForgotPasswordResponseModel({required this.message});
+
+  ForgotPasswordResponseModel.fromJson(Map<String, dynamic> json)
+      : message = json['forgotPassword']['message'];
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['forgotPassword'] = {'message': message};
+    return data;
+  }
+
+  bool validate() {
+    return message.isNotEmpty;
+  }
+}

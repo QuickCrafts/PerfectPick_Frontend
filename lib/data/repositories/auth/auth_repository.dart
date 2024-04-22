@@ -85,6 +85,53 @@ class AuthRepository {
 
     return link;
   }
+
+  Future<String> forgotPassword(String email) async {
+    final String? potentialMessage;
+
+    ForgotPasswordModel incomingModel = ForgotPasswordModel(email: email);
+    if (!incomingModel.validate()) {
+      throw Exception('Invalid input');
+    }
+
+    final QueryOptions options = forgotPasswordQueryOptions(email);
+    final QueryResult result = await client.query(options);
+
+    if (result.hasException) {
+      // Handle the exception
+      print('GraphQL exception: ${result.exception.toString()}');
+    } else if (result.data == null) {
+      // Handle the case when result.data is null
+      print('No data received from the GraphQL query.');
+    } else {
+      final data = result.data!['forgotPassword'];
+      if (data != null && data is Map<String, dynamic>) {
+      } else {
+        print('Invalid data format received from the GraphQL query.');
+      }
+    }
+
+    // Check result data
+    final data = result.data!['forgotPassword'];
+    final response = jsonDecode(data['message']);
+    potentialMessage = response['message'];
+    if (potentialMessage == null) {
+      final potentialMessage = response['message'];
+      if (potentialMessage != null) {
+        throw Exception(potentialMessage);
+      } else {
+        throw Exception('Unknown error occurred.');
+      }
+    }
+
+    ForgotPasswordResponseModel outcomingModel =
+        ForgotPasswordResponseModel(message: potentialMessage);
+    if (!outcomingModel.validate()) {
+      throw Exception('Invalid output');
+    }
+
+    return outcomingModel.message;
+  }
 }
 
 

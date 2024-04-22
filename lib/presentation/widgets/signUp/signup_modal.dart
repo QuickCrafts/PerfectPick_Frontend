@@ -3,6 +3,8 @@ import "dart:ui";
 import "package:flutter/material.dart";
 import "package:perfectpick_wa/presentation/colors.dart";
 import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
+import "package:perfectpick_wa/presentation/widgets/Legal/Privacy_policy_page.dart";
+import "package:perfectpick_wa/presentation/widgets/Legal/terms_of_service_page.dart";
 
 class SignUpDialog extends StatefulWidget {
 
@@ -186,7 +188,10 @@ class SignUpDialogState extends State<SignUpDialog> {
                               ),
                               InkWell(
                                 onTap: () {
-                                  //Handles go to Terms of Service action
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => TermsOfServicePage()),
+                                      );
                                 },
                                 child:
                                   Text(
@@ -205,8 +210,11 @@ class SignUpDialogState extends State<SignUpDialog> {
                                     fontSize: 15),
                               ),
                               InkWell(
-                                onTap: () {
-                                  //Handles go to Log In action
+                                  onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => PrivacyPolicyPage()),
+                                      );
                                 },
                                 child:
                                   Text(
@@ -291,14 +299,14 @@ class SignUpDialogState extends State<SignUpDialog> {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    //Navigator.of(context).pop();
-                                    //Handles go to Log In action
-                                    //showDialog(
+                                    Navigator.of(context).pop();
+                                    // Handles go to Log In action
+                                    // showDialog(
                                     //  context: context,
                                     //  builder: (context) {
                                     //    return LoginDialog(authRepository: authRepository,);
                                     //  },
-                                    //);
+                                    // );
                                   },
                                   child: Text('Log In',
                                       style: TextStyle(
