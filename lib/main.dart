@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:perfectpick_wa/presentation/widgets/cards/card_media.dart';
+import 'package:perfectpick_wa/presentation/widgets/navigation/home.dart';
 import 'presentation/widgets/navigation/navbar.dart';
 import 'presentation/widgets/navigation/how_it_works.dart';
 import 'presentation/widgets/navigation/support.dart';
@@ -58,6 +59,7 @@ class MyHomePage extends StatefulWidget {
 class MyHomePageState extends State<MyHomePage> {
   final ScrollController _scrollController = ScrollController();
   final Map<String, GlobalKey> keys = {
+    "home": GlobalKey(),
     "howItWorks": GlobalKey(),
     "support": GlobalKey(),
     "faqs": GlobalKey(),
@@ -101,6 +103,10 @@ class MyHomePageState extends State<MyHomePage> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  Home(
+                    authRepository: authRepository,
+                    key: keys["home"]
+                  ),
                   HowItWorks(
                     authRepository: authRepository,
                     key: keys["howItWorks"],
