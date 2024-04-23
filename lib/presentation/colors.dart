@@ -19,3 +19,5 @@ const Color alternativeTextColor = Colors.grey;
 const Color textInsideButtonColor = Colors.white;
 
 const Color primaryLight = Color.fromRGBO(248, 191, 229, 100);
+
+const Color secondaryMain = Color.fromRGBO(229, 204, 56, 100);
