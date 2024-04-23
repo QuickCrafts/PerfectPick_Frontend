@@ -48,7 +48,9 @@ class DesktopNavBar extends StatelessWidget {
           ),
           Spacer(),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, 'home');
+            },
             child: Text(
               'Home',
               style: TextStyle(color: Colors.white, fontSize: 18),
@@ -151,6 +153,27 @@ class MobileNavBar extends StatelessWidget {
                   iconSize: 35,
                   icon: Icon(Icons.menu, color: activeColor),
                   onPressed: () {
+                    showMenu(
+                      color: Color.fromRGBO(38, 6, 41, 1),
+                      context: context,
+                      position: RelativeRect.fromLTRB(0, kToolbarHeight, 0, 0),
+                      items: [
+                        PopupMenuItem(
+                          value: 1,
+                          child: 
+                          Text(
+                            'Option 1', 
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),),
+                        ),
+                        PopupMenuItem(
+                          child: Text('Option 2'),
+                          value: 2,
+                        ),
+                        // Add more menu items as needed
+                      ],
+                    );
                     // TODO: Implement dropdown menu
                   },
                 ),
@@ -164,7 +187,7 @@ class MobileNavBar extends StatelessWidget {
                   showDialog(
                     context: context,
                     builder: (context) {
-                      return LoginDialog(authRepository:authRepository);
+                      return LoginDialog(authRepository: authRepository);
                     },
                   );
                 },
@@ -181,7 +204,7 @@ class MobileNavBar extends StatelessWidget {
                   showDialog(
                     context: context,
                     builder: (context) {
-                      return SignUpDialog(authRepository:authRepository);
+                      return SignUpDialog(authRepository: authRepository);
                     },
                   );
                 },
