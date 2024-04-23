@@ -59,8 +59,8 @@ class DesktopHome extends StatelessWidget {
               buildAwesomeRecommendationsText(),
               SizedBox(height: 16),
               buildDescriptionText(),
-              SizedBox(height: 32),
-              buildRecommendButton(),
+              SizedBox(height: 32)
+              //buildRecommendButton(),
             ],
           ),
         ),
@@ -117,30 +117,40 @@ class MobileHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Container(
       key: homeKey,
-      appBar: AppBar(
-        title: Text("PerfectPick"),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.logout),
-            onPressed: () async {
-              // Add logout logic here
-            },
-          ),
-        ],
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('lib/presentation/images/home_background.png'),
+          fit: BoxFit.cover,
+        ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            buildAwesomeRecommendationsText(),
-            SizedBox(height: 16),
-            buildDescriptionText(),
-            SizedBox(height: 32),
-            buildRecommendButton(),
-          ],
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color.fromRGBO(38, 6, 41, 0.5),
+              activeColor.withOpacity(0.6),
+            ],
+            stops: [0.3, 0.9],
+          ),
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: 62),
+              buildAwesomeRecommendationsText(),
+              SizedBox(height: 36),
+              buildDescriptionText(),
+              SizedBox(height: 62),
+              buildRecommendButton(),
+              SizedBox(height: 62),
+            ],
+          ),
         ),
       ),
     );
@@ -148,9 +158,10 @@ class MobileHome extends StatelessWidget {
 
   Widget buildAwesomeRecommendationsText() {
     return Text(
-      'Awesome recommendations for you free time',
+      'Awesome recommendations for your free time',
       style: TextStyle(
-        fontSize: 24,
+        fontSize: 24, // Smaller font size for mobile
+        color: textInsideButtonColor,
         fontWeight: FontWeight.bold,
       ),
       textAlign: TextAlign.center,
@@ -159,8 +170,11 @@ class MobileHome extends StatelessWidget {
 
   Widget buildDescriptionText() {
     return Text(
-      'Books, movies and music you need to enjoy according with your preferences',
-      style: TextStyle(fontSize: 16),
+      'Books, movies, and music you need to enjoy according to your preferences',
+      style: TextStyle(
+        fontSize: 18, // Smaller font size for mobile
+        color: textInsideButtonColor.withOpacity(0.8),
+      ),
       textAlign: TextAlign.center,
     );
   }
@@ -172,9 +186,10 @@ class MobileHome extends StatelessWidget {
       },
       child: Text('Recommend me'),
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.pink,
-        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-        textStyle: TextStyle(fontSize: 18),
+        backgroundColor: activeColor,
+        foregroundColor: Colors.white,
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8), // Smaller padding for mobile
+        textStyle: TextStyle(fontSize: 14), // Smaller text size for button
       ),
     );
   }
