@@ -53,6 +53,10 @@ class MyApp extends StatelessWidget {
               AdsLandingPage(authRepository: mainAuthRepository),
           '/recommends': (context) =>
               RecommendsLandingPage(authRepository: mainAuthRepository),
+          '/ads': (context) =>
+              AdsLandingPage(authRepository: mainAuthRepository),
+          '/recommends': (context) =>
+              RecommendsLandingPage(authRepository: mainAuthRepository),
         },
       ),
     );
