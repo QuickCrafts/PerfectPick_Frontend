@@ -120,7 +120,7 @@ class SignUpModel{
 }
 
 class SignUpResponseModel {
-  String token;
+  int token;
 
   SignUpResponseModel({required this.token});
 
@@ -134,6 +134,6 @@ class SignUpResponseModel {
   }
 
   bool validate() {
-    return token.isNotEmpty;
+    return token.toString().isNotEmpty;
   }
 }

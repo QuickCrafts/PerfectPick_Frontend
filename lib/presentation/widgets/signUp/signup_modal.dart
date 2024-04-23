@@ -259,13 +259,13 @@ class SignUpDialogState extends State<SignUpDialog> {
                                 String birthdate = "2005-02-21"; // See if is needed here
                                 bool role = false; // See if is needed here
                                 try {
-                                  String token = await widget.authRepository
+                                  int token = await widget.authRepository
                                       .emailSignUp(email, password, firstName, lastName, birthdate, role);
                                   showDialog(
                                     context: context,
                                     builder: (context) => AlertDialog(
                                       title: Text('Success'),
-                                      content: Text('Token: $token'),
+                                      content: Text('id: $token'),
                                       actions: [
                                         TextButton(
                                           onPressed: () {

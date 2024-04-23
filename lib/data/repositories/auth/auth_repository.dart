@@ -133,8 +133,8 @@ class AuthRepository {
     return outcomingModel.message;
   }
 
-  Future<String> emailSignUp(String email, String password, String firstName, String lastName, String birthdate, bool role) async{
-    final String? potentialToken;
+  Future<int> emailSignUp(String email, String password, String firstName, String lastName, String birthdate, bool role) async{
+    final int? potentialId;
 
     SignUpModel incomingModel = SignUpModel(email: email, password: password, firstName: firstName, lastName: lastName, birthdate: birthdate, role: role);
     if (!incomingModel.validate()) {
@@ -158,11 +158,13 @@ class AuthRepository {
       }
     }
 
+
     // Check result data
     final data = result.data!['signUpUser'];
-    final response = jsonDecode(data['token']);
-    potentialToken = response['token'];
-    if (potentialToken == null) {
+    final response = jsonDecode(data['message']);
+    print(response);
+    potentialId = response['id'];
+    if (potentialId == null) {
       final potentialMessage = response['message'];
       if (potentialMessage != null) {
         throw Exception(potentialMessage);
@@ -172,7 +174,7 @@ class AuthRepository {
     }
 
     SignUpResponseModel outcomingModel =
-    SignUpResponseModel(token: potentialToken);
+    SignUpResponseModel(token: potentialId);
     if (!outcomingModel.validate()) {
       throw Exception('Invalid output');
     }

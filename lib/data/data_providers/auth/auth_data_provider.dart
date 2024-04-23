@@ -57,9 +57,9 @@ QueryOptions forgotPasswordQueryOptions(String email) {
 // recoverPassword
 
 String signUpQuery = '''
-  query signUpUser(\$email: String!, \$password: String!, \$firstName: String!, \$lastName: String!, \$birthdate: String!, \$role: Boolean){
+  mutation signUpUser(\$email: String!, \$password: String!, \$firstName: String!, \$lastName: String!, \$birthdate: String!, \$role: Boolean!){
     signUpUser(email: \$email, password: \$password, firstName: \$firstName, lastName: \$lastName, birthdate: \$birthdate, role: \$role){
-      token
+      message
     }
   }
 ''';
