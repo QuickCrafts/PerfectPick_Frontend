@@ -3,7 +3,6 @@ import "package:flutter/material.dart";
 import "package:perfectpick_wa/presentation/colors.dart";
 import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
 import "package:perfectpick_wa/auxiliar_functions.dart";
-import "package:perfectpick_wa/presentation/widgets/login/change_password_modal.dart";
 import "package:perfectpick_wa/presentation/widgets/login/forgot_password_modal.dart";
 
 class LoginDialog extends StatefulWidget {
@@ -142,7 +141,7 @@ class LoginDialogState extends State<LoginDialog> {
                                 showDialog(
                                   context: context,
                                   builder: (context) {
-                                    return ChangePasswordDialog();
+                                    return ForgotPasswordDialog( authRepository: widget.authRepository,);
                                   },
                                 );
                               },

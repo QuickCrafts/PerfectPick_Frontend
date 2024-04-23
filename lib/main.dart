@@ -1,9 +1,11 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:perfectpick_wa/data/repositories/auth/media_repository.dart';
+import 'package:perfectpick_wa/presentation/widgets/media/mediaList.dart';
 import 'presentation/widgets/navigation/navbar.dart';
 import 'presentation/widgets/navigation/how_it_works.dart';
 import 'presentation/widgets/navigation/support.dart';
-import 'presentation/widgets/navigation/faqs.dart';
+// import 'presentation/widgets/navigation/faqs.dart';
 import 'presentation/widgets/navigation/footer.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'data/data_providers/client_declarator.dart';
@@ -37,7 +39,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
         ),
         routes: {
-          '/':(context) => MyHomePage(authRepository: AuthRepository(client: graphqlClient.value),),
+          '/':(context) => MyHomePage(authRepository: AuthRepository(client: graphqlClient.value), mediaRepository: MediaRepository(media: graphqlClient.value),),
         },
       ),
     );
@@ -47,8 +49,9 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatelessWidget {
   final AuthRepository authRepository;
+  final MediaRepository mediaRepository;
 
-  const MyHomePage({super.key, required this.authRepository});
+  const MyHomePage({super.key, required this.authRepository , required this.mediaRepository});
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +71,8 @@ class MyHomePage extends StatelessWidget {
                 children: [
                   HowItWorks(authRepository: authRepository),
                   Support(authRepository: authRepository),
-                  Faqs(authRepository: authRepository),
+                  MediaList(mediaRepository: mediaRepository),
+                  // Faqs(authRepository: authRepository),
                   Footer(authRepository: authRepository),
                 ],
               ),
