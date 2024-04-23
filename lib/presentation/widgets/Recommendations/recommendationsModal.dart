@@ -44,7 +44,6 @@ class _RecommendationsWidgetState extends State<RecommendationsWidget> {
         final recommendations = result.data?['getRecommendationsForUser'];
 
         // Extract movies, books, and songs IDs.
-        print("we are here");
         final List<dynamic> movies = recommendations['movies'] as List<dynamic>;
         final List<dynamic> books = recommendations['books'] as List<dynamic>;
         final List<dynamic> songs = recommendations['songs'] as List<dynamic>;
