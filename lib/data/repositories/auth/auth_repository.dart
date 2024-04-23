@@ -132,6 +132,86 @@ class AuthRepository {
 
     return outcomingModel.message;
   }
+
+  Future<int> emailSignUp(String email, String password, String firstName, String lastName, String birthdate, bool role) async{
+    final int? potentialId;
+
+    SignUpModel incomingModel = SignUpModel(email: email, password: password, firstName: firstName, lastName: lastName, birthdate: birthdate, role: role);
+    if (!incomingModel.validate()) {
+      throw Exception('Invalid input');
+    }
+
+    final QueryOptions options = signUpQueryOptions(email, password, firstName, lastName, birthdate, role);
+    final QueryResult result = await client.query(options);
+
+    if (result.hasException) {
+      // Handle the exception
+      print('GraphQL exception: ${result.exception.toString()}');
+    } else if (result.data == null) {
+      // Handle the case when result.data is null
+      print('No data received from the GraphQL query.');
+    } else {
+      final data = result.data!['signUpUser'];
+      if (data != null && data is Map<String, dynamic>) {
+      } else {
+        print('Invalid data format received from the GraphQL query.');
+      }
+    }
+
+
+    // Check result data
+    final data = result.data!['signUpUser'];
+    final response = jsonDecode(data['message']);
+    print(response);
+    potentialId = response['id'];
+    if (potentialId == null) {
+      final potentialMessage = response['message'];
+      if (potentialMessage != null) {
+        throw Exception(potentialMessage);
+      } else {
+        throw Exception('Unknown error occurred.');
+      }
+    }
+
+    SignUpResponseModel outcomingModel =
+    SignUpResponseModel(token: potentialId);
+    if (!outcomingModel.validate()) {
+      throw Exception('Invalid output');
+    }
+
+    return outcomingModel.token;
+  }
+
+  Future<String> googleSignUp() async {
+    final String? potentialLink;
+
+    final QueryOptions options = googleSignUpQueryOptions();
+    final QueryResult result = await client.query(options);
+
+    if (result.hasException) {
+      // Handle the exception
+      print('GraphQL exception: ${result.exception.toString()}');
+    } else if (result.data == null) {
+      // Handle the case when result.data is null
+      print('No data received from the GraphQL query.');
+    } else {
+      final data = result.data!['loginWithGoogle'];
+      if (data != null && data is Map<String, dynamic>) {
+      } else {
+        print('Invalid data format received from the GraphQL query.');
+      }
+    }
+
+    // Check result data
+    final data = result.data!['loginWithGoogle'];
+    potentialLink = data['url'];
+    if (potentialLink == null) {
+      throw Exception('No link received from the GraphQL query.');
+    }
+    final String link = data['url'];
+
+    return link;
+  }
 }
 
 
