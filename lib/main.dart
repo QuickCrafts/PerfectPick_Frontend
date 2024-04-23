@@ -32,6 +32,7 @@ Future main() async {
 class MyApp extends StatelessWidget {
   final AuthRepository mainAuthRepository =
       AuthRepository(client: graphqlClient.value);
+  final MediaRepository mediaRepository = MediaRepository(media: graphqlClient.value);
   MyApp({super.key});
 
   @override
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: '/',
         routes: {
-          '/': (context) => MyHomePage(authRepository: mainAuthRepository),
+          '/': (context) => MyHomePage(authRepository: mainAuthRepository, mediaRepository: mediaRepository),
           '/ads': (context) => AdsLandingPage(authRepository: mainAuthRepository),
           '/recommends': (context) => RecommendsLandingPage(authRepository: mainAuthRepository),
           '/': (context) => MyHomePage(
