@@ -145,7 +145,7 @@ class DesktopFooter extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    //
+                    Navigator.pushNamed(context, "/ads");
                   },
                   child: Text(
                     'Advertising',
