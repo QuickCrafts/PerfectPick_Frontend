@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:perfectpick_wa/business_logic/cubits/auth_verificator.dart';
 import 'package:perfectpick_wa/presentation/pages/ads_landing.dart';
 import 'package:perfectpick_wa/presentation/pages/recommends_landing.dart';
 import 'package:perfectpick_wa/presentation/widgets/cards/card_media.dart';
@@ -21,7 +22,7 @@ Future main() async {
 
   runApp(
     ChangeNotifierProvider(
-      create: (context) => MyState(),
+      create: (context) => AuthProvider(),
       child: MyApp(),
     ),
   );

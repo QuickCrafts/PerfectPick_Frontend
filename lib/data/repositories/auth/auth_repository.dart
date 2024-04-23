@@ -1,4 +1,5 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:perfectpick_wa/business_logic/cubits/auth_verificator.dart';
 import 'package:perfectpick_wa/data/data_providers/auth/auth_data_provider.dart'; // Import the file with the query
 import 'package:perfectpick_wa/data/models/auth/auth_models.dart'; // Import your incoming model
 import 'dart:convert';
@@ -51,7 +52,6 @@ class AuthRepository {
     if (!outcomingModel.validate()) {
       throw Exception('Invalid output');
     }
-
     return outcomingModel.token;
   }
 
@@ -87,7 +87,6 @@ class AuthRepository {
   }
 
   Future<String> forgotPassword(String email) async {
-
     ForgotPasswordModel incomingModel = ForgotPasswordModel(email: email);
     if (!incomingModel.validate()) {
       throw Exception('Invalid input');
@@ -109,13 +108,12 @@ class AuthRepository {
         print('Invalid data format received from the GraphQL query.');
       }
     }
-    
 
     // Check result data
     final data = result.data!['forgotPassword'];
     final response = data['message'];
     if (response == null) {
-        throw Exception(response);
+      throw Exception(response);
     }
 
     ForgotPasswordResponseModel outcomingModel =
@@ -127,15 +125,23 @@ class AuthRepository {
     return outcomingModel.message;
   }
 
-  Future<int> emailSignUp(String email, String password, String firstName, String lastName, String birthdate, bool role) async{
+  Future<int> emailSignUp(String email, String password, String firstName,
+      String lastName, String birthdate, bool role) async {
     final int? potentialId;
 
-    SignUpModel incomingModel = SignUpModel(email: email, password: password, firstName: firstName, lastName: lastName, birthdate: birthdate, role: role);
+    SignUpModel incomingModel = SignUpModel(
+        email: email,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
+        birthdate: birthdate,
+        role: role);
     if (!incomingModel.validate()) {
       throw Exception('Invalid input');
     }
 
-    final QueryOptions options = signUpQueryOptions(email, password, firstName, lastName, birthdate, role);
+    final QueryOptions options = signUpQueryOptions(
+        email, password, firstName, lastName, birthdate, role);
     final QueryResult result = await client.query(options);
 
     if (result.hasException) {
@@ -152,7 +158,6 @@ class AuthRepository {
       }
     }
 
-
     // Check result data
     final data = result.data!['signUpUser'];
     final response = jsonDecode(data['message']);
@@ -168,7 +173,7 @@ class AuthRepository {
     }
 
     SignUpResponseModel outcomingModel =
-    SignUpResponseModel(token: potentialId);
+        SignUpResponseModel(token: potentialId);
     if (!outcomingModel.validate()) {
       throw Exception('Invalid output');
     }
@@ -207,10 +212,11 @@ class AuthRepository {
     return link;
   }
 
-  Future<int> createCompany(String name, String email) async{
+  Future<int> createCompany(String name, String email) async {
     final int? potentialId;
 
-    CreateCompanyModel incomingModel = CreateCompanyModel(name: name, email: email);
+    CreateCompanyModel incomingModel =
+        CreateCompanyModel(name: name, email: email);
     if (!incomingModel.validate()) {
       throw Exception('Invalid input');
     }
@@ -232,7 +238,6 @@ class AuthRepository {
       }
     }
 
-
     // Check result data
     final data = result.data!['createCompany'];
     final response = jsonDecode(data['message']);
@@ -248,14 +253,34 @@ class AuthRepository {
     }
 
     CreateCompanyResponseModel outcomingModel =
-    CreateCompanyResponseModel(id: potentialId);
+        CreateCompanyResponseModel(id: potentialId);
     if (!outcomingModel.validate()) {
       throw Exception('Invalid output');
     }
 
     return outcomingModel.id;
   }
+
+  Future<int> verifyID(String token) async {
+    final int? potentialId;
+
+    final QueryOptions options = verifyIDQueryOptions(token);
+    final QueryResult result = await client.query(options);
+
+    if (result.hasException) {
+      // Handle the exception
+      print('GraphQL exception: ${result.exception.toString()}');
+    } else if (result.data == null) {
+      // Handle the case when result.data is null
+      print('No data received from the GraphQL query.');
+    }
+
+    print(result);
+    potentialId = result.data!['id'];
+    print(potentialId);
+    if (potentialId == null) {
+      throw Exception('No ID received from the GraphQL query.');
+    }
+    return potentialId;
+  }
 }
-
-
-

@@ -112,3 +112,22 @@ QueryOptions createCompanyQueryOptions(String name, String email) {
     pollInterval: Duration(seconds: 10),
   );
 }
+
+
+String verifyIDQuery = ''' 
+  query verifyIdentity(\$token: String!){
+    verifyIdentity(userToken: \$token){
+      id
+    }
+  }
+''';
+
+QueryOptions verifyIDQueryOptions(String token) {
+  return QueryOptions(
+    document: gql(verifyIDQuery),
+    variables: {
+      'token': token
+    },
+    pollInterval: Duration(seconds: 10),
+  );
+}

@@ -1,10 +1,12 @@
 import "dart:ui";
 import "package:flutter/material.dart";
+import "package:perfectpick_wa/business_logic/cubits/auth_verificator.dart";
 import "package:perfectpick_wa/presentation/colors.dart";
 import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
 import "package:perfectpick_wa/auxiliar_functions.dart";
 import "package:perfectpick_wa/presentation/widgets/login/forgot_password_modal.dart";
 import 'package:perfectpick_wa/presentation/widgets/signUp/signup_modal.dart';
+import "package:provider/provider.dart";
 
 class LoginDialog extends StatefulWidget {
   final AuthRepository authRepository;
@@ -176,6 +178,8 @@ class LoginDialogState extends State<LoginDialog> {
                                     try {
                                       String token = await widget.authRepository
                                           .emailLogin(email, password);
+                                      final authProvider = Provider.of<AuthProvider>(context, listen: false);
+                                      await authProvider.saveToken(token);
                                       showDialog(
                                           context: context,
                                           builder: (context) => AlertDialog(
