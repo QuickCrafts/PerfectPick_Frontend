@@ -4,6 +4,7 @@ import "package:perfectpick_wa/presentation/colors.dart";
 import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
 import "package:perfectpick_wa/auxiliar_functions.dart";
 import "package:perfectpick_wa/presentation/widgets/login/forgot_password_modal.dart";
+import "package:perfectpick_wa/presentation/widgets/signUp/signup_modal.dart";
 
 class LoginDialog extends StatefulWidget {
   final AuthRepository authRepository;
@@ -292,8 +293,15 @@ class LoginDialogState extends State<LoginDialog> {
                                     overflow: TextOverflow.fade,
                                   ),
                                   InkWell(
-                                    onTap: () => {
+                                    onTap: () {
                                       // Handle register action
+                                      Navigator.of(context).pop();
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return SignUpDialog( authRepository: widget.authRepository,);
+                                        },
+                                      );
                                     },
                                     child: Text(
                                       'Sign Up',
