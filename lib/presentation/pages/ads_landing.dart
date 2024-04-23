@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:perfectpick_wa/presentation/widgets/navigation/ads/ads_navbar.dart';
 import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
 import 'package:perfectpick_wa/presentation/widgets/navigation/ads/home.dart';
+import 'package:perfectpick_wa/presentation/widgets/navigation/how_to_impact.dart';
+import 'package:perfectpick_wa/presentation/widgets/navigation/footer.dart';
 
 
 class AdsLandingPage extends StatefulWidget {
@@ -17,7 +19,7 @@ class AdsLandingPageState extends State<AdsLandingPage> {
   final ScrollController _scrollController = ScrollController();
   final Map<String, GlobalKey> keys = {
     "home": GlobalKey(),
-    "howItWorks": GlobalKey(),
+    "howToImpact": GlobalKey(),
   };
 
   AuthRepository get authRepository => widget.authRepository;
@@ -61,7 +63,13 @@ class AdsLandingPageState extends State<AdsLandingPage> {
                     authRepository: authRepository,
                     homeKey: keys["home"],
                   ),
-                  // How it works
+                  HowToImpact(
+                    authRepository: authRepository,
+                    howToImpactKey: keys["howToImpact"],
+                  ),
+                  Footer(
+                    authRepository: authRepository,
+                  ),
                 ],
               ),
             ),
