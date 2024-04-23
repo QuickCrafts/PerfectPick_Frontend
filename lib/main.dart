@@ -1,5 +1,6 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:perfectpick_wa/presentation/widgets/cards/card_media.dart';
 import 'presentation/widgets/navigation/navbar.dart';
 import 'presentation/widgets/navigation/how_it_works.dart';
 import 'presentation/widgets/navigation/support.dart';
@@ -73,6 +74,13 @@ class MyHomePage extends StatelessWidget {
                   Support(authRepository: authRepository),
                   Faqs(authRepository: authRepository),
                   Footer(authRepository: authRepository),
+                  // CardMedia(
+                  //     userID: 1,
+                  //     mediaType: 'SON',
+                  //     mediaID: '',
+                  //     name: 'No time for toxic people',
+                  //     genre: 'Alternative Rock',
+                  //     author: 'Imagine Dragons'), -> No quitar plis, lo estoy usando (PAU)
                 ],
               ),
             ),
