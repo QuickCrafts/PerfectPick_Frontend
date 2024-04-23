@@ -140,7 +140,7 @@ class CardMediaState extends State<CardMedia> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
+                          SizedBox(
                             width: double.infinity,
                             child: Column(
                               mainAxisSize: MainAxisSize.min,

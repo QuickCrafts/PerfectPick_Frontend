@@ -110,22 +110,17 @@ class AuthRepository {
         print('Invalid data format received from the GraphQL query.');
       }
     }
+    
 
     // Check result data
     final data = result.data!['forgotPassword'];
-    final response = jsonDecode(data['message']);
-    potentialMessage = response['message'];
-    if (potentialMessage == null) {
-      final potentialMessage = response['message'];
-      if (potentialMessage != null) {
-        throw Exception(potentialMessage);
-      } else {
-        throw Exception('Unknown error occurred.');
-      }
+    final response = data['message'];
+    if (response == null) {
+        throw Exception(response);
     }
 
     ForgotPasswordResponseModel outcomingModel =
-        ForgotPasswordResponseModel(message: potentialMessage);
+        ForgotPasswordResponseModel(message: response);
     if (!outcomingModel.validate()) {
       throw Exception('Invalid output');
     }
