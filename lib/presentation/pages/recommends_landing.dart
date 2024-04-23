@@ -34,9 +34,10 @@ class RecommendsLandingPageState extends State<RecommendsLandingPage> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (constraints.maxWidth > 830) {
+        if (constraints.maxWidth > 1000) {
           return DesktopRecommendsLandingPage(authRepository: authRepository);
         } else {
+          return MobileRecommendsLandingPage(authRepository: authRepository);
           return MobileRecommendsLandingPage(authRepository: authRepository);
         }
       },
@@ -195,63 +196,19 @@ class MobileRecommendsLandingPage extends StatelessWidget {
                   child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                // Column(
-                //   children: [
-                //     SizedBox(
-                //       height: 90,
-                //     ),
-                //     InkWell(
-                //       onTap: () {
-                //         try {
-                //           launchAuxiliarURL(
-                //               "https://www.primevideo.com/dp/amzn1.dv.gti.056012bb-4d05-4e2f-8d8c-90cb2a938433?autoplay=0&ref_=atv_cf_strg_wb");
-                //         } catch (e) {
-                //           print(e);
-                //         }
-                //       },
-                //       child: Image.asset(
-                //         "lib/presentation/images/ESSM_ad.jpg",
-                //         width: 200,
-                //         height: 500,
-                //         fit: BoxFit.cover,
-                //       ),
-                //     ),
-                //     SizedBox(
-                //       height: 90,
-                //     ),
-                //   ],
-                // ),
+                Column(
+                  children: [
+                  ],
+                ),
                 Column(
                   children: [
                     // RECOMMENDATIONS GRID
                     MediaList(authRepository: authRepository),
+                    MediaList( authRepository: authRepository),
                   ],
                 ),
-                // Column(children: [
-                //   InkWell(
-                //     onTap: () {
-                //       try {
-                //         launchAuxiliarURL(
-                //             "https://tv.apple.com/us/movie/shutter-island/umc.cmc.1n432wlu275a0640043zypfsj");
-                //       } catch (e) {
-                //         print(e);
-                //       }
-                //     },
-                //     child: Image.asset(
-                //       "lib/presentation/images/Shutter_ad.jpg",
-                //       width: 170,
-                //       height: 90,
-                //       fit: BoxFit.cover,
-                //     ),
-                //   ),
-                //   SizedBox(
-                //     height: 20,
-                //   ),
-                //   // WISHLIST
-                //   SizedBox(
-                //     height: 20,
-                //   ),
-                // ])
+                Column(children: [
+                ])
               ])))
         ]));
   }

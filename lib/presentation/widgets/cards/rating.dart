@@ -35,7 +35,7 @@ class RatingState extends State<Rating> {
   @override
   initState() {
     super.initState();
-    rateInput = widget.rateInput;
+    //rateInput = widget.rateInput;
   }
 
   @override
@@ -68,97 +68,98 @@ class RatingState extends State<Rating> {
                 ),
               ],
             ),
-            Row(children: <Widget>[
-              Text(
-                'Your rate:',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 12,
-                  fontFamily: 'Noto Sans SC',
-                  height: 0,
+            if (rateInput)
+              Row(children: <Widget>[
+                Text(
+                  'Your rate:',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                    fontFamily: 'Noto Sans SC',
+                    height: 0,
+                  ),
                 ),
-              ),
-              Center(
-                  child: IconButton(
-                onPressed: () {
-                  setState(() {
-                    star1 = true;
-                    star2 = false;
-                    star3 = false;
-                    star4 = false;
-                    star5 = false;
-                  });
-                },
-                icon: const Icon(Icons.star),
-                color: star1
-                    ? Color.fromRGBO(229, 204, 56, 1)
-                    : Color.fromRGBO(127, 124, 124, 1),
-              )),
-              Center(
-                  child: IconButton(
-                onPressed: () {
-                  setState(() {
-                    star1 = true;
-                    star2 = true;
-                    star3 = false;
-                    star4 = false;
-                    star5 = false;
-                  });
-                },
-                icon: const Icon(Icons.star),
-                color: star2
-                    ? Color.fromRGBO(229, 204, 56, 1)
-                    : Color.fromRGBO(127, 124, 124, 1),
-              )),
-              Center(
-                  child: IconButton(
-                onPressed: () {
-                  setState(() {
-                    star1 = true;
-                    star2 = true;
-                    star3 = true;
-                    star4 = false;
-                    star5 = false;
-                  });
-                },
-                icon: const Icon(Icons.star),
-                color: star3
-                    ? Color.fromRGBO(229, 204, 56, 1)
-                    : Color.fromRGBO(127, 124, 124, 1),
-              )),
-              Center(
-                  child: IconButton(
-                onPressed: () {
-                  setState(() {
-                    star1 = true;
-                    star2 = true;
-                    star3 = true;
-                    star4 = true;
-                    star5 = false;
-                  });
-                },
-                icon: const Icon(Icons.star),
-                color: star4
-                    ? Color.fromRGBO(229, 204, 56, 1)
-                    : Color.fromRGBO(127, 124, 124, 1),
-              )),
-              Center(
-                  child: IconButton(
-                onPressed: () {
-                  setState(() {
-                    star1 = true;
-                    star2 = true;
-                    star3 = true;
-                    star4 = true;
-                    star5 = true;
-                  });
-                },
-                icon: const Icon(Icons.star),
-                color: star5
-                    ? Color.fromRGBO(229, 204, 56, 1)
-                    : Color.fromRGBO(127, 124, 124, 1),
-              )),
-            ])
+                Center(
+                    child: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      star1 = true;
+                      star2 = false;
+                      star3 = false;
+                      star4 = false;
+                      star5 = false;
+                    });
+                  },
+                  icon: const Icon(Icons.star),
+                  color: star1
+                      ? Color.fromRGBO(229, 204, 56, 1)
+                      : Color.fromRGBO(127, 124, 124, 1),
+                )),
+                Center(
+                    child: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      star1 = true;
+                      star2 = true;
+                      star3 = false;
+                      star4 = false;
+                      star5 = false;
+                    });
+                  },
+                  icon: const Icon(Icons.star),
+                  color: star2
+                      ? Color.fromRGBO(229, 204, 56, 1)
+                      : Color.fromRGBO(127, 124, 124, 1),
+                )),
+                Center(
+                    child: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      star1 = true;
+                      star2 = true;
+                      star3 = true;
+                      star4 = false;
+                      star5 = false;
+                    });
+                  },
+                  icon: const Icon(Icons.star),
+                  color: star3
+                      ? Color.fromRGBO(229, 204, 56, 1)
+                      : Color.fromRGBO(127, 124, 124, 1),
+                )),
+                Center(
+                    child: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      star1 = true;
+                      star2 = true;
+                      star3 = true;
+                      star4 = true;
+                      star5 = false;
+                    });
+                  },
+                  icon: const Icon(Icons.star),
+                  color: star4
+                      ? Color.fromRGBO(229, 204, 56, 1)
+                      : Color.fromRGBO(127, 124, 124, 1),
+                )),
+                Center(
+                    child: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      star1 = true;
+                      star2 = true;
+                      star3 = true;
+                      star4 = true;
+                      star5 = true;
+                    });
+                  },
+                  icon: const Icon(Icons.star),
+                  color: star5
+                      ? Color.fromRGBO(229, 204, 56, 1)
+                      : Color.fromRGBO(127, 124, 124, 1),
+                )),
+              ])
           ]),
     );
   }

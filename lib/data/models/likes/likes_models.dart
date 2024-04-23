@@ -125,3 +125,129 @@ class Like {
     return data;
   }
 }
+
+class LikeMediaModel {
+  String token;
+  int id;
+  String mediaId;
+  String type;
+
+  LikeMediaModel({
+    required this.token,
+    required this.id,
+    required this.mediaId,
+    required this.type,
+  });
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['token'] = token;
+    data['id'] = id;
+    data['mediaId'] = mediaId;
+    data['type'] = type;
+    return data;
+  }
+}
+
+class LikeMediaResponseModel {
+  String message;
+
+  LikeMediaResponseModel({required this.message});
+
+  LikeMediaResponseModel.fromJson(Map<String, dynamic> json)
+      : message = json['likeMedia']['message'];
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['likeMedia'] = {'message': message};
+    return data;
+  }
+
+  bool validate() {
+    return message.isNotEmpty;
+  }
+}
+
+class DislikeMediaModel {
+  String token;
+  int id;
+  String mediaId;
+  String type;
+
+  DislikeMediaModel({
+    required this.token,
+    required this.id,
+    required this.mediaId,
+    required this.type,
+  });
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['token'] = token;
+    data['id'] = id;
+    data['mediaId'] = mediaId;
+    data['type'] = type;
+    return data;
+  }
+}
+
+class DislikeMediaResponseModel {
+  String message;
+
+  DislikeMediaResponseModel({required this.message});
+
+  DislikeMediaResponseModel.fromJson(Map<String, dynamic> json)
+      : message = json['dislikeMedia']['message'];
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['dislikeMedia'] = {'message': message};
+    return data;
+  }
+
+  bool validate() {
+    return message.isNotEmpty;
+  }
+}
+
+class DeletePreferenceModel {
+  String token;
+  int id;
+  String mediaId;
+  String type;
+
+  DeletePreferenceModel({
+    required this.token,
+    required this.id,
+    required this.mediaId,
+    required this.type,
+  });
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['token'] = token;
+    data['id'] = id;
+    data['mediaId'] = mediaId;
+    data['type'] = type;
+    return data;
+  }
+}
+
+class DeletePreferenceResponseModel {
+  String message;
+
+  DeletePreferenceResponseModel({required this.message});
+
+  DeletePreferenceResponseModel.fromJson(Map<String, dynamic> json)
+      : message = json['deletePreference']['message'];
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['deletePreference'] = {'message': message};
+    return data;
+  }
+
+  bool validate() {
+    return message.isNotEmpty;
+  }
+}
