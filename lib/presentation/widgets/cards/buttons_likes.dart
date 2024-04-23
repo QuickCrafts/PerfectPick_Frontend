@@ -10,13 +10,13 @@ class ButtonsLikes extends StatefulWidget {
   final LikesRepository likesRepository;
 
   const ButtonsLikes({
-    super.key,
+    Key? key,
     required this.userToken,
     required this.userID,
     required this.mediaType,
     required this.mediaID,
     required this.likesRepository,
-  });
+  }) : super(key: key);
 
   @override
   ButtonsLikesState createState() => ButtonsLikesState();
@@ -53,78 +53,113 @@ class ButtonsLikesState extends State<ButtonsLikes> {
     }
   }
 
+  Future<void> likeMedia() async {
+    try {
+      LikeMediaResponseModel likeResponse = await widget.likesRepository
+          .likeMedia(widget.userToken, widget.userID, widget.mediaID,
+              widget.mediaType);
+
+      setState(() {
+        isLike = true;
+        isDislike = false;
+      });
+    } catch (e) {
+      print('Error liking media: $e');
+    }
+  }
+
+  Future<void> dislikeMedia() async {
+    try {
+      DislikeMediaResponseModel dislikeResponse = await widget.likesRepository
+          .dislikeMedia(widget.userToken, widget.userID, widget.mediaID,
+              widget.mediaType);
+
+      setState(() {
+        isDislike = true;
+        isLike = false;
+      });
+    } catch (e) {
+      print('Error disliking media: $e');
+    }
+  }
+
+  Future<void> deletePreference() async {
+    try {
+      DeletePreferenceResponseModel deleteResponse =
+          await widget.likesRepository.deletePreference(widget.userToken,
+              widget.userID, widget.mediaID, widget.mediaType);
+
+      setState(() {
+        isDislike = false;
+        isLike = false;
+      });
+    } catch (e) {
+      print('Error deleting preference: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
-        color: Colors.transparent,
-        child: Row(children: <Widget>[
+      color: Colors.transparent,
+      child: Row(
+        children: <Widget>[
           Center(
-              child: Ink(
-            decoration: const ShapeDecoration(
-              shape: CircleBorder(),
-              color:
-                  Color.fromRGBO(66, 39, 79, 1), // Color.fromRGBO(38, 6, 41, 1)
+            child: Ink(
+              decoration: const ShapeDecoration(
+                shape: CircleBorder(),
+                color: Color.fromRGBO(66, 39, 79, 1),
+              ),
+              child: IconButton(
+                onPressed: () {
+                  setState(() {
+                    inWishlist = !inWishlist;
+                  });
+                },
+                tooltip: "Wishlist soon!",
+                icon: const Icon(Icons.bookmark),
+                color: inWishlist
+                    ? Color.fromRGBO(229, 204, 56, 1)
+                    : Color.fromRGBO(127, 124, 124, 1),
+              ),
             ),
-            child: IconButton(
-              // onPressed: () {
-              //   setState(() {
-              //     inWishlist = !inWishlist;
-              //   });
-              // },
-              onPressed: null,
-              tooltip: "Wishlist soon!",
-              icon: const Icon(Icons.bookmark),
-              color: inWishlist
-                  ? Color.fromRGBO(229, 204, 56, 1)
-                  : Color.fromRGBO(127, 124, 124, 1),
-            ),
-          )),
+          ),
           Spacer(),
           Center(
-              child: Ink(
-            decoration: const ShapeDecoration(
-                shape: CircleBorder(), color: Color.fromRGBO(38, 6, 41, 1)),
-            child: IconButton(
-              onPressed: () {
-                setState(() {
-                  if (!isDislike) {
-                    isLike = !isLike;
-                  } else {
-                    isDislike = isLike;
-                    isLike = !isLike;
-                  }
-                });
-              },
-              tooltip: "Like",
-              icon: const Icon(Icons.favorite),
-              color: isLike
-                  ? Color.fromRGBO(230, 37, 167, 1)
-                  : Color.fromRGBO(127, 124, 124, 1),
+            child: Ink(
+              decoration: const ShapeDecoration(
+                shape: CircleBorder(),
+                color: Color.fromRGBO(38, 6, 41, 1),
+              ),
+              child: IconButton(
+                onPressed: isLike ? deletePreference : likeMedia,
+                tooltip: "Like",
+                icon: const Icon(Icons.favorite),
+                color: isLike
+                    ? Color.fromRGBO(230, 37, 167, 1)
+                    : Color.fromRGBO(127, 124, 124, 1),
+              ),
             ),
-          )),
+          ),
           SizedBox(width: 20),
           Center(
-              child: Ink(
-            decoration: const ShapeDecoration(
-                shape: CircleBorder(), color: Color.fromRGBO(38, 6, 41, 1)),
-            child: IconButton(
-              onPressed: () {
-                setState(() {
-                  if (!isLike) {
-                    isDislike = !isDislike;
-                  } else {
-                    isLike = isDislike;
-                    isDislike = !isDislike;
-                  }
-                });
-              },
-              tooltip: "Dislike",
-              icon: const Icon(Icons.thumb_down),
-              color: isDislike
-                  ? Color.fromRGBO(230, 37, 167, 1)
-                  : Color.fromRGBO(127, 124, 124, 1),
+            child: Ink(
+              decoration: const ShapeDecoration(
+                shape: CircleBorder(),
+                color: Color.fromRGBO(38, 6, 41, 1),
+              ),
+              child: IconButton(
+                onPressed: isDislike ? deletePreference : dislikeMedia,
+                tooltip: "Dislike",
+                icon: const Icon(Icons.thumb_down),
+                color: isDislike
+                    ? Color.fromRGBO(230, 37, 167, 1)
+                    : Color.fromRGBO(127, 124, 124, 1),
+              ),
             ),
-          )),
-        ]));
+          ),
+        ],
+      ),
+    );
   }
 }
