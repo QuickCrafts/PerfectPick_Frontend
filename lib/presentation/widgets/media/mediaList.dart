@@ -5,6 +5,7 @@ import 'package:perfectpick_wa/data/models/media/media_models.dart';
 import 'package:perfectpick_wa/data/repositories/auth/media_repository.dart';
 import "package:perfectpick_wa/presentation/colors.dart";
 import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
+import 'package:perfectpick_wa/presentation/widgets/cards/card_media.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter/material.dart';
@@ -25,49 +26,6 @@ class MediaList extends StatelessWidget {
         }
       },
     );
-  }
-}
-
-const faqsList = [
-  ' What is PerfectPick?',
-  ' PerfectPick is an application that provides personalized recommendations for movies, books, and songs based on your favorites. By selecting your preferred entertainment, our algorithm suggests new titles tailored to your taste.',
-  ' How do I get started with PerfectPick?',
-  ' To begin using PerfectPick, you first need to create an account. Once registered, you can start selecting your favorite movies, books, and songs. Our algorithm will then generate recommendations based on your choices.',
-  ' Is it free to use PerfectPick?',
-  ' Yes, PerfectPick is completely free to use. You can create an account, select your favorites, and receive recommendations at no cost.',
-  ' How does the recommendation algorithm work?',
-  ' Our recommendation algorithm analyzes your favorite movies, books, and songs to identify patterns and similarities. It then uses this information to suggest new titles that align with your preferences. The more favorites you provide, the more accurate the recommendations become.',
-  ' Can I update my favorite selections?',
-  ' Absolutely! You can add, remove, or modify your favorite movies, books, and songs at any time. Simply navigate to your profile settings and make the desired changes. Our algorithm will adjust the recommendations accordingly.',
-  ' Are my favorite selections and recommendations private?',
-  ' Yes, your favorite selections and the recommendations provided by PerfectPick are private and visible only to you. We respect your privacy and do not share your personal information or preferences with any third parties.',
-  ' How diverse are the recommendations?',
-  ' PerfectPick strives to provide a wide range of recommendations based on your favorites. Our algorithm considers various genres, themes, and styles to suggest a diverse selection of movies, books, and songs that you may enjoy.',
-  ' Can I share my recommendations with friends?',
-  ' While there is currently no built-in sharing feature, you can easily share your recommendations with friends by copying and pasting the titles or links. We are continuously working on improving PerfectPick and may introduce a sharing feature in future updates.',
-  ' Is PerfectPick available on multiple devices?',
-  ' Yes, PerfectPick is accessible through a web browser on any device with an internet connection. Whether you\'re using a computer, smartphone, or tablet, you can access your account and recommendations seamlessly.',
-  ' How can I provide feedback or report an issue?',
-  ' We value your feedback and are committed to improving PerfectPick. If you have any suggestions, questions, or encounter any issues, please contact our support team at info@perfectpick.something. We appreciate your input and will do our best to assist you promptly.'
-];
-
-class MyState extends ChangeNotifier {
-  var isExpanded = [
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false
-  ];
-
-  void toggleExpansion(pos) {
-    isExpanded[pos] = !isExpanded[pos];
-    notifyListeners();
   }
 }
 
@@ -186,6 +144,376 @@ class DesktopMediaList extends StatelessWidget {
 
   Widget build(BuildContext context) {
     // final listBooks = mediaRepository.getBooks();
+    const quantity = 10;
+    const padding = 40.0;
+    const booksList = [
+      [
+        {
+          "id_book": "ET9kAAAAMAAJ",
+          "author": "Marcos Roda, Roberto Rubiano Vargas, Taller La Huella",
+          "genres": "Colombia",
+          "pages": 120,
+          "rating": null,
+          "title": "Crónica de la fotografía en Colombia, 1841-1948",
+          "year": 1983
+        },
+        {
+          "id_book": "MV8_AAAAIAAJ",
+          "author": "Luis Tejada",
+          "genres": "null",
+          "pages": 184,
+          "rating": null,
+          "title": "Libro de crónicas",
+          "year": 1961
+        },
+        {
+          "id_book": "HdYj2RqeGnoC",
+          "author": "Darío Jaramillo Agudelo",
+          "genres": "Language Arts & Disciplines",
+          "pages": 642,
+          "rating": null,
+          "title": "Antología de crónica latinoamericana actual",
+          "year": 2012
+        },
+        {
+          "id_book": "shKIEAAAQBAJ",
+          "author":
+              "Juan Villoro, Leila Guerriero, Sabrina Duque, Jordi Costa, Alberto Fuguet, Alberto Salcedo Ramos, Eileen Truax, Juan Pablo Meneses, Juanita León, Cristian Alarcón, Marcela Turati, Edgardo Cozarinsky, Maye Primera, María Moreno, Julio Villanueva Chang, Juan Gabriel Vásquez, Fabrizio Mejía Madrid, Cristina Rivera Garza, Jaime Bedoya, Rodrigo Fresán, Mónica Baró, Guillem Martínez, Gabriela Wiener, Edgardo Rodríguez Juliá, Martín Caparrós",
+          "genres": "Language Arts & Disciplines",
+          "pages": 548,
+          "rating": null,
+          "title": "Mejor que ficción",
+          "year": 2022
+        },
+        {
+          "id_book": "j10vXjCK5v0C",
+          "author": "Jesús Ferro Bayona, Jacques Gilard, Teresa de Cepeda",
+          "genres": "Colombian literature",
+          "pages": 411,
+          "rating": null,
+          "title": "Crónica",
+          "year": 2010
+        },
+        {
+          "id_book": "wqHeAAAACAAJ",
+          "author": "Plaza & Janes Editories, S.A.",
+          "genres": "null",
+          "pages": 432,
+          "rating": null,
+          "title": "Cronica Siglo Xx",
+          "year": 1990
+        },
+        {
+          "id_book": "r89sAAAAMAAJ",
+          "author": "Aníbal Noguera Mendoza",
+          "genres": "Colombia",
+          "pages": 542,
+          "rating": null,
+          "title": "Crónica grande del Río de la Magdalena",
+          "year": 1980
+        },
+        {
+          "id_book": "nlGjswEACAAJ",
+          "author": "Manuel Bernal Rodríguez",
+          "genres": "null",
+          "pages": 174,
+          "rating": null,
+          "title": "La crónica periodística",
+          "year": 1997
+        },
+        {
+          "id_book": "LfYgOwAACAAJ",
+          "author": "Rubén Darío",
+          "genres": "Literary Collections",
+          "pages": 252,
+          "rating": null,
+          "title": "Va a arder París--?",
+          "year": 2008
+        },
+        {
+          "id_book": "7L-5VO_kwWAC",
+          "author": "Clarice Lispector",
+          "genres": "Fiction",
+          "pages": 228,
+          "rating": null,
+          "title": "Selected Cronicas",
+          "year": 1996
+        },
+        {
+          "id_book": "i0UAA5aV-4oC",
+          "author": "Rosa Montero",
+          "genres": "Fiction",
+          "pages": 185,
+          "rating": null,
+          "title": "Crónica del desamor",
+          "year": 2012
+        },
+        {
+          "id_book": "qCDlswEACAAJ",
+          "author": "null",
+          "genres": "null",
+          "pages": 1493,
+          "rating": null,
+          "title": "Crónica del siglo XX.",
+          "year": 1994
+        },
+        {
+          "id_book": "lUteAAAAcAAJ",
+          "author": "Aníbal González",
+          "genres": "Modernism (Literature)",
+          "pages": 252,
+          "rating": null,
+          "title": "La crónica modernista hispanoamericana",
+          "year": 1983
+        },
+        {
+          "id_book": "SJouAAAAYAAJ",
+          "author": "Mary Luz Vallejo Mejía",
+          "genres": "Press",
+          "pages": 456,
+          "rating": null,
+          "title": "A plomo herido",
+          "year": 2006
+        },
+        {
+          "id_book": "oY96AAAAMAAJ",
+          "author": "Ignacio Arellano, Fermín del Pino",
+          "genres": "History",
+          "pages": 514,
+          "rating": null,
+          "title": "Lecturas y ediciones de crónicas de Indias",
+          "year": 2004
+        },
+        {
+          "id_book": "948RmsRxGxYC",
+          "author": "Carlos Caballero Argáez",
+          "genres": "Apertura economica - Colombia",
+          "pages": 365,
+          "rating": null,
+          "title": "Memorias incompletas",
+          "year": 2007
+        },
+        {
+          "id_book": "fC5XPQAACAAJ",
+          "author": "null",
+          "genres": "History, Modern",
+          "pages": 1455,
+          "rating": null,
+          "title": "Crónica del Siglo XX",
+          "year": 1992
+        },
+        {
+          "id_book": "ZECKzQEACAAJ",
+          "author": "Enrique Posada Restrepo",
+          "genres": "null",
+          "pages": 252,
+          "rating": null,
+          "title": "Las Quebradas de Medellín",
+          "year": 2020
+        },
+        {
+          "id_book": "4_FcmwEACAAJ",
+          "author": "Juan Manuel",
+          "genres": "null",
+          "pages": 256,
+          "rating": null,
+          "title": "Cronica Abreviada",
+          "year": 2013
+        },
+        {
+          "id_book": "gTHmAAAAMAAJ",
+          "author": "Juan García Ponce",
+          "genres": "Mexican literature",
+          "pages": 556,
+          "rating": null,
+          "title": "Crónica de la intervención",
+          "year": 1982
+        },
+        {
+          "id_book": "J-9eAAAAMAAJ",
+          "author": "Heriberto Fiorillo",
+          "genres": "Authors, Colombian",
+          "pages": 296,
+          "rating": "5",
+          "title": "La Cueva",
+          "year": 2002
+        },
+        {
+          "id_book": "Zx51AAAAMAAJ",
+          "author": "Simón Valcárcel Martínez",
+          "genres": "America",
+          "pages": 556,
+          "rating": null,
+          "title":
+              "Las crónicas de Indias como expresión y configuración de la mentalidad renacentista",
+          "year": 1997
+        },
+        {
+          "id_book": "Fqd6AAAAMAAJ",
+          "author": "Carmelo Sáenz de Santa María",
+          "genres": "Guatemala",
+          "pages": 256,
+          "rating": null,
+          "title": "Historia de una historia",
+          "year": 1984
+        },
+        {
+          "id_book": "E0stAAAAYAAJ",
+          "author": "Donaldo Alonso Donado Viloria",
+          "genres": "Colombian newspapers",
+          "pages": 204,
+          "rating": null,
+          "title": "Crónica anacrónica",
+          "year": 2003
+        },
+        {
+          "id_book": "n1ZkbkpI4N4C",
+          "author": "José María Delgado Troya",
+          "genres": "Indians of South America",
+          "pages": 174,
+          "rating": null,
+          "title": "Crónica de los pastos",
+          "year": 2004
+        },
+        {
+          "id_book": "ItYSAQAAIAAJ",
+          "author": "Juan Gossain",
+          "genres": "Fiction",
+          "pages": 454,
+          "rating": null,
+          "title": "Crónica del día",
+          "year": 2003
+        },
+        {
+          "id_book": "F-0QEAAAQBAJ",
+          "author": "Javier Franco Altamar",
+          "genres": "Language Arts & Disciplines",
+          "pages": 231,
+          "rating": null,
+          "title": "El camino de la crónica",
+          "year": 2020
+        },
+        {
+          "id_book": "kbpFAAAAcAAJ",
+          "author": "Florián de Ocampo",
+          "genres": "Spain",
+          "pages": 700,
+          "rating": null,
+          "title": "Los Çinco Libros Primeros dela Cronica general de España",
+          "year": 1553
+        },
+        {
+          "id_book": "rC91MwEACAAJ",
+          "author": "null",
+          "genres": "null",
+          "pages": "null",
+          "rating": null,
+          "title": "Cronica de la medicina",
+          "year": 1993
+        },
+        {
+          "id_book": "cquhM0au3_QC",
+          "author": "Roberto Sepa Flórez",
+          "genres": "null",
+          "pages": 100,
+          "rating": null,
+          "title":
+              "Progenitores. Crónica de una familia e historia de una Nación",
+          "year": 2005
+        },
+        {
+          "id_book": "Pjs48djLX7MC",
+          "author": "José Alejandro Castaño Hoyos",
+          "genres": "Medellín (Colombia)",
+          "pages": 127,
+          "rating": "5",
+          "title":
+              "La isla de Morgan ; una crónica desde Las Cuevas de Medellin",
+          "year": 2005
+        },
+        {
+          "id_book": "bQ8_ckZEYDkC",
+          "author": "Gabriel Garca̕ Mr̀quez",
+          "genres": "null",
+          "pages": 112,
+          "rating": "4",
+          "title": "Cronica de una muerte anunciada - Tapa dura",
+          "year": 2005
+        },
+        {
+          "id_book": "xzJjBgAAQBAJ",
+          "author": "Gabriel García Márquez",
+          "genres": "Fiction",
+          "pages": 85,
+          "rating": "3.5",
+          "title": "Crónica de una muerte anunciada",
+          "year": 2015
+        },
+        {
+          "id_book": "cxgvAAAAYAAJ",
+          "author": "Carlos Monsiváis",
+          "genres": "Literary Collections",
+          "pages": 564,
+          "rating": null,
+          "title": "A ustedes les consta",
+          "year": 2006
+        },
+        {
+          "id_book": "AYhxAQHUdCYC",
+          "author": "Manuel Alvar Ezquerra",
+          "genres": "America",
+          "pages": 444,
+          "rating": null,
+          "title": "Vocabulario de indigenismos en las Crónicas de Indias",
+          "year": 1997
+        },
+        {
+          "id_book": "2Lc0AAAACAAJ",
+          "author": "Plaza & Janés Editories, S.A.",
+          "genres": "null",
+          "pages": 2192,
+          "rating": null,
+          "title": "Cronica de la Humanidad",
+          "year": 1990
+        },
+        {
+          "id_book": "fyPsAAAAMAAJ",
+          "author": "Concejo de Medellín",
+          "genres": "Medellín (Colombia)",
+          "pages": 422,
+          "rating": null,
+          "title": "Crónica municipal: Medellín",
+          "year": 1966
+        },
+        {
+          "id_book": "zSpSuwEACAAJ",
+          "author": "Óscar Bustos",
+          "genres": "Colombia",
+          "pages": 219,
+          "rating": null,
+          "title": "Colombia crónica",
+          "year": 2013
+        },
+        {
+          "id_book": "kCKaAAAAIAAJ",
+          "author": "Carolina Molina",
+          "genres": "Narration (Rhetoric)",
+          "pages": 268,
+          "rating": null,
+          "title": "Gabriel García Márquez",
+          "year": 2006
+        },
+        {
+          "id_book": "NUgYAAAAYAAJ",
+          "author": "Carlos Lleras Restrepo",
+          "genres": "Colombia",
+          "pages": 504,
+          "rating": null,
+          "title": "Crónica de mi propia vida",
+          "year": 1983
+        }
+      ]
+    ];
     return Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
@@ -193,606 +521,139 @@ class DesktopMediaList extends StatelessWidget {
             Color.fromRGBO(38, 6, 41, 0.5), // Updated color to match the image
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-              padding: EdgeInsets.symmetric(horizontal: 38),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    'Tell us what you like ...',
-                    style: TextStyle(
-                        color: secondaryMain,
-                        fontFamily: 'Noto Sans SC',
-                        fontSize: 45,
-                        fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.left,
-                  ),
-                  Text(
-                    "Like or dislike at least three elements of each list. If you want, you can save them to your wishlist.",
-                    style: TextStyle(
-                        color: textInsideFieldColor,
-                        fontFamily: 'Noto Sans SC',
-                        fontSize: 20),
-                    textAlign: TextAlign.left,
-                  )
-                ],
-              )),
-          SizedBox(height: 30),
-          SizedBox(
-            height: 500,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return Container(
-                  width: 300,
-                  margin: EdgeInsets.symmetric(horizontal: 5),
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(38, 6, 41, 1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+                padding: EdgeInsets.symmetric(horizontal: padding),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Tell us what you like ...',
+                      style: TextStyle(
+                          color: secondaryMain,
+                          fontFamily: 'Noto Sans SC',
+                          fontSize: 45,
+                          fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.left,
+                    ),
+                    Text(
+                      "Like or dislike at least three elements of each list. If you want, you can save them to your wishlist.",
+                      style: TextStyle(
+                          color: textInsideFieldColor,
+                          fontFamily: 'Noto Sans SC',
+                          fontSize: 20),
+                      textAlign: TextAlign.left,
+                    )
+                  ],
+                )),
+            Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: padding),
                   child: Column(
                     children: [
-                      Container(
+                      SizedBox(height: 20),
+                      Text(
+                        'Movies',
+                        style: TextStyle(
+                            color: activeColor,
+                            fontFamily: 'Noto Sans SC',
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.left,
+                      ),
+                      SizedBox(height: 20),
+                      SizedBox(
                         height: 300,
-                        width: 300,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10),
-                          ),
-                          image: DecorationImage(
-                            // image: AssetImage(mediaList[index].image),
-                            image: NetworkImage("https://via.placeholder.com/150"),
-                            fit: BoxFit.cover,
-                          ),
+                        width: MediaQuery.of(context).size.width,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: quantity,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              margin: EdgeInsets.symmetric(horizontal: 5),
+                              child: CardMedia(
+                                userID: 1,
+                                mediaType: 'BOO',
+                                name: booksList[0][index]["title"] as String,
+                                genre: booksList[0][index]["genres"] as String,
+                                author: booksList[0][index]["author"] as String,
+                                mediaID:booksList[0][index]["id_book"] as String,
+                              ),
+                            );
+                          },
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(height: 10),
-                            Text(
-                              // mediaList[index].title,
-                              "Title",
-                              style: TextStyle(
-                                  color: textInsideFieldColor,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              // mediaList[index].author,
-                              "Author",
-                              style: TextStyle(
-                                  color: textInsideFieldColor, fontSize: 15),
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              // mediaList[index].genre,
-                              "Genre",
-                              style: TextStyle(
-                                  color: textInsideFieldColor, fontSize: 15),
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              // mediaList[index].year,
-                              "Year",
-                              style: TextStyle(
-                                  color: textInsideFieldColor, fontSize: 15),
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              // mediaList[index].rating,
-                              "Rating",
-                              style: TextStyle(
-                                  color: textInsideFieldColor, fontSize: 15),
-                            ),
-                            SizedBox(height: 5),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.favorite,
-                                  color: Colors.red,
-                                ),
-                                SizedBox(width: 5),
-                                Icon(
-                                  Icons.favorite,
-                                  color: Colors.red,
-                                ),
-                                SizedBox(width: 5),
-                                Icon(
-                                  Icons.favorite,
-                                  color: Colors.red,
-                                ),
-                              ],
-                            ),
-                          ],
+                      Text(
+                        'Songs',
+                        style: TextStyle(
+                            color: activeColor,
+                            fontFamily: 'Noto Sans SC',
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.left,
+                      ),
+                      SizedBox(height: 20),
+                      SizedBox(
+                        height: 300,
+                        width: MediaQuery.of(context).size.width,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: quantity,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              margin: EdgeInsets.symmetric(horizontal: 5),
+                              child: CardMedia(
+                                userID: 1,
+                                mediaType: 'SON',
+                                name: "Title",
+                                genre: "Genre",
+                                author: "Author",
+                                mediaID: "a",
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                      Text(
+                        'Books',
+                        style: TextStyle(
+                            color: activeColor,
+                            fontFamily: 'Noto Sans SC',
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.left,
+                      ),
+                      SizedBox(height: 20),
+                      SizedBox(
+                        height: 300,
+                        width: MediaQuery.of(context).size.width,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: quantity,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              margin: EdgeInsets.symmetric(horizontal: 5),
+                              child: CardMedia(
+                                userID: 1,
+                                mediaType: 'BOO',
+                                name: "Title",
+                                genre: "Genre",
+                                author: "Author",
+                                mediaID: "a",
+                              ),
+                            );
+                          },
                         ),
                       ),
                     ],
                   ),
-                );
-              },
+                )
+              ],
             ),
-          
-          ),
-          GestureDetector(
-            onTap: () {
-              Provider.of<MyState>(context, listen: false).toggleExpansion(0);
-            },
-            child: Consumer<MyState>(builder: (context, state, child) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 38),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: inactiveColor,
-                          ),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 15),
-                        child: Text(
-                          faqsList[0],
-                          style: TextStyle(
-                              color: textInsideFieldColor, fontSize: 20),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  if (state.isExpanded[0])
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 38),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: Text(
-                          faqsList[1],
-                          style: TextStyle(
-                              color: textInsideFieldColor, fontSize: 20),
-                        ),
-                      ),
-                    ),
-                ],
-              );
-            }),
-          ),
-          SizedBox(height: 30),
-          GestureDetector(
-            onTap: () {
-              Provider.of<MyState>(context, listen: false).toggleExpansion(1);
-            },
-            child: Consumer<MyState>(builder: (context, state, child) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 38),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: inactiveColor,
-                          ),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 15),
-                        child: Text(
-                          faqsList[2],
-                          style: TextStyle(
-                              color: textInsideFieldColor, fontSize: 20),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  if (state.isExpanded[1])
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 38),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: Text(
-                          faqsList[3],
-                          style: TextStyle(
-                              color: textInsideFieldColor, fontSize: 20),
-                        ),
-                      ),
-                    ),
-                ],
-              );
-            }),
-          ),
-          SizedBox(height: 30),
-          GestureDetector(
-            onTap: () {
-              Provider.of<MyState>(context, listen: false).toggleExpansion(2);
-            },
-            child: Consumer<MyState>(builder: (context, state, child) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 38),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: inactiveColor,
-                          ),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 15),
-                        child: Text(
-                          faqsList[4],
-                          style: TextStyle(
-                              color: textInsideFieldColor, fontSize: 20),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  if (state.isExpanded[2])
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 38),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: Text(
-                          faqsList[5],
-                          style: TextStyle(
-                              color: textInsideFieldColor, fontSize: 20),
-                        ),
-                      ),
-                    ),
-                ],
-              );
-            }),
-          ),
-          SizedBox(height: 30),
-          GestureDetector(
-            onTap: () {
-              Provider.of<MyState>(context, listen: false).toggleExpansion(3);
-            },
-            child: Consumer<MyState>(builder: (context, state, child) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 38),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: inactiveColor,
-                          ),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 15),
-                        child: Text(
-                          faqsList[6],
-                          style: TextStyle(
-                              color: textInsideFieldColor, fontSize: 20),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  if (state.isExpanded[3])
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 38),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: Text(
-                          faqsList[7],
-                          style: TextStyle(
-                              color: textInsideFieldColor, fontSize: 20),
-                        ),
-                      ),
-                    ),
-                ],
-              );
-            }),
-          ),
-          SizedBox(height: 30),
-          GestureDetector(
-            onTap: () {
-              Provider.of<MyState>(context, listen: false).toggleExpansion(4);
-            },
-            child: Consumer<MyState>(builder: (context, state, child) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 38),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: inactiveColor,
-                          ),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 15),
-                        child: Text(
-                          faqsList[8],
-                          style: TextStyle(
-                              color: textInsideFieldColor, fontSize: 20),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  if (state.isExpanded[4])
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 38),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: Text(
-                          faqsList[9],
-                          style: TextStyle(
-                              color: textInsideFieldColor, fontSize: 20),
-                        ),
-                      ),
-                    ),
-                ],
-              );
-            }),
-          ),
-          SizedBox(height: 30),
-          GestureDetector(
-            onTap: () {
-              Provider.of<MyState>(context, listen: false).toggleExpansion(5);
-            },
-            child: Consumer<MyState>(builder: (context, state, child) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 38),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: inactiveColor,
-                          ),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 15),
-                        child: Text(
-                          faqsList[10],
-                          style: TextStyle(
-                              color: textInsideFieldColor, fontSize: 20),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  if (state.isExpanded[5])
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 38),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: Text(
-                          faqsList[11],
-                          style: TextStyle(
-                              color: textInsideFieldColor, fontSize: 20),
-                        ),
-                      ),
-                    ),
-                ],
-              );
-            }),
-          ),
-          SizedBox(height: 30),
-          GestureDetector(
-            onTap: () {
-              Provider.of<MyState>(context, listen: false).toggleExpansion(6);
-            },
-            child: Consumer<MyState>(builder: (context, state, child) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 38),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: inactiveColor,
-                          ),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 15),
-                        child: Text(
-                          faqsList[12],
-                          style: TextStyle(
-                              color: textInsideFieldColor, fontSize: 20),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  if (state.isExpanded[6])
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 38),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: Text(
-                          faqsList[13],
-                          style: TextStyle(
-                              color: textInsideFieldColor, fontSize: 20),
-                        ),
-                      ),
-                    ),
-                ],
-              );
-            }),
-          ),
-          SizedBox(height: 30),
-          GestureDetector(
-            onTap: () {
-              Provider.of<MyState>(context, listen: false).toggleExpansion(7);
-            },
-            child: Consumer<MyState>(builder: (context, state, child) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 38),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: inactiveColor,
-                          ),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 15),
-                        child: Text(
-                          faqsList[14],
-                          style: TextStyle(
-                              color: textInsideFieldColor, fontSize: 20),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  if (state.isExpanded[7])
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 38),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: Text(
-                          faqsList[15],
-                          style: TextStyle(
-                              color: textInsideFieldColor, fontSize: 20),
-                        ),
-                      ),
-                    ),
-                ],
-              );
-            }),
-          ),
-          SizedBox(height: 30),
-          GestureDetector(
-            onTap: () {
-              Provider.of<MyState>(context, listen: false).toggleExpansion(8);
-            },
-            child: Consumer<MyState>(builder: (context, state, child) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 38),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: inactiveColor,
-                          ),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 15),
-                        child: Text(
-                          faqsList[16],
-                          style: TextStyle(
-                              color: textInsideFieldColor, fontSize: 20),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  if (state.isExpanded[8])
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 38),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: Text(
-                          faqsList[17],
-                          style: TextStyle(
-                              color: textInsideFieldColor, fontSize: 20),
-                        ),
-                      ),
-                    ),
-                ],
-              );
-            }),
-          ),
-          SizedBox(height: 30),
-          GestureDetector(
-            onTap: () {
-              Provider.of<MyState>(context, listen: false).toggleExpansion(9);
-            },
-            child: Consumer<MyState>(builder: (context, state, child) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 38),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: inactiveColor,
-                          ),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 15),
-                        child: Text(
-                          faqsList[18],
-                          style: TextStyle(
-                              color: textInsideFieldColor, fontSize: 20),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  if (state.isExpanded[9])
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 38),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: Text(
-                          faqsList[19],
-                          style: TextStyle(
-                              color: textInsideFieldColor, fontSize: 20),
-                        ),
-                      ),
-                    ),
-                ],
-              );
-            }),
-          ),
-        ],
-      ),
+          ]),
     );
   }
 }

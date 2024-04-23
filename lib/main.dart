@@ -1,11 +1,11 @@
-import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:perfectpick_wa/data/repositories/auth/media_repository.dart';
+import 'package:perfectpick_wa/presentation/widgets/cards/card_media.dart';
 import 'package:perfectpick_wa/presentation/widgets/media/mediaList.dart';
 import 'presentation/widgets/navigation/navbar.dart';
 import 'presentation/widgets/navigation/how_it_works.dart';
 import 'presentation/widgets/navigation/support.dart';
-// import 'presentation/widgets/navigation/faqs.dart';
+import 'presentation/widgets/navigation/faqs.dart';
 import 'presentation/widgets/navigation/footer.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'data/data_providers/client_declarator.dart';
@@ -39,41 +39,83 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
         ),
         routes: {
-          '/':(context) => MyHomePage(authRepository: AuthRepository(client: graphqlClient.value), mediaRepository: MediaRepository(media: graphqlClient.value),),
+          '/': (context) => MyHomePage(
+                authRepository: AuthRepository(client: graphqlClient.value),
+                mediaRepository: MediaRepository(media: graphqlClient.value),
+              ),
         },
       ),
     );
   }
 }
 
-
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   final AuthRepository authRepository;
   final MediaRepository mediaRepository;
 
-  const MyHomePage({super.key, required this.authRepository , required this.mediaRepository});
+  const MyHomePage({super.key, required this.authRepository, required this.mediaRepository});
+
+  @override
+  MyHomePageState createState() => MyHomePageState();
+}
+
+class MyHomePageState extends State<MyHomePage> {
+  final ScrollController _scrollController = ScrollController();
+  final Map<String, GlobalKey> keys = {
+    "howItWorks": GlobalKey(),
+    "support": GlobalKey(),
+    "faqs": GlobalKey(),
+    "footer": GlobalKey(),
+  };
+
+  AuthRepository get authRepository => widget.authRepository;
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _scrollToSection(String section) {
+    final GlobalKey? key = keys[section];
+    if (key == null) return;
+    Scrollable.ensureVisible(
+      key.currentContext!,
+      duration: Duration(seconds: 1),
+      curve: Curves.easeInOut,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xFF260629),
       body: CustomScrollView(
+        controller: _scrollController,
         slivers: [
           SliverAppBar(
             pinned: true,
             backgroundColor: Colors.transparent,
-            flexibleSpace: NavBar(authRepository: authRepository),
+            flexibleSpace: NavBar(
+                authRepository: authRepository,
+                onSectionSelected: _scrollToSection),
           ),
           SliverToBoxAdapter(
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  HowItWorks(authRepository: authRepository),
-                  Support(authRepository: authRepository),
-                  MediaList(mediaRepository: mediaRepository),
-                  // Faqs(authRepository: authRepository),
-                  Footer(authRepository: authRepository),
+                  // HowItWorks(
+                  //   authRepository: authRepository,
+                  //   key: keys["howItWorks"],
+                  // ),
+                  // Support(
+                  //   authRepository: authRepository,
+                  //   key: keys["support"],
+                  // ),
+                  MediaList( mediaRepository: widget.mediaRepository),
+                  // Faqs(authRepository: authRepository, key: keys["faqs"]),
+                  Footer(authRepository: authRepository, key: keys["footer"]),
                 ],
               ),
             ),
