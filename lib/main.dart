@@ -110,19 +110,19 @@ class MyHomePageState extends State<MyHomePage> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Home(authRepository: authRepository, key: keys["home"]),
-                  HowItWorks(
-                    authRepository: authRepository,
-                    key: keys["howItWorks"],
-                  ),
-                  HowToImpact(authRepository: authRepository),
-                  Support(
-                    authRepository: authRepository,
-                    key: keys["support"],
-                  ),
-                  Faqs(authRepository: authRepository, key: keys["faqs"]),
+                  // Home(authRepository: authRepository, key: keys["home"]),
+                  // HowItWorks(
+                  //   authRepository: authRepository,
+                  //   key: keys["howItWorks"],
+                  // ),
+                  // HowToImpact(authRepository: authRepository),
+                  // Support(
+                  //   authRepository: authRepository,
+                  //   key: keys["support"],
+                  // ),
+                  // Faqs(authRepository: authRepository, key: keys["faqs"]),
                   MediaList( authRepository: widget.authRepository),
-                  Footer(authRepository: authRepository, key: keys["footer"]),
+                  // Footer(authRepository: authRepository, key: keys["footer"]),
                 ],
               ),
             ),

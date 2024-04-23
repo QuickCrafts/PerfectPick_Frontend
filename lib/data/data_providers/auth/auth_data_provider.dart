@@ -5,7 +5,6 @@ String loginQuery = '''
     loginWithEmail(email: \$email, password: \$password) {
       token
     }
-
   }
 ''';
 
