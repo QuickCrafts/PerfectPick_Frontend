@@ -53,6 +53,10 @@ class MyApp extends StatelessWidget {
               AdsLandingPage(authRepository: mainAuthRepository),
           '/recommends': (context) =>
               RecommendsLandingPage(authRepository: mainAuthRepository),
+          '/ads': (context) =>
+              AdsLandingPage(authRepository: mainAuthRepository),
+          '/recommends': (context) =>
+              RecommendsLandingPage(authRepository: mainAuthRepository),
         },
       ),
     );
@@ -126,17 +130,8 @@ class MyHomePageState extends State<MyHomePage> {
                     key: keys["support"],
                   ),
                   Faqs(authRepository: authRepository, key: keys["faqs"]),
-                  MediaList(authRepository: widget.authRepository),
+
                   Footer(authRepository: authRepository, key: keys["footer"]),
-                  CardMedia(
-                      userID: 1,
-                      name:
-                          'un texto largo largo largo largo largo largo larguisimo',
-                      genre: 'otro texto largo largo largo larguísimo',
-                      author:
-                          'ni se diga mas, mas texto largo largo largo larguísimo',
-                      mediaType: 'SON',
-                      mediaID: '1')
                 ],
               ),
             ),
