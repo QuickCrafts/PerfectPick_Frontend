@@ -43,6 +43,12 @@ class CardMediaState extends State<CardMedia> {
     mediaID = widget.mediaID;
   }
 
+  IconData getIcon() {
+    if (mediaType == 'SON') return Icons.music_note;
+    if (mediaType == 'BOO') return Icons.book;
+    return Icons.videocam;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -89,7 +95,7 @@ class CardMediaState extends State<CardMedia> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Icon(
-                        Icons.videocam,
+                        getIcon(),
                         color: Color(0xFF5A0E61),
                         size: 35,
                       ),
@@ -134,7 +140,7 @@ class CardMediaState extends State<CardMedia> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
+                          SizedBox(
                             width: double.infinity,
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
@@ -194,7 +200,7 @@ class CardMediaState extends State<CardMedia> {
                                 rateInput: true), //todo RateInput if loggedin
                             Spacer(),
                             Icon(
-                              Icons.videocam,
+                              getIcon(),
                               color: Colors.white,
                               size: 30,
                             ),
