@@ -10,7 +10,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:perfectpick_wa/data/data_providers/client_declarator.dart';
 import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
 import 'package:graphql_flutter/graphql_flutter.dart';
-
+import 'package:perfectpick_wa/presentation/widgets/navigation/ads/home.dart';
 import 'package:provider/provider.dart';
 
 class AdsLandingPage extends StatefulWidget {
@@ -66,6 +66,10 @@ class AdsLandingPageState extends State<AdsLandingPage> {
               child: Column(
                 children: [
                   // Home
+                  Home(
+                    authRepository: authRepository,
+                    homeKey: keys["home"],
+                  ),
                   // How it works
                 ],
               ),
