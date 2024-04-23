@@ -83,7 +83,7 @@ class DesktopNavBar extends StatelessWidget {
           SizedBox(width: 5),
           TextButton(
             onPressed: () {
-              onSectionSelected("aboutUs");
+              onSectionSelected("faqs");
             },
             child: Text(
               'About us',
@@ -207,7 +207,7 @@ class MobileNavBar extends StatelessWidget {
                         ),
                         PopupMenuItem(
                           onTap: () {
-                            onSectionSelected("aboutUs");
+                            onSectionSelected("faqs");
                           },
                           value: 1,
                           child: 
