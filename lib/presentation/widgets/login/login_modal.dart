@@ -180,21 +180,7 @@ class LoginDialogState extends State<LoginDialog> {
                                           .emailLogin(email, password);
                                       final authProvider = Provider.of<AuthProvider>(context, listen: false);
                                       await authProvider.saveToken(token);
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) => AlertDialog(
-                                                title: Text('Success'),
-                                                content: Text('Token: $token'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () {
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                    },
-                                                    child: Text('Close'),
-                                                  ),
-                                                ],
-                                              ));
+                                      
                                     } catch (e) {
                                       showDialog(
                                           context: context,
@@ -212,6 +198,7 @@ class LoginDialogState extends State<LoginDialog> {
                                                 ],
                                               ));
                                     }
+                                    Navigator.pushNamed(context, "/recommends");
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: activeColor,

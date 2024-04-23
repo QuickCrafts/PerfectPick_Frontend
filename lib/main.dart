@@ -131,7 +131,7 @@ class MyHomePageState extends State<MyHomePage> {
                   ),
                   Faqs(authRepository: authRepository, key: keys["faqs"]),
 
-                  // Footer(authRepository: authRepository, key: keys["footer"]),
+                  Footer(authRepository: authRepository, key: keys["footer"]),
                 ],
               ),
             ),
