@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:perfectpick_wa/presentation/pages/ads_landing.dart';
 import 'package:perfectpick_wa/presentation/pages/recommends_landing.dart';
-import 'package:perfectpick_wa/data/repositories/auth/media_repository.dart';
 import 'package:perfectpick_wa/presentation/widgets/cards/card_media.dart';
 import 'package:perfectpick_wa/presentation/widgets/navigation/home.dart';
 import 'package:perfectpick_wa/presentation/widgets/media/mediaList.dart';
@@ -32,7 +31,6 @@ Future main() async {
 class MyApp extends StatelessWidget {
   final AuthRepository mainAuthRepository =
       AuthRepository(client: graphqlClient.value);
-  final MediaRepository mediaRepository = MediaRepository(media: graphqlClient.value);
   MyApp({super.key});
 
   @override
@@ -47,13 +45,9 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: '/',
         routes: {
-          '/': (context) => MyHomePage(authRepository: mainAuthRepository, mediaRepository: mediaRepository),
+          '/': (context) => MyHomePage(authRepository: mainAuthRepository),
           '/ads': (context) => AdsLandingPage(authRepository: mainAuthRepository),
           '/recommends': (context) => RecommendsLandingPage(authRepository: mainAuthRepository),
-          '/': (context) => MyHomePage(
-                authRepository: AuthRepository(client: graphqlClient.value),
-                mediaRepository: MediaRepository(media: graphqlClient.value),
-              ),
         },
       ),
     );
@@ -62,9 +56,8 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   final AuthRepository authRepository;
-  final MediaRepository mediaRepository;
 
-  const MyHomePage({super.key, required this.authRepository, required this.mediaRepository});
+  const MyHomePage({super.key, required this.authRepository});
 
   @override
   MyHomePageState createState() => MyHomePageState();
@@ -128,16 +121,7 @@ class MyHomePageState extends State<MyHomePage> {
                     key: keys["support"],
                   ),
                   Faqs(authRepository: authRepository, key: keys["faqs"]),
-                  // HowItWorks(
-                  //   authRepository: authRepository,
-                  //   key: keys["howItWorks"],
-                  // ),
-                  // Support(
-                  //   authRepository: authRepository,
-                  //   key: keys["support"],
-                  // ),
-                  MediaList( mediaRepository: widget.mediaRepository),
-                  // Faqs(authRepository: authRepository, key: keys["faqs"]),
+                  MediaList( authRepository: widget.authRepository),
                   Footer(authRepository: authRepository, key: keys["footer"]),
                 ],
               ),

@@ -1,8 +1,6 @@
 import "package:flutter/cupertino.dart";
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:perfectpick_wa/data/models/media/media_models.dart';
-import 'package:perfectpick_wa/data/repositories/auth/media_repository.dart';
 import "package:perfectpick_wa/presentation/colors.dart";
 import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
 import 'package:perfectpick_wa/presentation/widgets/cards/card_media.dart';
@@ -11,18 +9,18 @@ import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 class MediaList extends StatelessWidget {
-  final MediaRepository mediaRepository;
+  final AuthRepository authRepository;
 
-  const MediaList({required this.mediaRepository});
+  const MediaList({required this.authRepository});
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth > 830) {
-          return DesktopMediaList(mediaRepository: mediaRepository);
+          return DesktopMediaList(authRepository: authRepository);
         } else {
-          return MobileMediaList(mediaRepository: mediaRepository);
+          return MobileMediaList(authRepository: authRepository);
         }
       },
     );
@@ -30,9 +28,9 @@ class MediaList extends StatelessWidget {
 }
 
 class MobileMediaList extends StatelessWidget {
-  final MediaRepository mediaRepository;
+  final AuthRepository authRepository;
 
-  const MobileMediaList({Key? key, required this.mediaRepository})
+  const MobileMediaList({Key? key, required this.authRepository})
       : super(key: key);
 
   Widget build(BuildContext context) {
@@ -137,9 +135,9 @@ class MobileMediaList extends StatelessWidget {
 }
 
 class DesktopMediaList extends StatelessWidget {
-  final MediaRepository mediaRepository;
+  final AuthRepository authRepository;
 
-  const DesktopMediaList({Key? key, required this.mediaRepository})
+  const DesktopMediaList({Key? key, required this.authRepository})
       : super(key: key);
 
   Widget build(BuildContext context) {
@@ -565,27 +563,57 @@ class DesktopMediaList extends StatelessWidget {
                         textAlign: TextAlign.left,
                       ),
                       SizedBox(height: 20),
+                      // Scaffold(
+                      //     body: SingleChildScrollView(
+                      //   child: SizedBox(
+                      //     height: 300,
+                      //     width: MediaQuery.of(context).size.width,
+                      //     child: ListView.builder(
+                      //       scrollDirection: Axis.horizontal,
+                      //       itemCount: quantity,
+                      //       itemBuilder: (context, index) {
+                      //         return Container(
+                      //           margin: EdgeInsets.symmetric(horizontal: 5),
+                      //           child: CardMedia(
+                      //             userID: 1,
+                      //             mediaType: 'MOV',
+                      //             name: booksList[0][index]["title"] as String,
+                      //             genre:
+                      //                 booksList[0][index]["genres"] as String,
+                      //             author:
+                      //                 booksList[0][index]["author"] as String,
+                      //             mediaID:
+                      //                 booksList[0][index]["id_book"] as String,
+                      //           ),
+                      //         );
+                      //       },
+                      //     ),
+                      //   ),
+                      // )),
                       SizedBox(
-                        height: 300,
-                        width: MediaQuery.of(context).size.width,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: quantity,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              margin: EdgeInsets.symmetric(horizontal: 5),
-                              child: CardMedia(
-                                userID: 1,
-                                mediaType: 'BOO',
-                                name: booksList[0][index]["title"] as String,
-                                genre: booksList[0][index]["genres"] as String,
-                                author: booksList[0][index]["author"] as String,
-                                mediaID:booksList[0][index]["id_book"] as String,
-                              ),
-                            );
-                          },
+                          height: 300,
+                          width: MediaQuery.of(context).size.width,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: quantity,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                margin: EdgeInsets.symmetric(horizontal: 5),
+                                child: CardMedia(
+                                  userID: 1,
+                                  mediaType: 'MOV',
+                                  name: booksList[0][index]["title"] as String,
+                                  genre:
+                                      booksList[0][index]["genres"] as String,
+                                  author:
+                                      booksList[0][index]["author"] as String,
+                                  mediaID:
+                                      booksList[0][index]["id_book"] as String,
+                                ),
+                              );
+                            },
+                          ),
                         ),
-                      ),
                       Text(
                         'Songs',
                         style: TextStyle(
