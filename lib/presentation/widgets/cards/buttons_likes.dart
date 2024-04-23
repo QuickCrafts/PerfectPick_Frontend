@@ -59,13 +59,14 @@ class ButtonsLikesState extends State<ButtonsLikes> {
           .likeMedia(widget.userToken, widget.userID, widget.mediaID,
               widget.mediaType);
 
-      setState(() {
-        isLike = true;
-        isDislike = false;
-      });
+      
     } catch (e) {
       print('Error liking media: $e');
     }
+    setState(() {
+        isLike = true;
+        isDislike = false;
+      });
   }
 
   Future<void> dislikeMedia() async {
@@ -74,13 +75,14 @@ class ButtonsLikesState extends State<ButtonsLikes> {
           .dislikeMedia(widget.userToken, widget.userID, widget.mediaID,
               widget.mediaType);
 
-      setState(() {
-        isDislike = true;
-        isLike = false;
-      });
+      
     } catch (e) {
       print('Error disliking media: $e');
     }
+    setState(() {
+        isDislike = true;
+        isLike = false;
+      });
   }
 
   Future<void> deletePreference() async {
@@ -89,13 +91,14 @@ class ButtonsLikesState extends State<ButtonsLikes> {
           await widget.likesRepository.deletePreference(widget.userToken,
               widget.userID, widget.mediaID, widget.mediaType);
 
-      setState(() {
-        isDislike = false;
-        isLike = false;
-      });
+      
     } catch (e) {
       print('Error deleting preference: $e');
     }
+    setState(() {
+        isDislike = false;
+        isLike = false;
+      });
   }
 
   @override

@@ -56,6 +56,8 @@ class LikesRepository {
     final MutationOptions options =
         likeMediaMutationOptions(token, id, mediaId, type);
     final QueryResult result = await client.mutate(options);
+    print("Token: $token");
+    print(result);
 
     if (result.hasException) {
       throw Exception('GraphQL exception: ${result.exception.toString()}');

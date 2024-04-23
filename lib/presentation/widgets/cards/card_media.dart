@@ -59,8 +59,9 @@ class CardMediaState extends State<CardMedia> {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
-    String userToken = authProvider.token.toString();
+    final authProvider = Provider.of<AuthProvider>(context);
+    final userToken = authProvider.token ?? '';
+
 
     return Column(
       children: [

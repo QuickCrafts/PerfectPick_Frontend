@@ -2,11 +2,11 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 
 String specificLikeQuery = '''
   query SpecificLike(\$userToken: String!, \$id: Int!, \$mediaID: String!, \$mediaType: String!) {
-    specificLike(userToken: \$userToken, id: \$id, mediaID: \$mediaID, mediaType: \$mediaType) {
-      media_id
-      user_id
+    SpecificLike(userToken: \$userToken, id: \$id, mediaID: \$mediaID, mediaType: \$mediaType) {
+      mediaId
+      userId
       type
-      like_type
+      likeType
     }
   }
 ''';
@@ -28,10 +28,10 @@ QueryOptions specificLikeQueryOptions(
 String wishlistByUserIdQuery = '''
   query wishlistByUserId(\$token: String!, \$id: Int!) {
     wishlistByUserId(token: \$token, id: \$id) {
-      media_id
-      user_id
+      mediaId
+      userId
       type
-      like_type
+      likeType
     }
   }
 ''';
