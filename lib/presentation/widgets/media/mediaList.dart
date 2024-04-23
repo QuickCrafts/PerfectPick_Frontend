@@ -26,147 +26,9 @@ class MediaList extends StatelessWidget {
     );
   }
 }
-
-class MobileMediaList extends StatelessWidget {
-  final AuthRepository authRepository;
-
-  const MobileMediaList({Key? key, required this.authRepository})
-      : super(key: key);
-
-  Widget build(BuildContext context) {
-    return Container(
-      width: 1200,
-      height: 752,
-      child: Stack(
-        children: <Widget>[
-          Positioned(
-            top: 0,
-            left: 0,
-            child: Container(
-              decoration: BoxDecoration(),
-              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    decoration: BoxDecoration(),
-                    padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          decoration: BoxDecoration(),
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                          child: Row(
-                            children: <Widget>[
-                              Container(
-                                decoration: BoxDecoration(),
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 0, vertical: 0),
-                                child: Row(
-                                  children: <Widget>[
-                                    Text(
-                                      'chevron-left',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          color:
-                                              Color.fromRGBO(230, 37, 167, 1),
-                                          fontFamily: 'Font Awesome 6 Free',
-                                          fontSize: 24,
-                                          letterSpacing: 0,
-                                          fontWeight: FontWeight.normal,
-                                          height: 1),
-                                    ),
-                                    SizedBox(width: 10),
-                                    Text(
-                                      'Movies',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          color:
-                                              Color.fromRGBO(230, 37, 167, 1),
-                                          fontFamily: 'Noto Sans SC',
-                                          fontSize: 24,
-                                          letterSpacing: 0,
-                                          fontWeight: FontWeight.normal,
-                                          height: 1),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(width: 10),
-                              Container(
-                                decoration: BoxDecoration(),
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 0, vertical: 0),
-                                child: Row(
-                                  children: <Widget>[
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(8),
-                                          topRight: Radius.circular(8),
-                                          bottomLeft: Radius.circular(8),
-                                          bottomRight: Radius.circular(8),
-                                        ),
-                                        color: Color.fromRGBO(38, 6, 41, 1),
-                                        border: Border.all(
-                                          color:
-                                              Color.fromRGBO(230, 37, 167, 1),
-                                          width: 1,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class DesktopMediaList extends StatefulWidget  {
-  final AuthRepository authRepository;
-
-  DesktopMediaList({Key? key, required this.authRepository})
-      : super(key: key);
-
-  @override
-  _DesktopMediaListState createState() => _DesktopMediaListState();
-}
-class _DesktopMediaListState extends State<DesktopMediaList> {
-
-  void _scrollLeft() {
-    _scrollController.animateTo(
-      _scrollController.offset - MediaQuery.of(context).size.width/2,
-      duration: Duration(milliseconds: 500),
-      curve: Curves.ease,
-    );
-  }
-
-  void _scrollRight() {
-    _scrollController.animateTo(
-      _scrollController.offset + MediaQuery.of(context).size.width/2,
-      duration: Duration(milliseconds: 500),
-      curve: Curves.ease,
-    );
-  }
-
-  final ScrollController _scrollController = ScrollController();
-  Widget build(context) {
-    // final listBooks = mediaRepository.getBooks();
-    const quantity = 10;
-    const padding = 60.0;
-    const booksList = [
+const quantity = 10;
+const padding = 60.0;
+const booksList = [
       [
         {
           "id_book": "ET9kAAAAMAAJ",
@@ -534,6 +396,33 @@ class _DesktopMediaListState extends State<DesktopMediaList> {
         }
       ]
     ];
+class MobileMediaList extends StatefulWidget {
+  final AuthRepository authRepository;
+
+  const MobileMediaList({Key? key, required this.authRepository})
+      : super(key: key);
+  @override
+  _MobileMediaListState createState() => _MobileMediaListState();
+}
+class _MobileMediaListState extends State<MobileMediaList> {
+
+  final ScrollController _scrollController = ScrollController();
+  void _scrollLeft() {
+    _scrollController.animateTo(
+      _scrollController.offset - MediaQuery.of(context).size.width/2,
+      duration: Duration(milliseconds: 500),
+      curve: Curves.ease,
+    );
+  }
+
+  void _scrollRight() {
+    _scrollController.animateTo(
+      _scrollController.offset + MediaQuery.of(context).size.width/2,
+      duration: Duration(milliseconds: 500),
+      curve: Curves.ease,
+    );
+  }
+  Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
@@ -601,7 +490,7 @@ class _DesktopMediaListState extends State<DesktopMediaList> {
                         ),
                           SizedBox(
                             height: 300,
-                            width: MediaQuery.of(context).size.width - 270,
+                            width: MediaQuery.of(context).size.width ,
                             child: ListView.builder(
                               scrollDirection: Axis.horizontal,
                               controller: _scrollController,
@@ -625,14 +514,221 @@ class _DesktopMediaListState extends State<DesktopMediaList> {
                               },
                             ),
                           ),
+                        //   IconButton(
+                        //   onPressed: _scrollRight,
+                        //   icon: Icon(
+                        //     Icons.arrow_forward_ios,
+                        //     color: primaryLight,
+                        //     ),
+                        //   padding: EdgeInsets.zero,
+                        // ),
+                        ],
+                      ),
+
+                      Text(
+                        'Songs',
+                        style: TextStyle(
+                            color: activeColor,
+                            fontFamily: 'Noto Sans SC',
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.left,
+                      ),
+                      SizedBox(height: 30),
+                      SizedBox(
+                        height: 300,
+                        width: MediaQuery.of(context).size.width,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: quantity,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              margin: EdgeInsets.symmetric(horizontal: 5),
+                              child: CardMedia(
+                                userID: 1,
+                                mediaType: 'SON',
+                                name: "Title",
+                                genre: "Genre",
+                                author: "Author",
+                                mediaID: "a",
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                      Text(
+                        'Books',
+                        style: TextStyle(
+                            color: activeColor,
+                            fontFamily: 'Noto Sans SC',
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.left,
+                      ),
+                      SizedBox(height: 30),
+                      SizedBox(
+                        height: 300,
+                        width: MediaQuery.of(context).size.width,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: quantity,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              margin: EdgeInsets.symmetric(horizontal: 5),
+                              child: CardMedia(
+                                userID: 1,
+                                mediaType: 'BOO',
+                                name: "Title",
+                                genre: "Genre",
+                                author: "Author",
+                                mediaID: "a",
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ]),
+    );
+  }
+}
+
+class DesktopMediaList extends StatefulWidget  {
+  final AuthRepository authRepository;
+
+  DesktopMediaList({Key? key, required this.authRepository})
+      : super(key: key);
+  @override
+  _DesktopMediaListState createState() => _DesktopMediaListState();
+}
+class _DesktopMediaListState extends State<DesktopMediaList> {
+
+  _DesktopMediaListState();
+
+  void _scrollLeft() {
+    _scrollController.animateTo(
+      _scrollController.offset - MediaQuery.of(context).size.width/2,
+      duration: Duration(milliseconds: 500),
+      curve: Curves.ease,
+    );
+  }
+
+  void _scrollRight() {
+    _scrollController.animateTo(
+      _scrollController.offset + MediaQuery.of(context).size.width/2,
+      duration: Duration(milliseconds: 500),
+      curve: Curves.ease,
+    );
+  }
+
+  final ScrollController _scrollController = ScrollController();
+  Widget build(context) {
+    final listBooks = widget.authRepository.getBooks();
+    print(listBooks);
+    
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+        color:
+            Color.fromRGBO(38, 6, 41, 0.5), // Updated color to match the image
+      ),
+      child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+                padding: EdgeInsets.symmetric(horizontal: 40),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 20),
+                    Text(
+                      'Tell us what you like ...',
+                      style: TextStyle(
+                          color: secondaryMain,
+                          fontFamily: 'Noto Sans SC',
+                          fontSize: 45,
+                          fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.left,
+                    ),
+                    Text(
+                      "Like or dislike at least three elements of each list. If you want, you can save them to your wishlist.",
+                      style: TextStyle(
+                          color: textInsideFieldColor,
+                          fontFamily: 'Noto Sans SC',
+                          fontSize: 20),
+                      textAlign: TextAlign.left,
+                    )
+                  ],
+                )),
+            Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 40),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 20),
+                      Text(
+                        'Movies',
+                        style: TextStyle(
+                            color: activeColor,
+                            fontFamily: 'Noto Sans SC',
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.left,
+                      ),
+                      SizedBox(height: 30),
+                      Row(
+                        children: [
                           IconButton(
-                          onPressed: _scrollRight,
+                          onPressed: _scrollLeft,
                           icon: Icon(
-                            Icons.arrow_forward_ios,
+                            Icons.arrow_back_ios,
                             color: primaryLight,
                             ),
                           padding: EdgeInsets.zero,
                         ),
+                          SizedBox(
+                            height: 300,
+                            width: MediaQuery.of(context).size.width,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              controller: _scrollController,
+                              itemCount: quantity,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  margin: EdgeInsets.symmetric(horizontal: 5),
+                                  child: CardMedia(
+                                    userID: 1,
+                                    mediaType: 'MOV',
+                                    name:
+                                        booksList[0][index]["title"] as String,
+                                    genre:
+                                        booksList[0][index]["genres"] as String,
+                                    author:
+                                        booksList[0][index]["author"] as String,
+                                    mediaID: booksList[0][index]["id_book"]
+                                        as String,
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        //   IconButton(
+                        //   onPressed: _scrollRight,
+                        //   icon: Icon(
+                        //     Icons.arrow_forward_ios,
+                        //     color: primaryLight,
+                        //     ),
+                        //   padding: EdgeInsets.zero,
+                        // ),
                         ],
                       ),
 
