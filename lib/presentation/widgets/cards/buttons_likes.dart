@@ -51,7 +51,12 @@ class ButtonsLikesState extends State<ButtonsLikes> {
             child: IconButton(
               onPressed: () {
                 setState(() {
-                  isLike = !isLike;
+                  if (!isDislike) {
+                    isLike = !isLike;
+                  } else {
+                    isDislike = isLike;
+                    isLike = !isLike;
+                  }
                 });
               },
               tooltip: "Like",
@@ -69,7 +74,12 @@ class ButtonsLikesState extends State<ButtonsLikes> {
             child: IconButton(
               onPressed: () {
                 setState(() {
-                  isDislike = !isDislike;
+                  if (!isLike) {
+                    isDislike = !isDislike;
+                  } else {
+                    isLike = isDislike;
+                    isDislike = !isDislike;
+                  }
                 });
               },
               tooltip: "Dislike",
