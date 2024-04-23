@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:perfectpick_wa/presentation/widgets/cards/card_media.dart';
 import 'presentation/widgets/navigation/navbar.dart';
 import 'presentation/widgets/navigation/how_it_works.dart';
+import 'presentation/widgets/navigation/how_to_impact.dart';
 import 'presentation/widgets/navigation/support.dart';
 import 'presentation/widgets/navigation/faqs.dart';
 import 'presentation/widgets/navigation/footer.dart';
@@ -105,6 +106,7 @@ class MyHomePageState extends State<MyHomePage> {
                     authRepository: authRepository,
                     key: keys["howItWorks"],
                   ),
+                  HowToImpact(authRepository: authRepository),
                   Support(
                     authRepository: authRepository,
                     key: keys["support"],

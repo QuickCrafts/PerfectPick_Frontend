@@ -93,3 +93,22 @@ QueryOptions googleSignUpQueryOptions() {
     pollInterval: Duration(seconds: 10),
   );
 }
+
+String createCompanyQuery = '''
+  mutation CreateCompany(\$name: String!, \$email: String!){
+    CreateCompany(name: \$name, email: \$email){
+      companyId
+    }
+  }
+''';
+
+QueryOptions createCompanyQueryOptions(String name, String email) {
+  return QueryOptions(
+    document: gql(createCompanyQuery),
+    variables: {
+      'name': name,
+      'email': email
+    },
+    pollInterval: Duration(seconds: 10),
+  );
+}

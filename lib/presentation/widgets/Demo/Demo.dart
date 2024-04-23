@@ -83,7 +83,7 @@ class DemoDialogState extends State<DemoDialog> {
                                 )),
                             SizedBox(height: 20),
                             TextField(
-                              controller: loginEmailDataController,
+                              controller: loginCompanyNameDataController,
                               cursorColor: activeColor,
                               cursorHeight: 20,
                               style: TextStyle(color: textInsideFieldColor),
@@ -101,13 +101,10 @@ class DemoDialogState extends State<DemoDialog> {
                             ),
                             SizedBox(height: 5),
                             TextField(
-                              controller: loginCompanyNameDataController,
+                              controller: loginEmailDataController,
                               cursorColor: activeColor,
                               cursorHeight: 20,
-                              style: TextStyle(
-                                  color: textInsideFieldColor,
-                                  letterSpacing: _passwordSpacing),
-                              obscureText: _isPasswordHiden,
+                              style: TextStyle(color: textInsideFieldColor),
                               decoration: InputDecoration(
                                 contentPadding: EdgeInsets.only(bottom: 4),
                                 labelText: 'Contact Email*',
@@ -117,21 +114,6 @@ class DemoDialogState extends State<DemoDialog> {
                                 ),
                                 enabledBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(color: inactiveColor),
-                                ),
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    _isPasswordHiden
-                                        ? Icons.visibility
-                                        : Icons.visibility_off,
-                                    color: activeColor,
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      _isPasswordHiden = !_isPasswordHiden;
-                                      _passwordSpacing =
-                                      _isPasswordHiden ? 10 : 0;
-                                    });
-                                  },
                                 ),
                               ),
                             ),
@@ -205,13 +187,13 @@ class DemoDialogState extends State<DemoDialog> {
                                     String companyName =
                                         loginCompanyNameDataController.text;
                                     try {
-                                      //String token = await widget.authRepository
-                                      //    .emailLogin(email, password);
+                                      String id = (await widget.authRepository
+                                          .createCompany(companyName, email)) as String;
                                       showDialog(
                                           context: context,
                                           builder: (context) => AlertDialog(
                                             title: Text('Success'),
-                                      //      content: Text('Token: $token'),
+                                            content: Text('Id: $id'),
                                             actions: [
                                               TextButton(
                                                 onPressed: () {
