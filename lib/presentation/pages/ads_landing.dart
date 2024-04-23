@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:perfectpick_wa/presentation/widgets/navigation/ads/ads_navbar.dart';
 import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
+import 'package:perfectpick_wa/presentation/widgets/navigation/ads/home.dart';
 
 
 class AdsLandingPage extends StatefulWidget {
