@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:perfectpick_wa/data/repositories/likes/likes_repository.dart';
 
 class Rating extends StatefulWidget {
+  final String userToken;
   final int userID;
   final String mediaType;
   final String mediaID;
   final bool rateInput;
+  final LikesRepository likesRepository;
 
   const Rating({
     super.key,
+    required this.userToken,
     required this.userID,
     required this.mediaType,
     required this.mediaID,
     required this.rateInput,
+    required this.likesRepository,
   });
 
   @override
