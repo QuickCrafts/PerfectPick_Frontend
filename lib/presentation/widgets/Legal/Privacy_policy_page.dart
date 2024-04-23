@@ -1,6 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import "package:perfectpick_wa/presentation/colors.dart";
-// Add your other necessary imports here.
 
 class PrivacyPolicyPage extends StatelessWidget {
   @override
@@ -24,7 +25,7 @@ class PrivacyPolicyPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
+              SizedBox(
                 width: 217,
                 height: 30,
                 child: Stack(
@@ -56,7 +57,7 @@ class PrivacyPolicyPage extends StatelessWidget {
                   height: 0,
                 ),
               ),
-              Container(
+              SizedBox(
                 width: 300,
                 height: 60,
                 child: Stack(
@@ -82,7 +83,7 @@ class PrivacyPolicyPage extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
+              SizedBox(
                 width: double.infinity,
                 height: 78,
                 child: Column(
