@@ -5,22 +5,21 @@ import 'package:perfectpick_wa/presentation/widgets/navigation/how_it_works.dart
 import 'package:perfectpick_wa/presentation/widgets/signUp/signup_modal.dart';
 import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
 
-class NavBar extends StatelessWidget {
-  final AuthRepository authRepository;
+class AdNavBar extends StatelessWidget {
   final Function(String) onSectionSelected;
 
-  const NavBar({Key? key, required this.authRepository, required this.onSectionSelected}) : super(key: key);
+  const AdNavBar({Key? key, required this.onSectionSelected}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth > 830) {
-          return DesktopNavBar(authRepository: authRepository, onSectionSelected: (string) {
+          return DesktopAdNavBar(onSectionSelected: (string) {
             onSectionSelected(string);
           });
         } else {
-          return MobileNavBar(authRepository: authRepository, onSectionSelected: (string) {
+          return MobileAdNavBar(onSectionSelected: (string) {
             onSectionSelected(string);
           });
         }
@@ -29,12 +28,10 @@ class NavBar extends StatelessWidget {
   }
 }
 
-class DesktopNavBar extends StatelessWidget {
-  final AuthRepository authRepository;
+class DesktopAdNavBar extends StatelessWidget {
   final Function(String) onSectionSelected;
 
-  const DesktopNavBar({Key? key, 
-  required this.authRepository,
+  const DesktopAdNavBar({Key? key, 
   required this.onSectionSelected,})
       : super(key: key);
 
@@ -80,59 +77,12 @@ class DesktopNavBar extends StatelessWidget {
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
           ),
-          SizedBox(width: 5),
-          TextButton(
-            onPressed: () {
-              onSectionSelected("faqs");
-            },
-            child: Text(
-              'About us',
-              style: TextStyle(color: Colors.white, fontSize: 18),
-            ),
-          ),
-          SizedBox(width: 5),
-          TextButton(
-            onPressed: () {
-              onSectionSelected("support");
-            },
-            child: Text(
-              'Support',
-              style: TextStyle(color: Colors.white, fontSize: 18),
-            ),
-          ),
           Spacer(),
           TextButton(
             onPressed: () {
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return LoginDialog(
-                    authRepository: authRepository,
-                  );
-                },
-              );
             },
             child: Text(
-              'Log in',
-              style: TextStyle(color: activeColor, fontSize: 18),
-            ),
-          ),
-          SizedBox(width: 5),
-          Text("|", style: TextStyle(color: Colors.white, fontSize: 20)),
-          SizedBox(width: 5),
-          TextButton(
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return SignUpDialog(
-                    authRepository: authRepository,
-                  );
-                },
-              );
-            },
-            child: Text(
-              'Sign up',
+              'I am Admin',
               style: TextStyle(color: Colors.yellow, fontSize: 18),
             ),
           ),
@@ -143,11 +93,10 @@ class DesktopNavBar extends StatelessWidget {
   }
 }
 
-class MobileNavBar extends StatelessWidget {
-  final AuthRepository authRepository;
+class MobileAdNavBar extends StatelessWidget {
   final Function(String) onSectionSelected;
 
-  const MobileNavBar({Key? key, required this.authRepository, required this.onSectionSelected,})
+  const MobileAdNavBar({Key? key, required this.onSectionSelected,})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -165,15 +114,10 @@ class MobileNavBar extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                InkWell(
-                  onTap: () {
-                    onSectionSelected("home");
-                  },
-                  child: Image.asset(
-                    "lib/presentation/images/PerfectPickStar.png",
-                    width: 35,
-                    height: 35,
-                  ),
+                Image.asset(
+                  "lib/presentation/images/PerfectPickStar.png",
+                  width: 35,
+                  height: 35,
                 ),
                 IconButton(
                   iconSize: 35,
@@ -210,32 +154,6 @@ class MobileNavBar extends StatelessWidget {
                             ),
                             ),
                         ),
-                        PopupMenuItem(
-                          onTap: () {
-                            onSectionSelected("faqs");
-                          },
-                          value: 1,
-                          child: 
-                          Text(
-                            'About us', 
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                            ),
-                        ),
-                        PopupMenuItem(
-                          onTap: () {
-                            onSectionSelected("support");
-                          },
-                          value: 2,
-                          child: 
-                          Text(
-                            'Support',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                            ),
-                        ),
                       ],
                     );
                   },
@@ -245,34 +163,14 @@ class MobileNavBar extends StatelessWidget {
           ),
           Row(
             children: [
-              TextButton(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return LoginDialog(authRepository: authRepository);
-                    },
-                  );
-                },
-                child: Text(
-                  'Log in',
-                  style: TextStyle(color: activeColor, fontSize: 18),
-                ),
-              ),
               SizedBox(width: 5),
               Text("|", style: TextStyle(color: Colors.white, fontSize: 20)),
               SizedBox(width: 5),
               TextButton(
                 onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return SignUpDialog(authRepository: authRepository);
-                    },
-                  );
                 },
                 child: Text(
-                  'Sign up',
+                  'I am Admin',
                   style: TextStyle(color: Colors.yellow, fontSize: 18),
                 ),
               ),
