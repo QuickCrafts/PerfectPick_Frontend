@@ -134,16 +134,38 @@ class MobileMediaList extends StatelessWidget {
   }
 }
 
-class DesktopMediaList extends StatelessWidget {
+class DesktopMediaList extends StatefulWidget  {
   final AuthRepository authRepository;
 
-  const DesktopMediaList({Key? key, required this.authRepository})
+  DesktopMediaList({Key? key, required this.authRepository})
       : super(key: key);
 
-  Widget build(BuildContext context) {
+  @override
+  _DesktopMediaListState createState() => _DesktopMediaListState();
+}
+class _DesktopMediaListState extends State<DesktopMediaList> {
+
+  void _scrollLeft() {
+    _scrollController.animateTo(
+      _scrollController.offset - MediaQuery.of(context).size.width/2,
+      duration: Duration(milliseconds: 500),
+      curve: Curves.ease,
+    );
+  }
+
+  void _scrollRight() {
+    _scrollController.animateTo(
+      _scrollController.offset + MediaQuery.of(context).size.width/2,
+      duration: Duration(milliseconds: 500),
+      curve: Curves.ease,
+    );
+  }
+
+  final ScrollController _scrollController = ScrollController();
+  Widget build(context) {
     // final listBooks = mediaRepository.getBooks();
     const quantity = 10;
-    const padding = 40.0;
+    const padding = 60.0;
     const booksList = [
       [
         {
@@ -563,57 +585,53 @@ class DesktopMediaList extends StatelessWidget {
                         textAlign: TextAlign.left,
                       ),
                       SizedBox(height: 20),
-                      // Scaffold(
-                      //     body: SingleChildScrollView(
-                      //   child: SizedBox(
-                      //     height: 300,
-                      //     width: MediaQuery.of(context).size.width,
-                      //     child: ListView.builder(
-                      //       scrollDirection: Axis.horizontal,
-                      //       itemCount: quantity,
-                      //       itemBuilder: (context, index) {
-                      //         return Container(
-                      //           margin: EdgeInsets.symmetric(horizontal: 5),
-                      //           child: CardMedia(
-                      //             userID: 1,
-                      //             mediaType: 'MOV',
-                      //             name: booksList[0][index]["title"] as String,
-                      //             genre:
-                      //                 booksList[0][index]["genres"] as String,
-                      //             author:
-                      //                 booksList[0][index]["author"] as String,
-                      //             mediaID:
-                      //                 booksList[0][index]["id_book"] as String,
-                      //           ),
-                      //         );
-                      //       },
-                      //     ),
-                      //   ),
-                      // )),
-                      SizedBox(
-                          height: 300,
-                          width: MediaQuery.of(context).size.width,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: quantity,
-                            itemBuilder: (context, index) {
-                              return Container(
-                                margin: EdgeInsets.symmetric(horizontal: 5),
-                                child: CardMedia(
-                                  userID: 1,
-                                  mediaType: 'MOV',
-                                  name: booksList[0][index]["title"] as String,
-                                  genre:
-                                      booksList[0][index]["genres"] as String,
-                                  author:
-                                      booksList[0][index]["author"] as String,
-                                  mediaID:
-                                      booksList[0][index]["id_book"] as String,
-                                ),
-                              );
-                            },
-                          ),
+                      Row(
+                        children: [
+                          IconButton(
+                          onPressed: _scrollLeft,
+                          icon: Icon(
+                            Icons.arrow_back_ios,
+                            color: primaryLight,
+                            ),
+                          padding: EdgeInsets.zero,
                         ),
+                          SizedBox(
+                            height: 300,
+                            width: MediaQuery.of(context).size.width - 270,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              controller: _scrollController,
+                              itemCount: quantity,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  margin: EdgeInsets.symmetric(horizontal: 5),
+                                  child: CardMedia(
+                                    userID: 1,
+                                    mediaType: 'MOV',
+                                    name:
+                                        booksList[0][index]["title"] as String,
+                                    genre:
+                                        booksList[0][index]["genres"] as String,
+                                    author:
+                                        booksList[0][index]["author"] as String,
+                                    mediaID: booksList[0][index]["id_book"]
+                                        as String,
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                          IconButton(
+                          onPressed: _scrollRight,
+                          icon: Icon(
+                            Icons.arrow_forward_ios,
+                            color: primaryLight,
+                            ),
+                          padding: EdgeInsets.zero,
+                        ),
+                        ],
+                      ),
+
                       Text(
                         'Songs',
                         style: TextStyle(

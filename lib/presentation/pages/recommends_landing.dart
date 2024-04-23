@@ -119,6 +119,9 @@ class DesktopRecommendsLandingPage extends StatelessWidget {
                     width: 200,
                     child: Column(
                       children: [
+                        SizedBox(
+                          height: 80,
+                        ),
                         InkWell(
                           onTap: () {
                             try {
@@ -133,7 +136,7 @@ class DesktopRecommendsLandingPage extends StatelessWidget {
                             child: Image.asset(
                               "lib/presentation/images/Shutter_ad.jpg",
                               width: 200,
-                              height: 150,
+                              height: 500,
                               fit: BoxFit.cover,
                             ),
                           ),
