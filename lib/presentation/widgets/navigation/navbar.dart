@@ -168,8 +168,8 @@ class MobileNavBar extends StatelessWidget {
                             ),),
                         ),
                         PopupMenuItem(
-                          child: Text('Option 2'),
                           value: 2,
+                          child: Text('Option 2'),
                         ),
                         // Add more menu items as needed
                       ],
