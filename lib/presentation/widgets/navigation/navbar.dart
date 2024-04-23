@@ -165,10 +165,15 @@ class MobileNavBar extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Image.asset(
-                  "lib/presentation/images/PerfectPickStar.png",
-                  width: 35,
-                  height: 35,
+                InkWell(
+                  onTap: () {
+                    onSectionSelected("home");
+                  },
+                  child: Image.asset(
+                    "lib/presentation/images/PerfectPickStar.png",
+                    width: 35,
+                    height: 35,
+                  ),
                 ),
                 IconButton(
                   iconSize: 35,

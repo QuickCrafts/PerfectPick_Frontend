@@ -1,17 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:perfectpick_wa/presentation/widgets/cards/card_media.dart';
 import 'package:perfectpick_wa/presentation/widgets/navigation/ads/ads_navbar.dart';
-import 'package:perfectpick_wa/presentation/widgets/navigation/navbar.dart';
-import 'package:perfectpick_wa/presentation/widgets/navigation/how_it_works.dart';
-import 'package:perfectpick_wa/presentation/widgets/navigation/support.dart';
-import 'package:perfectpick_wa/presentation/widgets/navigation/faqs.dart';
-import 'package:perfectpick_wa/presentation/widgets/navigation/footer.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:perfectpick_wa/data/data_providers/client_declarator.dart';
 import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
-import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:perfectpick_wa/presentation/widgets/navigation/ads/home.dart';
-import 'package:provider/provider.dart';
+
 
 class AdsLandingPage extends StatefulWidget {
   final AuthRepository authRepository;
