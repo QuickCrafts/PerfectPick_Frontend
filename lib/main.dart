@@ -3,6 +3,7 @@ import 'package:perfectpick_wa/presentation/pages/ads_landing.dart';
 import 'package:perfectpick_wa/presentation/pages/recommends_landing.dart';
 import 'package:perfectpick_wa/presentation/widgets/cards/card_media.dart';
 import 'package:perfectpick_wa/presentation/widgets/navigation/home.dart';
+import 'package:perfectpick_wa/presentation/widgets/media/mediaList.dart';
 import 'presentation/widgets/navigation/navbar.dart';
 import 'presentation/widgets/navigation/how_it_works.dart';
 import 'presentation/widgets/navigation/support.dart';
@@ -119,6 +120,7 @@ class MyHomePageState extends State<MyHomePage> {
                     key: keys["support"],
                   ),
                   Faqs(authRepository: authRepository, key: keys["faqs"]),
+                  MediaList( authRepository: widget.authRepository),
                   Footer(authRepository: authRepository, key: keys["footer"]),
                 ],
               ),
