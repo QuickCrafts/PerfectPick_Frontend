@@ -1,4 +1,3 @@
-import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'presentation/widgets/navigation/navbar.dart';
 import 'presentation/widgets/navigation/how_it_works.dart';
@@ -44,11 +43,43 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   final AuthRepository authRepository;
 
   const MyHomePage({super.key, required this.authRepository});
+
+  @override
+  MyHomePageState createState() => MyHomePageState();
+
+}
+
+class MyHomePageState extends State<MyHomePage> {
+  final ScrollController _scrollController = ScrollController();
+  final Map<String, GlobalKey> keys = {
+    "howItWorks": GlobalKey(),
+    "support": GlobalKey(),
+    "faqs": GlobalKey(),
+    "footer": GlobalKey(),
+  };
+
+  AuthRepository get authRepository => widget.authRepository;
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _scrollToSection(String section){
+    final GlobalKey? key = keys[section];
+    if(key == null) return;
+    Scrollable.ensureVisible(
+      key.currentContext!,
+      duration: Duration(seconds: 1),
+      curve: Curves.easeInOut,
+    );
+  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -56,20 +87,21 @@ class MyHomePage extends StatelessWidget {
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.black,
       body: CustomScrollView(
+        controller: _scrollController,
         slivers: [
           SliverAppBar(
             pinned: true,
             backgroundColor: Colors.transparent,
-            flexibleSpace: NavBar(authRepository: authRepository),
+            flexibleSpace: NavBar(authRepository: authRepository, onSectionSelected: _scrollToSection),
           ),
           SliverToBoxAdapter(
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  HowItWorks(authRepository: authRepository),
-                  Support(authRepository: authRepository),
-                  Faqs(authRepository: authRepository),
-                  Footer(authRepository: authRepository),
+                  HowItWorks(authRepository: authRepository, key: keys["howItWorks"],),
+                  Support(authRepository: authRepository, key: keys["support"],),
+                  Faqs(authRepository: authRepository, key: keys["faqs"]),
+                  Footer(authRepository: authRepository, key: keys["footer"]),
                 ],
               ),
             ),

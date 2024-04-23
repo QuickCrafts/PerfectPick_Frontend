@@ -4,17 +4,18 @@ import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
 
 class HowItWorks extends StatelessWidget {
   final AuthRepository authRepository;
+  final GlobalKey howItWorksKey = GlobalKey(debugLabel: "HowItWorks");
 
-  const HowItWorks({Key? key, required this.authRepository}) : super(key: key);
+  HowItWorks({Key? key, required this.authRepository}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth > 1020) {
-          return DesktopHowItWorks(authRepository: authRepository);
+          return DesktopHowItWorks(authRepository: authRepository, howItWorksKey: howItWorksKey);
         } else {
-          return MobileHowItWorks(authRepository: authRepository);
+          return MobileHowItWorks(authRepository: authRepository, howItWorksKey: howItWorksKey);
         }
       },
     );
@@ -23,13 +24,15 @@ class HowItWorks extends StatelessWidget {
 
 class DesktopHowItWorks extends StatelessWidget {
   final AuthRepository authRepository;
+  final GlobalKey<State<StatefulWidget>> howItWorksKey;
 
-  const DesktopHowItWorks({Key? key, required this.authRepository})
+  const DesktopHowItWorks({Key? key, required this.authRepository, required this.howItWorksKey})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: howItWorksKey,
       height: 630,
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -212,13 +215,15 @@ class DesktopHowItWorks extends StatelessWidget {
 
 class MobileHowItWorks extends StatelessWidget {
   final AuthRepository authRepository;
+  final GlobalKey<State<StatefulWidget>> howItWorksKey;
 
-  const MobileHowItWorks({Key? key, required this.authRepository})
+  const MobileHowItWorks({Key? key, required this.authRepository, required this.howItWorksKey})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: howItWorksKey,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         gradient: LinearGradient(
