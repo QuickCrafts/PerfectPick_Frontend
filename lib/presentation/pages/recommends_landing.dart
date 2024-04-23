@@ -73,101 +73,101 @@ class DesktopRecommendsLandingPage extends StatelessWidget {
                   ),
                 ),
               ),
-              // Positioned(
-              //   top: 0,
-              //   left: 0,
-              //   bottom: 0,
-              //   child: SingleChildScrollView(
-              //     physics: NeverScrollableScrollPhysics(),
-              //     child: Container(
-              //       width: 200,
-              //       child: Column(
-              //         children: [
-              //           SizedBox(
-              //             height: 80,
-              //           ),
-              //           InkWell(
-              //             onTap: () {
-              //               try {
-              //                 launchAuxiliarURL(
-              //                     "https://www.primevideo.com/dp/amzn1.dv.gti.056012bb-4d05-4e2f-8d8c-90cb2a938433?autoplay=0&ref_=atv_cf_strg_wb");
-              //               } catch (e) {
-              //                 print(e);
-              //               }
-              //             },
-              //             child: ClipRRect(
-              //               borderRadius: BorderRadius.circular(12),
-              //               child: Image.asset(
-              //                 'lib/presentation/images/ESSM_ad.jpg',
-              //                 width: 200,
-              //                 height: 500,
-              //                 fit: BoxFit.cover,
-              //               ),
-              //             ),
-              //           ),
-              //         ],
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              // Positioned(
-              //   top: 0,
-              //   right: 0,
-              //   bottom: 0,
-              //   child: SingleChildScrollView(
-              //     physics: NeverScrollableScrollPhysics(),
-              //     child: Container(
-              //       width: 200,
-              //       child: Column(
-              //         children: [
-              //           SizedBox(
-              //             height: 80,
-              //           ),
-              //           InkWell(
-              //             onTap: () {
-              //               try {
-              //                 launchAuxiliarURL(
-              //                     "https://tv.apple.com/us/movie/shutter-island/umc.cmc.1n432wlu275a0640043zypfsj");
-              //               } catch (e) {
-              //                 print(e);
-              //               }
-              //             },
-              //             child: ClipRRect(
-              //               borderRadius: BorderRadius.circular(12),
-              //               child: Image.asset(
-              //                 "lib/presentation/images/Shutter_ad.jpg",
-              //                 width: 200,
-              //                 height: 500,
-              //                 fit: BoxFit.cover,
-              //               ),
-              //             ),
-              //           ),
-              //           SizedBox(
-              //             height: 20,
-              //           ),
-              //           // WISHLIST
-              //           SizedBox(
-              //             height: 20,
-              //           ),
-              //           ElevatedButton(
-              //             onPressed: () async {},
-              //             style: ElevatedButton.styleFrom(
-              //               minimumSize: Size(140, 16),
-              //               backgroundColor: activeColor,
-              //               padding: EdgeInsets.symmetric(vertical: 16),
-              //               shape: RoundedRectangleBorder(
-              //                 borderRadius: BorderRadius.circular(12),
-              //               ),
-              //             ),
-              //             child: Text('Recommend me',
-              //                 style: TextStyle(
-              //                     color: textInsideButtonColor, fontSize: 15)),
-              //           ),
-              //         ],
-              //       ),
-              //     ),
-              //   ),
-              // ),
+              Positioned(
+                top: 0,
+                left: 0,
+                bottom: 0,
+                child: SingleChildScrollView(
+                  physics: NeverScrollableScrollPhysics(),
+                  child: Container(
+                    width: 200,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 80,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            try {
+                              launchAuxiliarURL(
+                                  "https://www.primevideo.com/dp/amzn1.dv.gti.056012bb-4d05-4e2f-8d8c-90cb2a938433?autoplay=0&ref_=atv_cf_strg_wb");
+                            } catch (e) {
+                              print(e);
+                            }
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: Image.asset(
+                              'lib/presentation/images/ESSM_ad.jpg',
+                              width: 200,
+                              height: 500,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 0,
+                right: 0,
+                bottom: 0,
+                child: SingleChildScrollView(
+                  physics: NeverScrollableScrollPhysics(),
+                  child: Container(
+                    width: 200,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 80,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            try {
+                              launchAuxiliarURL(
+                                  "https://tv.apple.com/us/movie/shutter-island/umc.cmc.1n432wlu275a0640043zypfsj");
+                            } catch (e) {
+                              print(e);
+                            }
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: Image.asset(
+                              "lib/presentation/images/Shutter_ad.jpg",
+                              width: 200,
+                              height: 500,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        // WISHLIST
+                        SizedBox(
+                          height: 20,
+                        ),
+                        ElevatedButton(
+                          onPressed: () async {},
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: Size(140, 16),
+                            backgroundColor: activeColor,
+                            padding: EdgeInsets.symmetric(vertical: 16),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          child: Text('Recommend me',
+                              style: TextStyle(
+                                  color: textInsideButtonColor, fontSize: 15)),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
