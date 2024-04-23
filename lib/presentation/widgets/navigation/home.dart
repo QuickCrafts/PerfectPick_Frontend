@@ -119,6 +119,7 @@ class MobileHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       key: homeKey,
+      width: double.infinity,
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage('lib/presentation/images/home_background.png'),
