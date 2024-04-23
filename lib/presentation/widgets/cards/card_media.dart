@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:perfectpick_wa/data/data_providers/client_declarator.dart';
+import 'package:perfectpick_wa/data/repositories/likes/likes_repository.dart';
 import 'package:perfectpick_wa/presentation/widgets/cards/buttons_likes.dart';
 import 'package:perfectpick_wa/presentation/widgets/cards/rating.dart';
 
@@ -25,6 +27,9 @@ class CardMedia extends StatefulWidget {
 }
 
 class CardMediaState extends State<CardMedia> {
+  final LikesRepository mainLikesRepository =
+      LikesRepository(client: graphqlClient.value);
+
   int userID = 0;
   String name = '';
   String genre = '';
@@ -109,7 +114,10 @@ class CardMediaState extends State<CardMedia> {
                 width: 280,
                 height: 30,
                 child: ButtonsLikes(
-                    userID: userID, mediaType: mediaType, mediaID: mediaID),
+                    userID: userID,
+                    mediaType: mediaType,
+                    mediaID: mediaID,
+                    likesRepository: mainLikesRepository),
               ),
               Container(
                 width: double.infinity,
@@ -147,18 +155,18 @@ class CardMediaState extends State<CardMedia> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      name,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                        fontFamily: 'Noto Sans SC',
-                                        height: 0,
-                                      ),
-                                    )
-                                  ],
+                                Container(
+                                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                  child: Text(
+                                    name,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontFamily: 'Noto Sans SC',
+                                      height: 0,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 ),
                                 SizedBox(width: 5),
                                 Row(
@@ -167,23 +175,31 @@ class CardMediaState extends State<CardMedia> {
                                       MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    Text(
-                                      genre,
-                                      style: TextStyle(
-                                        color: Color(0xFFE5CC38),
-                                        fontSize: 14,
-                                        fontFamily: 'Noto Sans SC',
-                                        height: 0,
+                                    Container(
+                                      width: 180,
+                                      child: Text(
+                                        genre,
+                                        style: TextStyle(
+                                          color: Color(0xFFE5CC38),
+                                          fontSize: 14,
+                                          fontFamily: 'Noto Sans SC',
+                                          height: 0,
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
                                     Spacer(),
-                                    Text(
-                                      author,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                        fontFamily: 'Noto Sans SC',
-                                        height: 0,
+                                    Container(
+                                      width: 120,
+                                      child: Text(
+                                        author,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 16,
+                                          fontFamily: 'Noto Sans SC',
+                                          height: 0,
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
                                   ],
@@ -197,7 +213,7 @@ class CardMediaState extends State<CardMedia> {
                                 userID: userID,
                                 mediaID: mediaID,
                                 mediaType: mediaType,
-                                rateInput: true), //todo RateInput if loggedin
+                                rateInput: true),
                             Spacer(),
                             Icon(
                               getIcon(),

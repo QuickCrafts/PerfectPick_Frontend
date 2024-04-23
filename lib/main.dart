@@ -118,6 +118,15 @@ class MyHomePageState extends State<MyHomePage> {
                   ),
                   Faqs(authRepository: authRepository, key: keys["faqs"]),
                   Footer(authRepository: authRepository, key: keys["footer"]),
+                  CardMedia(
+                      userID: 1,
+                      name:
+                          'un texto largo largo largo largo largo largo larguisimo',
+                      genre: 'otro texto largo largo largo larguísimo',
+                      author:
+                          'ni se diga mas, mas texto largo largo largo larguísimo',
+                      mediaType: 'SON',
+                      mediaID: '1')
                 ],
               ),
             ),

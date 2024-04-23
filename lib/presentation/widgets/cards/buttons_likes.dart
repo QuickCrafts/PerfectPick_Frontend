@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:perfectpick_wa/data/models/likes/likes_models.dart';
+import 'package:perfectpick_wa/data/repositories/likes/likes_repository.dart';
 
 class ButtonsLikes extends StatefulWidget {
   final int userID;
   final String mediaType;
   final String mediaID;
+  final LikesRepository likesRepository;
 
   const ButtonsLikes({
     super.key,
     required this.userID,
     required this.mediaType,
     required this.mediaID,
+    required this.likesRepository,
   });
 
   @override
@@ -22,6 +26,32 @@ class ButtonsLikesState extends State<ButtonsLikes> {
   bool isDislike = false;
 
   @override
+  void initState() {
+    super.initState();
+    checkLikeStatus();
+  }
+
+  Future<void> checkLikeStatus() async {
+    try {
+      SpecificLikeResponseModel likeResponse = await widget.likesRepository
+          .getSpecificLike('', widget.userID, widget.mediaID,
+              widget.mediaType); //@todo poner el user token al principio
+
+      setState(() {
+        if (likeResponse.likeType == 'LK') {
+          isLike = true;
+          isDislike = false;
+        } else if (likeResponse.likeType == 'DLK') {
+          isDislike = true;
+          isLike = false;
+        }
+      });
+    } catch (e) {
+      print('Error getting preference status: $e');
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Material(
         color: Colors.transparent,
@@ -29,14 +59,18 @@ class ButtonsLikesState extends State<ButtonsLikes> {
           Center(
               child: Ink(
             decoration: const ShapeDecoration(
-                shape: CircleBorder(), color: Color.fromRGBO(38, 6, 41, 1)),
+              shape: CircleBorder(),
+              color:
+                  Color.fromRGBO(66, 39, 79, 1), // Color.fromRGBO(38, 6, 41, 1)
+            ),
             child: IconButton(
-              onPressed: () {
-                setState(() {
-                  inWishlist = !inWishlist;
-                });
-              },
-              tooltip: "Save to wishlist",
+              // onPressed: () {
+              //   setState(() {
+              //     inWishlist = !inWishlist;
+              //   });
+              // },
+              onPressed: null,
+              tooltip: "Wishlist soon!",
               icon: const Icon(Icons.bookmark),
               color: inWishlist
                   ? Color.fromRGBO(229, 204, 56, 1)
