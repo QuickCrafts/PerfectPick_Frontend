@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import "package:perfectpick_wa/presentation/colors.dart";
 import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
+import "package:perfectpick_wa/presentation/widgets/Recommendations/recommendationsModal.dart";
 
 class Home extends StatelessWidget {
   final AuthRepository authRepository;
@@ -59,8 +60,8 @@ class DesktopHome extends StatelessWidget {
               buildAwesomeRecommendationsText(),
               SizedBox(height: 16),
               buildDescriptionText(),
-              SizedBox(height: 32)
-              //buildRecommendButton(),
+              SizedBox(height: 32),
+              buildRecommendButton(context),
             ],
           ),
         ),
@@ -93,20 +94,34 @@ class DesktopHome extends StatelessWidget {
     );
   }
 
-  Widget buildRecommendButton() {
-    return ElevatedButton(
-      onPressed: () {
-        // Add button click logic here
-      },
-      child: Text('Recommend me'),
-      style: ElevatedButton.styleFrom(
-        backgroundColor: activeColor,
-        foregroundColor: Colors.white,
-        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-        textStyle: TextStyle(fontSize: 18),
-      ),
-    );
-  }
+  Widget buildRecommendButton(BuildContext context) {
+  return ElevatedButton(
+    onPressed: () {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          // Replace with the actual user ID that you want to use for the demo.
+          String demoUserId = "1"; 
+          return Dialog(
+            child: Container(
+              padding: EdgeInsets.all(20),
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height * 0.7, // Adjust the height as needed
+              child: RecommendationsWidget(userId: demoUserId), // Using the RecommendationsWidget
+            ),
+          );
+        },
+      );
+    },
+    child: Text('Generate Recommendations'),
+    style: ElevatedButton.styleFrom(
+      backgroundColor: activeColor,
+      foregroundColor: Colors.white,
+      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+      textStyle: TextStyle(fontSize: 18),
+    ),
+  );
+}
 }
 
 class MobileHome extends StatelessWidget {
