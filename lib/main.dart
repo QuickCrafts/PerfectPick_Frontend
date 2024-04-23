@@ -46,8 +46,10 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => MyHomePage(authRepository: mainAuthRepository),
-          '/ads': (context) => AdsLandingPage(authRepository: mainAuthRepository),
-          '/recommends': (context) => RecommendsLandingPage(authRepository: mainAuthRepository),
+          '/ads': (context) =>
+              AdsLandingPage(authRepository: mainAuthRepository),
+          '/recommends': (context) =>
+              RecommendsLandingPage(authRepository: mainAuthRepository),
         },
       ),
     );
@@ -121,7 +123,7 @@ class MyHomePageState extends State<MyHomePage> {
                     key: keys["support"],
                   ),
                   Faqs(authRepository: authRepository, key: keys["faqs"]),
-                  MediaList( authRepository: widget.authRepository),
+                  MediaList(authRepository: widget.authRepository),
                   Footer(authRepository: authRepository, key: keys["footer"]),
                   CardMedia(
                       userID: 1,

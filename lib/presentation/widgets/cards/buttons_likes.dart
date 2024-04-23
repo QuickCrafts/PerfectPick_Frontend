@@ -3,6 +3,7 @@ import 'package:perfectpick_wa/data/models/likes/likes_models.dart';
 import 'package:perfectpick_wa/data/repositories/likes/likes_repository.dart';
 
 class ButtonsLikes extends StatefulWidget {
+  final String userToken;
   final int userID;
   final String mediaType;
   final String mediaID;
@@ -10,6 +11,7 @@ class ButtonsLikes extends StatefulWidget {
 
   const ButtonsLikes({
     super.key,
+    required this.userToken,
     required this.userID,
     required this.mediaType,
     required this.mediaID,
@@ -34,8 +36,8 @@ class ButtonsLikesState extends State<ButtonsLikes> {
   Future<void> checkLikeStatus() async {
     try {
       SpecificLikeResponseModel likeResponse = await widget.likesRepository
-          .getSpecificLike('', widget.userID, widget.mediaID,
-              widget.mediaType); //@todo poner el user token al principio
+          .getSpecificLike(widget.userToken, widget.userID, widget.mediaID,
+              widget.mediaType);
 
       setState(() {
         if (likeResponse.likeType == 'LK') {

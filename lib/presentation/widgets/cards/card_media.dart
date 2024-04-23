@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:perfectpick_wa/business_logic/cubits/auth_verificator.dart';
 import 'package:perfectpick_wa/data/data_providers/client_declarator.dart';
+import 'package:perfectpick_wa/data/repositories/auth/auth_repository.dart';
 import 'package:perfectpick_wa/data/repositories/likes/likes_repository.dart';
 import 'package:perfectpick_wa/presentation/widgets/cards/buttons_likes.dart';
 import 'package:perfectpick_wa/presentation/widgets/cards/rating.dart';
+import 'package:provider/provider.dart';
 
 class CardMedia extends StatefulWidget {
   final int userID;
@@ -40,9 +43,9 @@ class CardMediaState extends State<CardMedia> {
   @override
   initState() {
     super.initState();
-    userID = widget.userID;
     name = widget.name;
     genre = widget.genre;
+    userID = widget.userID;
     author = widget.author;
     mediaType = widget.mediaType;
     mediaID = widget.mediaID;
@@ -56,6 +59,9 @@ class CardMediaState extends State<CardMedia> {
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    String userToken = authProvider.token.toString();
+
     return Column(
       children: [
         Container(
@@ -114,6 +120,7 @@ class CardMediaState extends State<CardMedia> {
                 width: 280,
                 height: 30,
                 child: ButtonsLikes(
+                    userToken: userToken,
                     userID: userID,
                     mediaType: mediaType,
                     mediaID: mediaID,
@@ -210,10 +217,12 @@ class CardMediaState extends State<CardMedia> {
                           SizedBox(height: 15),
                           Row(children: [
                             Rating(
+                                rateInput: true,
+                                userToken: userToken,
                                 userID: userID,
-                                mediaID: mediaID,
                                 mediaType: mediaType,
-                                rateInput: true),
+                                mediaID: mediaID,
+                                likesRepository: mainLikesRepository),
                             Spacer(),
                             Icon(
                               getIcon(),
