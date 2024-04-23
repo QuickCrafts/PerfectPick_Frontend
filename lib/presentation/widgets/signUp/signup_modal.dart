@@ -1,8 +1,9 @@
 import "dart:ui";
-
 import "package:flutter/material.dart";
 import "package:perfectpick_wa/presentation/colors.dart";
 import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
+import "package:perfectpick_wa/auxiliar_functions.dart";
+import 'package:perfectpick_wa/presentation/widgets/login/login_modal.dart';
 import "package:perfectpick_wa/presentation/widgets/Legal/Privacy_policy_page.dart";
 import "package:perfectpick_wa/presentation/widgets/Legal/terms_of_service_page.dart";
 
@@ -19,13 +20,17 @@ class SignUpDialog extends StatefulWidget {
 class SignUpDialogState extends State<SignUpDialog> {
   bool _isPasswordHiden = true;
   double _passwordSpacing = 10;
-  final loginEmailDataController = TextEditingController();
-  final loginPasswordDataController = TextEditingController();
+  final signUpFirstNameDataController = TextEditingController();
+  final signUpLastNameDataController = TextEditingController();
+  final signUpEmailDataController = TextEditingController();
+  final signUpPasswordDataController = TextEditingController();
 
   @override
   void dispose() {
-    loginEmailDataController.dispose();
-    loginPasswordDataController.dispose();
+    signUpFirstNameDataController.dispose();
+    signUpLastNameDataController.dispose();
+    signUpEmailDataController.dispose();
+    signUpPasswordDataController.dispose();
     super.dispose();
   }
 
@@ -86,6 +91,7 @@ class SignUpDialogState extends State<SignUpDialog> {
                           children: [
                             Expanded(
                               child: TextField(
+                                controller: signUpFirstNameDataController,
                                 cursorColor: activeColor,
                                 cursorHeight: 20,
                                 style: TextStyle(color: textInsideFieldColor),
@@ -105,6 +111,7 @@ class SignUpDialogState extends State<SignUpDialog> {
                             SizedBox(height: 40, width: 10),
                             Expanded(
                               child: TextField(
+                                controller: signUpLastNameDataController,
                                 cursorColor: activeColor,
                                 cursorHeight: 20,
                                 style: TextStyle(color: textInsideFieldColor),
@@ -125,6 +132,7 @@ class SignUpDialogState extends State<SignUpDialog> {
                         ),
                         SizedBox(height: 5),
                         TextField(
+                          controller: signUpEmailDataController,
                           cursorColor: activeColor,
                           cursorHeight: 20,
                           style: TextStyle(color: textInsideFieldColor),
@@ -142,6 +150,7 @@ class SignUpDialogState extends State<SignUpDialog> {
                         ),
                         SizedBox(height: 5),
                         TextField(
+                          controller: signUpPasswordDataController,
                           cursorColor: activeColor,
                           cursorHeight: 20,
                           style: TextStyle(
@@ -237,9 +246,53 @@ class SignUpDialogState extends State<SignUpDialog> {
                             width: 82,
                             height: 36,
                             child: ElevatedButton(
-                              onPressed: () {
+                              onPressed: () async {
                                 // Handle login action
-
+                                String email =
+                                  signUpEmailDataController.text;
+                                String password =
+                                  signUpPasswordDataController.text;
+                                String firstName =
+                                  signUpFirstNameDataController.text;
+                                String lastName =
+                                  signUpLastNameDataController.text;
+                                String birthdate = "2005-02-21"; // See if is needed here
+                                bool role = false; // See if is needed here
+                                try {
+                                  String token = await widget.authRepository
+                                      .emailSignUp(email, password, firstName, lastName, birthdate, role);
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: Text('Success'),
+                                      content: Text('Token: $token'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context)
+                                                .pop();
+                                          },
+                                          child: Text('Close'),
+                                        ),
+                                      ],
+                                  ));
+                                } catch (e) {
+                                showDialog(
+                                context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: Text('Error'),
+                                    content: Text('Error: $e'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context)
+                                              .pop();
+                                        },
+                                        child: Text('Close'),
+                                      ),
+                                    ],
+                                ));
+                                }
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: activeColor,
@@ -261,8 +314,33 @@ class SignUpDialogState extends State<SignUpDialog> {
                           child: SizedBox(
                             width: 150,
                             child: TextButton(
-                              onPressed: () {
-                                // Handle continue with Google action
+                              onPressed: () async {
+                                try {
+                                  String link = await widget.authRepository
+                                      .googleSignUp();
+                                  try {
+                                    launchAuxiliarURL(link);
+                                  } catch (e) {
+                                    print(e);
+                                  }
+                                } catch (e) {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) => AlertDialog(
+                                        title: Text('Error'),
+                                        content: Text('Error: $e'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.of(context)
+                                                  .pop();
+                                            },
+                                            child: Text('Close'),
+                                          ),
+                                        ],
+                                      ));
+                                  print(e);
+                                }
                               },
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -299,14 +377,14 @@ class SignUpDialogState extends State<SignUpDialog> {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    //Navigator.of(context).pop();
-                                    //Handles go to Log In action
-                                    //showDialog(
-                                    //  context: context,
-                                    //  builder: (context) {
-                                    //    return LoginDialog(authRepository: authRepository,);
-                                    //  },
-                                    //);
+                                    Navigator.of(context).pop();
+                                    // Handles go to Log In action
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return LoginDialog(authRepository: widget.authRepository);
+                                      },
+                                    );
                                   },
                                   child: Text('Log In',
                                       style: TextStyle(
