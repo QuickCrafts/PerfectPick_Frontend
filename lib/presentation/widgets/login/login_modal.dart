@@ -180,6 +180,7 @@ class LoginDialogState extends State<LoginDialog> {
                                           .emailLogin(email, password);
                                       final authProvider = Provider.of<AuthProvider>(context, listen: false);
                                       await authProvider.saveToken(token);
+                                      Navigator.pushNamed(context, "/recommends");
                                       
                                     } catch (e) {
                                       showDialog(
@@ -198,7 +199,7 @@ class LoginDialogState extends State<LoginDialog> {
                                                 ],
                                               ));
                                     }
-                                    Navigator.pushNamed(context, "/recommends");
+                                    
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: activeColor,
