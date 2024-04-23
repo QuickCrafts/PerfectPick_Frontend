@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:perfectpick_wa/presentation/pages/ads_landing.dart';
+import 'package:perfectpick_wa/presentation/pages/recommends_landing.dart';
 import 'package:perfectpick_wa/presentation/widgets/cards/card_media.dart';
 import 'package:perfectpick_wa/presentation/widgets/navigation/home.dart';
 import 'presentation/widgets/navigation/navbar.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => MyHomePage(authRepository: mainAuthRepository),
           '/ads': (context) => AdsLandingPage(authRepository: mainAuthRepository),
+          '/recommends': (context) => RecommendsLandingPage(authRepository: mainAuthRepository),
         },
       ),
     );

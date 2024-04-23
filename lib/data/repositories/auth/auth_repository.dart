@@ -87,7 +87,6 @@ class AuthRepository {
   }
 
   Future<String> forgotPassword(String email) async {
-    final String? potentialMessage;
 
     ForgotPasswordModel incomingModel = ForgotPasswordModel(email: email);
     if (!incomingModel.validate()) {

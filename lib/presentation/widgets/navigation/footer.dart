@@ -137,6 +137,7 @@ class DesktopFooter extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     //
+                    Navigator.pushNamed(context, "/recommends");
                   },
                   child: Text(
                     'Get App',
@@ -344,6 +345,7 @@ class MobileFooter extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     //
+                    Navigator.pushNamed(context, "/recommends");
                   },
                   child: Text(
                     'Get App',
@@ -353,6 +355,7 @@ class MobileFooter extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     //
+                    Navigator.pushNamed(context, "/ads");
                   },
                   child: Text(
                     'Advertising',
