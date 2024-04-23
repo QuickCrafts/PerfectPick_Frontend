@@ -137,3 +137,47 @@ class SignUpResponseModel {
     return token.toString().isNotEmpty;
   }
 }
+
+class CreateCompanyModel{
+  String name;
+  String email;
+
+  CreateCompanyModel({
+    required this.name,
+    required this.email
+  });
+
+  CreateCompanyModel.fromJson(Map<String, dynamic> json):
+        name = json['name'], email = json['email'];
+
+
+  Map<String, dynamic> toJson(){
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['email'] = email;
+    return data;
+  }
+
+  bool validate(){
+    return name.isNotEmpty && email.isNotEmpty;
+  }
+}
+
+class CreateCompanyResponseModel {
+  int id;
+
+  CreateCompanyResponseModel({required this.id});
+
+  CreateCompanyResponseModel.fromJson(Map<String, dynamic> json)
+      : id = json['createCompany']['companyId'];
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['createCompany'] = {'companyId': id};
+    return data;
+  }
+
+  bool validate() {
+    return id.toString().isNotEmpty;
+  }
+}

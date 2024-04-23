@@ -56,6 +56,10 @@ class AdsLandingPageState extends State<AdsLandingPage> {
               child: Column(
                 children: [
                   // Home
+                  Home(
+                    authRepository: authRepository,
+                    homeKey: keys["home"],
+                  ),
                   // How it works
                 ],
               ),

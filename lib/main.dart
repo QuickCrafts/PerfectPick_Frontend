@@ -5,6 +5,7 @@ import 'package:perfectpick_wa/presentation/widgets/cards/card_media.dart';
 import 'package:perfectpick_wa/presentation/widgets/navigation/home.dart';
 import 'presentation/widgets/navigation/navbar.dart';
 import 'presentation/widgets/navigation/how_it_works.dart';
+import 'presentation/widgets/navigation/how_to_impact.dart';
 import 'presentation/widgets/navigation/support.dart';
 import 'presentation/widgets/navigation/faqs.dart';
 import 'presentation/widgets/navigation/footer.dart';
@@ -27,7 +28,8 @@ Future main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final AuthRepository mainAuthRepository = AuthRepository(client: graphqlClient.value);
+  final AuthRepository mainAuthRepository =
+      AuthRepository(client: graphqlClient.value);
   MyApp({super.key});
 
   @override
@@ -107,14 +109,12 @@ class MyHomePageState extends State<MyHomePage> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Home(
-                    authRepository: authRepository,
-                    key: keys["home"]
-                  ),
+                  Home(authRepository: authRepository, key: keys["home"]),
                   HowItWorks(
                     authRepository: authRepository,
                     key: keys["howItWorks"],
                   ),
+                  HowToImpact(authRepository: authRepository),
                   Support(
                     authRepository: authRepository,
                     key: keys["support"],
