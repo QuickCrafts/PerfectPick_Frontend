@@ -5,17 +5,18 @@ import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
 
 class HowToImpact extends StatelessWidget {
   final AuthRepository authRepository;
+  final GlobalKey howToImpactKey = GlobalKey(debugLabel: "HowToImpact");
 
-  const HowToImpact({Key? key, required this.authRepository}) : super(key: key);
+  HowToImpact({Key? key, required this.authRepository, GlobalKey<State<StatefulWidget>>? howToImpactKey}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth > 1020) {
-          return DesktopHowToImpact(authRepository: authRepository);
+          return DesktopHowToImpact(authRepository: authRepository, howToImpactKey: howToImpactKey);
         } else {
-          return MobileHowToImpact(authRepository: authRepository);
+          return MobileHowToImpact(authRepository: authRepository, howToImpactKey: howToImpactKey);
         }
       },
     );
@@ -24,13 +25,14 @@ class HowToImpact extends StatelessWidget {
 
 class DesktopHowToImpact extends StatelessWidget {
   final AuthRepository authRepository;
+  final GlobalKey<State<StatefulWidget>> howToImpactKey;
 
-  const DesktopHowToImpact({Key? key, required this.authRepository})
-      : super(key: key);
+  const DesktopHowToImpact({Key? key, required this.authRepository, required this.howToImpactKey}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: howToImpactKey,
       height: 615,
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -220,13 +222,14 @@ class DesktopHowToImpact extends StatelessWidget {
 
 class MobileHowToImpact extends StatelessWidget {
   final AuthRepository authRepository;
+  final GlobalKey<State<StatefulWidget>> howToImpactKey;
 
-  const MobileHowToImpact({Key? key, required this.authRepository})
-      : super(key: key);
+  const MobileHowToImpact({Key? key, required this.authRepository, required this.howToImpactKey}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: howToImpactKey,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         gradient: LinearGradient(

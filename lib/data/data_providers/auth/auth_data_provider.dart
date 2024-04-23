@@ -93,3 +93,62 @@ QueryOptions googleSignUpQueryOptions() {
     pollInterval: Duration(seconds: 10),
   );
 }
+
+String createCompanyQuery = '''
+  mutation CreateCompany(\$name: String!, \$email: String!){
+    CreateCompany(name: \$name, email: \$email){
+      companyId
+    }
+  }
+''';
+
+QueryOptions createCompanyQueryOptions(String name, String email) {
+  return QueryOptions(
+    document: gql(createCompanyQuery),
+    variables: {
+      'name': name,
+      'email': email
+    },
+    pollInterval: Duration(seconds: 10),
+  );
+}
+
+String getBooksQuery = '''
+  query GetBooks {
+    GetBooks {
+        idBook
+        author
+        genres
+        pages
+        rating
+        title
+        year
+    }
+}
+''';
+
+QueryOptions getBooksQueryQueryOptions() {
+  return QueryOptions(
+    document: gql(getBooksQuery),
+    pollInterval: Duration(seconds: 10),
+  );
+}
+
+
+String verifyIDQuery = ''' 
+  query verifyIdentity(\$token: String!){
+    verifyIdentity(userToken: \$token){
+      id
+    }
+  }
+''';
+
+QueryOptions verifyIDQueryOptions(String token) {
+  return QueryOptions(
+    document: gql(verifyIDQuery),
+    variables: {
+      'token': token
+    },
+    pollInterval: Duration(seconds: 10),
+  );
+}
