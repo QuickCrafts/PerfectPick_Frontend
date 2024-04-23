@@ -86,7 +86,7 @@ class MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xFF260629),
       body: CustomScrollView(
         controller: _scrollController,
         slivers: [
