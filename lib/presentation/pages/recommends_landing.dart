@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:perfectpick_wa/auxiliar_functions.dart';
+import 'package:perfectpick_wa/data/data_providers/client_declarator.dart';
 import 'package:perfectpick_wa/presentation/colors.dart';
+import 'package:perfectpick_wa/presentation/widgets/media/mediaList.dart';
 import 'package:perfectpick_wa/presentation/widgets/navigation/recomms/recomms_navbar.dart';
 import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
 
@@ -33,7 +35,7 @@ class RecommendsLandingPageState extends State<RecommendsLandingPage> {
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth > 830) {
-          return DesktopRecommendsLandingPage();
+          return DesktopRecommendsLandingPage(authRepository: authRepository);
         } else {
           return MobileRecommendsLandingPage();
         }
@@ -43,7 +45,8 @@ class RecommendsLandingPageState extends State<RecommendsLandingPage> {
 }
 
 class DesktopRecommendsLandingPage extends StatelessWidget {
-  const DesktopRecommendsLandingPage({Key? key}) : super(key: key);
+  AuthRepository authRepository;
+  DesktopRecommendsLandingPage({Key? key, required this.authRepository}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -64,10 +67,7 @@ class DesktopRecommendsLandingPage extends StatelessWidget {
                   padding: EdgeInsets.only(left: 200, right: 200),
                   child: Column(
                     children: [
-                      SizedBox(
-                        height: 900,
-                        width: 1000,
-                      ),
+                      MediaList( authRepository: authRepository),
                     ],
                   ),
                 ),
