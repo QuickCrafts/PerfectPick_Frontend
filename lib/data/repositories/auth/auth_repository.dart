@@ -78,9 +78,6 @@ class AuthRepository {
     // Check result data
     final data = result.data!['loginWithGoogle'];
     potentialLink = data['url'];
-    if (potentialLink == null) {
-      throw Exception('No link received from the GraphQL query.');
-    }
     final String link = data['url'];
 
     return link;
@@ -204,9 +201,6 @@ class AuthRepository {
     // Check result data
     final data = result.data!['loginWithGoogle'];
     potentialLink = data['url'];
-    if (potentialLink == null) {
-      throw Exception('No link received from the GraphQL query.');
-    }
     final String link = data['url'];
 
     return link;
@@ -303,7 +297,7 @@ class AuthRepository {
     return outcomingModel.books;
   }
 
-  Future<int> verifyID(String token) async {
+  Future<int?> verifyID(String token) async {
     final int? potentialId;
 
     final QueryOptions options = verifyIDQueryOptions(token);
@@ -320,9 +314,6 @@ class AuthRepository {
     print(result);
     potentialId = result.data!['id'];
     print(potentialId);
-    if (potentialId == null) {
-      throw Exception('No ID received from the GraphQL query.');
-    }
     return potentialId;
   }
 }
