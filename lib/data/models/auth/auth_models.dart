@@ -180,3 +180,48 @@ class CreateCompanyResponseModel {
     return id.toString().isNotEmpty;
   }
 }
+
+
+class ContactUsModel {
+  String email;
+  String name;
+  String message;
+
+  ContactUsModel({required this.email, required this.name, required this.message });
+
+  ContactUsModel.fromJson(Map<String, dynamic> json)
+      : email = json['email'],
+        name = json['name'],
+        message = json['message'];
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['email'] = email;
+    data['name'] = name;
+    data['message'] = message;
+    return data;
+  }
+
+  bool validate() {
+    return email.isNotEmpty && name.isNotEmpty && message.isNotEmpty;
+  }
+}
+
+class ContactUsResponseModel {
+  String message;
+
+  ContactUsResponseModel({required this.message});
+
+  ContactUsResponseModel.fromJson(Map<String, dynamic> json)
+      : message = json['contactUs']['message'];
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['contactUs'] = {'message': message};
+    return data;
+  }
+
+  bool validate() {
+    return message.isNotEmpty;
+  }
+}

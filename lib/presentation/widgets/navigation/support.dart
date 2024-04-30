@@ -8,6 +8,8 @@ class Support extends StatelessWidget {
 
   const Support({Key? key, required this.authRepository}) : super(key: key);
 
+   @override
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -40,7 +42,12 @@ void goToSocialMedia(pos) async {
 class DesktopSupport extends StatelessWidget {
   final AuthRepository authRepository;
 
-  const DesktopSupport({Key? key, required this.authRepository})
+  
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final messageController = TextEditingController();
+
+  DesktopSupport({Key? key, required this.authRepository})
       : super(key: key);
 
   @override
@@ -87,6 +94,7 @@ class DesktopSupport extends StatelessWidget {
                         children: [
                           SizedBox(height: 20),
                           TextField(
+                            controller: nameController,
                             cursorColor: activeColor,
                             cursorHeight: 20,
                             style: TextStyle(color: textInsideFieldColor),
@@ -104,6 +112,7 @@ class DesktopSupport extends StatelessWidget {
                           ),
                           SizedBox(height: 20),
                           TextField(
+                            controller: emailController,
                             cursorColor: activeColor,
                             cursorHeight: 20,
                             style: TextStyle(color: textInsideFieldColor),
@@ -121,6 +130,7 @@ class DesktopSupport extends StatelessWidget {
                           ),
                           SizedBox(height: 20),
                           TextField(
+                            controller: messageController,
                             cursorColor: activeColor,
                             cursorHeight: 20,
                             style: TextStyle(color: textInsideFieldColor),
@@ -147,15 +157,19 @@ class DesktopSupport extends StatelessWidget {
                               child: ElevatedButton(
                                 onPressed: () async {
                                   // Handle login action
-
+                                  String email = emailController.text;
+                                  String name = nameController.text;
+                                  String message = messageController.text;
                                   try {
-                                    String message = "Contact us";
+                                    print("Email: $email, Name: $name, Message: $message");
+                                    String messageReceived = await authRepository.sendContactUs(email, name, message);
+                                    print(messageReceived);
                                     showDialog(
                                         context: context,
                                         builder: (context) => AlertDialog(
                                               title: Text('Success'),
                                               content:
-                                                  Text('Message: $message'),
+                                                  Text('Message: $messageReceived'),
                                               actions: [
                                                 TextButton(
                                                   onPressed: () {

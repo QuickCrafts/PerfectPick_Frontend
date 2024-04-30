@@ -129,3 +129,23 @@ QueryOptions verifyIDQueryOptions(String token) {
     pollInterval: Duration(seconds: 10),
   );
 }
+
+String contactUsQuery = '''
+  query contactUs(\$name: String!, \$email: String!, \$message: String!){
+    contactUs(name: \$name, email: \$email, message: \$message){
+      message
+    }
+  }
+''';
+
+QueryOptions contactUsQueryOptions(String email, String name, String message) {
+  return QueryOptions(
+    document: gql(contactUsQuery),
+    variables: {
+      'email': email,
+      'name': name,
+      'message': message
+    },
+    pollInterval: Duration(seconds: 10),
+  );
+}

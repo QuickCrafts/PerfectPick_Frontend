@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:perfectpick_wa/business_logic/cubits/auth_verificator.dart';
 import 'package:perfectpick_wa/data/data_providers/auth/auth_data_provider.dart'; // Import the file with the query
@@ -281,5 +282,53 @@ class AuthRepository {
       throw Exception('No ID received from the GraphQL query.');
     }
     return potentialId;
+  }
+
+  Future<String> sendContactUs(String email, String name, String message) async {
+    final String? potentialMessage;
+
+    ContactUsModel incomingModel = ContactUsModel(email: email, name: name, message: message);
+    if (!incomingModel.validate()) {
+      throw Exception('Invalid input');
+    }
+
+
+    final QueryOptions options = contactUsQueryOptions(email, name,message);
+    final QueryResult result = await client.query(options);
+
+    if (result.hasException) {
+      // Handle the exception
+      print('GraphQL exception: ${result.exception.toString()}');
+    } else if (result.data == null) {
+      // Handle the case when result.data is null
+      print('No data received from the GraphQL query.');
+    } else {
+      final data = result.data!['contactUs'];
+      if (data != null && data is Map<String, dynamic>) {
+      } else {
+        print('Invalid data format received from the GraphQL query.');
+      }
+    }
+// print("Hello");
+//     print(result.data!['contactUs']); 
+    // Check result data
+    final data = result.data!['contactUs'];
+    potentialMessage = data['message'];
+    
+    if (potentialMessage == null) {
+      final potentialMessage = data['message'];
+      if (potentialMessage != null) {
+        throw Exception(potentialMessage);
+      } else {
+        throw Exception('Unknown error occurred.');
+      }
+    }
+    ContactUsResponseModel outcomingModel =
+        ContactUsResponseModel(message: potentialMessage);
+    if (!outcomingModel.validate()) {
+      throw Exception('Invalid output');
+    }
+    
+    return outcomingModel.message;
   }
 }
