@@ -4,7 +4,8 @@ import 'package:perfectpick_wa/data/repositories/auth/auth_repository.dart';
 import 'package:perfectpick_wa/data/data_providers/client_declarator.dart';
 
 class AuthProvider with ChangeNotifier {
-  final AuthRepository _authRepository = AuthRepository(client: graphqlClient.value);
+  final AuthRepository _authRepository =
+      AuthRepository(client: graphqlClient.value);
   final FlutterSecureStorage _secureStorage = FlutterSecureStorage();
   String? _token;
 
@@ -18,7 +19,7 @@ class AuthProvider with ChangeNotifier {
 
   Future<void> loadToken() async {
     _token = await _secureStorage.read(key: 'token');
-    int userID;
+    int? userID;
     try {
       userID = await _authRepository.verifyID(_token!);
       print(userID);

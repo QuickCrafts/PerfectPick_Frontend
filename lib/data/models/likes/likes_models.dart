@@ -53,7 +53,6 @@ class SpecificLikeResponseModel {
 
   bool validate() {
     return mediaId.isNotEmpty &&
-        userId != null &&
         type.isNotEmpty &&
         likeType.isNotEmpty;
   }
