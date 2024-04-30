@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:perfectpick_wa/auxiliar_functions.dart';
-import 'package:perfectpick_wa/data/data_providers/client_declarator.dart';
 import 'package:perfectpick_wa/presentation/colors.dart';
 import 'package:perfectpick_wa/presentation/widgets/media/mediaList.dart';
 import 'package:perfectpick_wa/presentation/widgets/navigation/recomms/recomms_navbar.dart';
@@ -9,7 +8,7 @@ import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
 class RecommendsLandingPage extends StatefulWidget {
   final AuthRepository authRepository;
 
-  const RecommendsLandingPage({super.key, required this.authRepository});
+  const RecommendsLandingPage({super.key, required this.authRepository,});
 
   @override
   RecommendsLandingPageState createState() => RecommendsLandingPageState();
@@ -35,10 +34,9 @@ class RecommendsLandingPageState extends State<RecommendsLandingPage> {
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth > 1000) {
-          return DesktopRecommendsLandingPage(authRepository: authRepository);
+          return DesktopRecommendsLandingPage(authRepository: authRepository ,);
         } else {
-          return MobileRecommendsLandingPage(authRepository: authRepository);
-          return MobileRecommendsLandingPage(authRepository: authRepository);
+          return MobileRecommendsLandingPage(authRepository: authRepository ,);
         }
       },
     );
@@ -47,7 +45,7 @@ class RecommendsLandingPageState extends State<RecommendsLandingPage> {
 
 class DesktopRecommendsLandingPage extends StatelessWidget {
   AuthRepository authRepository;
-  DesktopRecommendsLandingPage({Key? key, required this.authRepository}) : super(key: key);
+  DesktopRecommendsLandingPage({Key? key, required this.authRepository,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +66,7 @@ class DesktopRecommendsLandingPage extends StatelessWidget {
                   padding: EdgeInsets.only(left: 200, right: 200),
                   child: Column(
                     children: [
-                      MediaList( authRepository: authRepository),
+                      MediaList( authRepository: authRepository,),
                     ],
                   ),
                 ),
@@ -179,7 +177,7 @@ class DesktopRecommendsLandingPage extends StatelessWidget {
 class MobileRecommendsLandingPage extends StatelessWidget {
 
   AuthRepository authRepository;
-  MobileRecommendsLandingPage({Key? key, required this.authRepository}) : super(key: key);
+  MobileRecommendsLandingPage({Key? key, required this.authRepository,}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -203,8 +201,7 @@ class MobileRecommendsLandingPage extends StatelessWidget {
                 Column(
                   children: [
                     // RECOMMENDATIONS GRID
-                    MediaList(authRepository: authRepository),
-                    MediaList( authRepository: authRepository),
+                    MediaList(authRepository: authRepository,),
                   ],
                 ),
                 Column(children: [

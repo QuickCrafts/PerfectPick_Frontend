@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:perfectpick_wa/business_logic/cubits/auth_verificator.dart';
 import 'package:perfectpick_wa/presentation/pages/ads_landing.dart';
 import 'package:perfectpick_wa/presentation/pages/recommends_landing.dart';
-import 'package:perfectpick_wa/presentation/widgets/cards/card_media.dart';
 import 'package:perfectpick_wa/presentation/widgets/navigation/home.dart';
-import 'package:perfectpick_wa/presentation/widgets/media/mediaList.dart';
 import 'presentation/widgets/navigation/navbar.dart';
 import 'presentation/widgets/navigation/how_it_works.dart';
 import 'presentation/widgets/navigation/support.dart';
@@ -34,6 +32,7 @@ Future main() async {
 class MyApp extends StatelessWidget {
   final AuthRepository mainAuthRepository =
       AuthRepository(client: graphqlClient.value);
+
   MyApp({super.key});
 
   @override
@@ -52,11 +51,11 @@ class MyApp extends StatelessWidget {
           '/ads': (context) =>
               AdsLandingPage(authRepository: mainAuthRepository),
           '/recommends': (context) =>
-              RecommendsLandingPage(authRepository: mainAuthRepository),
+              RecommendsLandingPage(authRepository: mainAuthRepository ,),
           '/ads': (context) =>
               AdsLandingPage(authRepository: mainAuthRepository),
           '/recommends': (context) =>
-              RecommendsLandingPage(authRepository: mainAuthRepository),
+              RecommendsLandingPage(authRepository: mainAuthRepository ,),
         },
       ),
     );

@@ -112,28 +112,6 @@ QueryOptions createCompanyQueryOptions(String name, String email) {
   );
 }
 
-String getBooksQuery = '''
-  query GetBooks {
-    GetBooks {
-        idBook
-        author
-        genres
-        pages
-        rating
-        title
-        year
-    }
-}
-''';
-
-QueryOptions getBooksQueryQueryOptions() {
-  return QueryOptions(
-    document: gql(getBooksQuery),
-    pollInterval: Duration(seconds: 10),
-  );
-}
-
-
 String verifyIDQuery = ''' 
   query verifyIdentity(\$token: String!){
     verifyIdentity(userToken: \$token){
