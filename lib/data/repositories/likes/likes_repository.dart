@@ -2,9 +2,6 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:perfectpick_wa/data/data_providers/likes/likes_data_provider.dart';
 import 'package:perfectpick_wa/data/models/likes/likes_models.dart';
 
-import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:perfectpick_wa/data/data_providers/likes/likes_data_provider.dart';
-import 'package:perfectpick_wa/data/models/likes/likes_models.dart';
 
 class LikesRepository {
   final GraphQLClient client;

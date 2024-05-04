@@ -2,7 +2,6 @@ import "dart:ui";
 import "package:flutter/material.dart";
 import "package:perfectpick_wa/presentation/colors.dart";
 import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
-import "package:perfectpick_wa/auxiliar_functions.dart";
 import "package:perfectpick_wa/presentation/widgets/Legal/Privacy_policy_page.dart";
 import "package:perfectpick_wa/presentation/widgets/Legal/terms_of_service_page.dart";
 

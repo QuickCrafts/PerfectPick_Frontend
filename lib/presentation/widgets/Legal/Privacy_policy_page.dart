@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import "package:perfectpick_wa/presentation/colors.dart";
 
 class PrivacyPolicyPage extends StatelessWidget {
@@ -91,7 +89,7 @@ class PrivacyPolicyPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
+                    SizedBox(
                       width: 300,
                       height: 17,
                       child: Stack(
@@ -117,7 +115,7 @@ class PrivacyPolicyPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Container(
+                    SizedBox(
                       width: 1164,
                       height: 51,
                       child: Stack(
@@ -145,7 +143,7 @@ class PrivacyPolicyPage extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
+              SizedBox(
                 width: double.infinity,
                 height: 78,
                 child: Column(
@@ -153,7 +151,7 @@ class PrivacyPolicyPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
+                    SizedBox(
                       width: 300,
                       height: 17,
                       child: Stack(
@@ -179,7 +177,7 @@ class PrivacyPolicyPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Container(
+                    SizedBox(
                       width: 1164,
                       height: 51,
                       child: Stack(
@@ -207,7 +205,7 @@ class PrivacyPolicyPage extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
+              SizedBox(
                 width: double.infinity,
                 height: 78,
                 child: Column(
@@ -215,7 +213,7 @@ class PrivacyPolicyPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
+                    SizedBox(
                       width: 300,
                       height: 17,
                       child: Stack(
@@ -241,7 +239,7 @@ class PrivacyPolicyPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Container(
+                    SizedBox(
                       width: 1164,
                       height: 51,
                       child: Stack(
@@ -269,7 +267,7 @@ class PrivacyPolicyPage extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
+              SizedBox(
                 width: double.infinity,
                 height: 78,
                 child: Column(
@@ -277,7 +275,7 @@ class PrivacyPolicyPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
+                    SizedBox(
                       width: 300,
                       height: 17,
                       child: Stack(
@@ -303,7 +301,7 @@ class PrivacyPolicyPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Container(
+                    SizedBox(
                       width: 1164,
                       height: 51,
                       child: Stack(
@@ -331,7 +329,7 @@ class PrivacyPolicyPage extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
+              SizedBox(
                 width: double.infinity,
                 height: 78,
                 child: Column(
@@ -339,7 +337,7 @@ class PrivacyPolicyPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
+                    SizedBox(
                       width: 300,
                       height: 17,
                       child: Stack(
@@ -365,7 +363,7 @@ class PrivacyPolicyPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Container(
+                    SizedBox(
                       width: 1164,
                       height: 51,
                       child: Stack(
@@ -393,7 +391,7 @@ class PrivacyPolicyPage extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
+              SizedBox(
                 width: double.infinity,
                 height: 78,
                 child: Column(
@@ -401,7 +399,7 @@ class PrivacyPolicyPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
+                    SizedBox(
                       width: 300,
                       height: 17,
                       child: Stack(
@@ -427,7 +425,7 @@ class PrivacyPolicyPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Container(
+                    SizedBox(
                       width: 1164,
                       height: 51,
                       child: Stack(

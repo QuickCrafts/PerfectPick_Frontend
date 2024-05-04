@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import "package:perfectpick_wa/presentation/colors.dart";
-import 'package:perfectpick_wa/presentation/widgets/login/login_modal.dart';
-import 'package:perfectpick_wa/presentation/widgets/navigation/how_it_works.dart';
-import 'package:perfectpick_wa/presentation/widgets/signUp/signup_modal.dart';
-import "package:perfectpick_wa/data/repositories/auth/auth_repository.dart";
 
 class AdNavBar extends StatelessWidget {
   final Function(String) onSectionSelected;

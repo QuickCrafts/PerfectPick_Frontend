@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:perfectpick_wa/business_logic/cubits/auth_verificator.dart';
 import 'package:perfectpick_wa/data/data_providers/auth/auth_data_provider.dart'; // Import the file with the query
 import 'package:perfectpick_wa/data/models/auth/auth_models.dart'; // Import your incoming model
 import 'dart:convert';

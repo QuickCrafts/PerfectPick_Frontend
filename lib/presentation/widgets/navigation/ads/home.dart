@@ -98,13 +98,13 @@ class DesktopHome extends StatelessWidget {
       onPressed: () {
         // Add button click logic here
       },
-      child: Text('Requiere a demo'),
       style: ElevatedButton.styleFrom(
         backgroundColor: activeColor,
         foregroundColor: Colors.white,
         padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         textStyle: TextStyle(fontSize: 18),
       ),
+      child: Text('Requiere a demo'),
     );
   }
 }
@@ -185,13 +185,13 @@ class MobileHome extends StatelessWidget {
       onPressed: () {
         // Add button click logic here
       },
-      child: Text('Require a demo'),
       style: ElevatedButton.styleFrom(
         backgroundColor: activeColor,
         foregroundColor: Colors.white,
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8), 
         textStyle: TextStyle(fontSize: 14),
       ),
+      child: Text('Require a demo'),
     );
   }
 }

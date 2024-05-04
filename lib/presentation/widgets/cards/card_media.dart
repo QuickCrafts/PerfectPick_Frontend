@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:perfectpick_wa/business_logic/cubits/auth_verificator.dart';
 import 'package:perfectpick_wa/data/data_providers/client_declarator.dart';
-import 'package:perfectpick_wa/data/repositories/auth/auth_repository.dart';
 import 'package:perfectpick_wa/data/repositories/likes/likes_repository.dart';
 import 'package:perfectpick_wa/presentation/widgets/cards/buttons_likes.dart';
 import 'package:perfectpick_wa/presentation/widgets/cards/rating.dart';
@@ -183,7 +182,7 @@ class CardMediaState extends State<CardMedia> {
                                       MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    Container(
+                                    SizedBox(
                                       width: 180,
                                       child: Text(
                                         genre,
@@ -197,7 +196,7 @@ class CardMediaState extends State<CardMedia> {
                                       ),
                                     ),
                                     Spacer(),
-                                    Container(
+                                    SizedBox(
                                       width: 120,
                                       child: Text(
                                         author,

@@ -77,7 +77,7 @@ class DesktopRecommendsLandingPage extends StatelessWidget {
                 bottom: 0,
                 child: SingleChildScrollView(
                   physics: NeverScrollableScrollPhysics(),
-                  child: Container(
+                  child: SizedBox(
                     width: 200,
                     child: Column(
                       children: [
@@ -114,7 +114,7 @@ class DesktopRecommendsLandingPage extends StatelessWidget {
                 bottom: 0,
                 child: SingleChildScrollView(
                   physics: NeverScrollableScrollPhysics(),
-                  child: Container(
+                  child: SizedBox(
                     width: 200,
                     child: Column(
                       children: [

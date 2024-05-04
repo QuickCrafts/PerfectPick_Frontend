@@ -113,13 +113,13 @@ class DesktopHome extends StatelessWidget {
         },
       );
     },
-    child: Text('Generate Recommendations'),
     style: ElevatedButton.styleFrom(
       backgroundColor: activeColor,
       foregroundColor: Colors.white,
       padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       textStyle: TextStyle(fontSize: 18),
     ),
+    child: Text('Generate Recommendations'),
   );
 }
 }
@@ -200,13 +200,13 @@ class MobileHome extends StatelessWidget {
       onPressed: () {
         // Add button click logic here
       },
-      child: Text('Recommend me'),
       style: ElevatedButton.styleFrom(
         backgroundColor: activeColor,
         foregroundColor: Colors.white,
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8), // Smaller padding for mobile
         textStyle: TextStyle(fontSize: 14), // Smaller text size for button
       ),
+      child: Text('Recommend me'),
     );
   }
 }

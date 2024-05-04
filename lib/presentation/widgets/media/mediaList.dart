@@ -1,8 +1,6 @@
 import 'dart:async';
 
-import "package:flutter/cupertino.dart";
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:perfectpick_wa/data/data_providers/client_declarator.dart';
 import 'package:perfectpick_wa/data/models/media/media_models.dart';
 import "package:perfectpick_wa/presentation/colors.dart";
@@ -55,6 +53,7 @@ class MobileMediaListState extends State<MobileMediaList> {
   final MediaRepository mediaRepository;
 
   MobileMediaListState(this.authRepository, this.mediaRepository);
+  @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
