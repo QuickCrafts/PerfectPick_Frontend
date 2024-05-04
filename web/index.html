@@ -51,11 +51,6 @@
         },
         onEntrypointLoaded: function (engineInitializer) {
           engineInitializer.initializeEngine().then(function (appRunner) {
-            const customPort = 2024;
-            const url = new URL(window.location);
-            url.port = customPort;
-            window.history.replaceState({}, '', url);
-
             appRunner.runApp();
           });
         }
