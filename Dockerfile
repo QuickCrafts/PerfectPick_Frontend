@@ -16,12 +16,15 @@ ENV PATH="$PATH:/usr/local/flutter/bin"
 RUN flutter precache
 RUN flutter config --enable-web
 
-# Copiar el código fuente de la aplicación
-COPY . /app
+# Crear directorio de la aplicación
 WORKDIR /app
 
-# Obtener dependencias de la aplicación
+# Copiar el archivo pubspec.yaml y obtener dependencias
+COPY ./pubspec.* ./
 RUN flutter pub get
+
+# Copiar el resto de los archivos de la aplicación
+COPY . .
 
 # Compilar la aplicación para la web
 RUN flutter build web
@@ -30,4 +33,4 @@ RUN flutter build web
 EXPOSE 2024
 
 # Comando para ejecutar la aplicación Flutter web
-CMD ["flutter", "run", "-d", "web-server", "--web-port", "2024"]
+CMD ["flutter", "run", "-d", "web-server", "--web-port", "2024", "--release"]
