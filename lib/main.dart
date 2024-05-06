@@ -72,6 +72,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class MyHomePageState extends State<MyHomePage> {
+
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<AuthProvider>(context, listen: false).loadToken();
+  }
+
   final ScrollController _scrollController = ScrollController();
   final Map<String, GlobalKey> keys = {
     "home": GlobalKey(),

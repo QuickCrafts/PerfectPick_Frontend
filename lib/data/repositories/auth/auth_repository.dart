@@ -261,6 +261,7 @@ class AuthRepository {
 
   Future<int> verifyID(String token) async {
     final int? potentialId;
+    final bool? isAdmin;
 
     final QueryOptions options = verifyIDQueryOptions(token);
     final QueryResult result = await client.query(options);
@@ -273,9 +274,8 @@ class AuthRepository {
       print('No data received from the GraphQL query.');
     }
 
-    print(result);
-    potentialId = result.data!['id'];
-    print(potentialId);
+    final data = result.data!['verifyIdentity'];
+    potentialId = data['id'];
     if (potentialId == null) {
       throw Exception('No ID received from the GraphQL query.');
     }

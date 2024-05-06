@@ -19,13 +19,15 @@ class AuthProvider with ChangeNotifier {
 
   Future<void> loadToken() async {
     _token = await _secureStorage.read(key: 'token');
+    print(_token);
     int? userID;
     try {
       userID = await _authRepository.verifyID(_token!);
       print(userID);
       notifyListeners();
     } catch (e) {
-      removeToken();
+      print("Error: $e");
+      print(_token);
     }
   }
 

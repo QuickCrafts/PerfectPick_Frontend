@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:perfectpick_wa/business_logic/cubits/auth_verificator.dart';
 import "package:perfectpick_wa/presentation/colors.dart";
+import 'package:provider/provider.dart';
 
 class RecommendsNavBar extends StatelessWidget {
 
@@ -51,7 +53,10 @@ class DesktopRecommendsNavBar extends StatelessWidget {
           IconButton(
             iconSize: 35,
             icon: Icon(Icons.account_circle, color: activeColor),
-            onPressed: () {},
+            onPressed: () async {
+              final authProvider = Provider.of<AuthProvider>(context, listen: false);
+              await authProvider.loadToken();
+            },
           ),
         ],
       ),

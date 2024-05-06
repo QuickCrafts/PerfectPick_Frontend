@@ -115,7 +115,8 @@ QueryOptions createCompanyQueryOptions(String name, String email) {
 String verifyIDQuery = ''' 
   query verifyIdentity(\$token: String!){
     verifyIdentity(userToken: \$token){
-      id
+      id,
+      admin
     }
   }
 ''';
