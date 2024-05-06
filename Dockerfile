@@ -1,36 +1,31 @@
-# Imagen base
-FROM ubuntu:latest
+# Use the official Flutter SDK as a builder stage
+FROM ubuntu:latest AS builder
 
-# Actualizar el sistema
-RUN apt-get update -y
-RUN apt-get upgrade -y
+# Install dependencies
+RUN apt-get update -y && apt-get install -y curl git unzip xz-utils zip libglu1-mesa
 
-# Instalar dependencias necesarias
-RUN apt-get install -y curl git unzip xz-utils zip libglu1-mesa
-
-# Instalar Flutter SDK
+# Install Flutter SDK
 RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter
 ENV PATH="$PATH:/usr/local/flutter/bin"
 
-# Añadir Flutter al PATH del sistema
+# Add Flutter to system PATH and enable web
 RUN flutter precache
 RUN flutter config --enable-web
 
-# Crear directorio de la aplicación
+# Copy the source code into the Docker image and build the web app
 WORKDIR /app
-
-# Copiar el archivo pubspec.yaml y obtener dependencias
-COPY ./pubspec.* ./
-RUN flutter pub get
-
-# Copiar el resto de los archivos de la aplicación
 COPY . .
-
-# Compilar la aplicación para la web
+RUN flutter pub get
 RUN flutter build web
 
-# Exponer el puerto 2024 (puerto por defecto para Flutter web)
-EXPOSE 2024
+# Use Nginx to serve the Flutter web app
+FROM nginx:alpine
 
-# Comando para ejecutar la aplicación Flutter web
-CMD ["flutter", "run", "-d", "web-server", "--web-port", "2024", "--release"]
+# Copy the built app to the Nginx server
+COPY --from=builder /app/build/web /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
+
+# Start Nginx when the container launches
+CMD ["nginx", "-g", "daemon off;"]
