@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:perfectpick_wa/data/data_providers/client_declarator.dart';
 import 'package:perfectpick_wa/data/models/likes/likes_models.dart';
+import 'package:perfectpick_wa/data/repositories/auth/auth_repository.dart';
 import 'package:perfectpick_wa/data/repositories/likes/likes_repository.dart';
 
 class ButtonsLikes extends StatefulWidget {
@@ -27,6 +29,9 @@ class ButtonsLikesState extends State<ButtonsLikes> {
   bool isLike = false;
   bool isDislike = false;
 
+  final AuthRepository mainAuthRepository =
+      AuthRepository(client: graphqlClient.value);
+
   @override
   void initState() {
     super.initState();
@@ -35,9 +40,14 @@ class ButtonsLikesState extends State<ButtonsLikes> {
 
   Future<void> checkLikeStatus() async {
     try {
+      int userID = await mainAuthRepository.verifyID(widget.userToken);
+
+      print(widget.mediaID);
+      print(userID);
+
       SpecificLikeResponseModel likeResponse = await widget.likesRepository
-          .getSpecificLike(widget.userToken, widget.userID, widget.mediaID,
-              widget.mediaType);
+          .getSpecificLike(
+              widget.userToken, userID, widget.mediaID, widget.mediaType);
 
       setState(() {
         if (likeResponse.likeType == 'LK') {
@@ -55,50 +65,59 @@ class ButtonsLikesState extends State<ButtonsLikes> {
 
   Future<void> likeMedia() async {
     try {
-      LikeMediaResponseModel likeResponse = await widget.likesRepository
-          .likeMedia(widget.userToken, widget.userID, widget.mediaID,
-              widget.mediaType);
+      int userID = await mainAuthRepository.verifyID(widget.userToken);
 
-      
+      print(widget.mediaID);
+      print(userID);
+
+      LikeMediaResponseModel likeResponse = await widget.likesRepository
+          .likeMedia(
+              widget.userToken, userID, widget.mediaID, widget.mediaType);
     } catch (e) {
       print('Error liking media: $e');
     }
     setState(() {
-        isLike = true;
-        isDislike = false;
-      });
+      isLike = true;
+      isDislike = false;
+    });
   }
 
   Future<void> dislikeMedia() async {
     try {
-      DislikeMediaResponseModel dislikeResponse = await widget.likesRepository
-          .dislikeMedia(widget.userToken, widget.userID, widget.mediaID,
-              widget.mediaType);
+      int userID = await mainAuthRepository.verifyID(widget.userToken);
 
-      
+      print(widget.mediaID);
+      print(userID);
+
+      DislikeMediaResponseModel dislikeResponse = await widget.likesRepository
+          .dislikeMedia(
+              widget.userToken, userID, widget.mediaID, widget.mediaType);
     } catch (e) {
       print('Error disliking media: $e');
     }
     setState(() {
-        isDislike = true;
-        isLike = false;
-      });
+      isDislike = true;
+      isLike = false;
+    });
   }
 
   Future<void> deletePreference() async {
     try {
-      DeletePreferenceResponseModel deleteResponse =
-          await widget.likesRepository.deletePreference(widget.userToken,
-              widget.userID, widget.mediaID, widget.mediaType);
+      int userID = await mainAuthRepository.verifyID(widget.userToken);
 
-      
+      print(widget.mediaID);
+      print(userID);
+
+      DeletePreferenceResponseModel deleteResponse =
+          await widget.likesRepository.deletePreference(
+              widget.userToken, userID, widget.mediaID, widget.mediaType);
     } catch (e) {
       print('Error deleting preference: $e');
     }
     setState(() {
-        isDislike = false;
-        isLike = false;
-      });
+      isDislike = false;
+      isLike = false;
+    });
   }
 
   @override
@@ -114,11 +133,7 @@ class ButtonsLikesState extends State<ButtonsLikes> {
                 color: Color.fromRGBO(66, 39, 79, 1),
               ),
               child: IconButton(
-                onPressed: () {
-                  setState(() {
-                    inWishlist = !inWishlist;
-                  });
-                },
+                onPressed: () {},
                 tooltip: "Wishlist soon!",
                 icon: const Icon(Icons.bookmark),
                 color: inWishlist

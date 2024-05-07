@@ -61,7 +61,6 @@ class CardMediaState extends State<CardMedia> {
     final authProvider = Provider.of<AuthProvider>(context);
     final userToken = authProvider.token ?? '';
 
-
     return Column(
       children: [
         Container(
