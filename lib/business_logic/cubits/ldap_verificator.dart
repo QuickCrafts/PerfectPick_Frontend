@@ -1,6 +1,6 @@
 import 'package:dartdap/dartdap.dart';
 
-Future<bool> ldapVerificator() async {
+Future<bool> ldapVerificator(String userEmail, String password) async {
   final connection = LdapConnection(
     host: 'localhost',
     ssl: false,
@@ -9,6 +9,13 @@ Future<bool> ldapVerificator() async {
     password: 'admin',
     );
   await connection.open();
+
+  final response = await connection.bind(DN: userEmail, password: password);
+
+  if (response.resultCode != ResultCode.OK) {
+    print('Error: $response');
+    return false;
+  }
 
   return true;
 }
