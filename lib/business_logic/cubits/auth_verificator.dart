@@ -27,7 +27,7 @@ class AuthProvider with ChangeNotifier {
       notifyListeners();
     } catch (e) {
       print("Error: $e");
-      print(_token);
+      removeToken();
     }
   }
 
